@@ -22,16 +22,17 @@ export function Services() {
               <motion.article
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="group min-h-[344px] bg-paper p-7 transition duration-500 hover:bg-white sm:p-8"
+                className="group relative min-h-[300px] overflow-hidden bg-paper p-7 transition duration-500 hover:bg-white sm:min-h-[344px] sm:p-8"
               >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_75%_18%,rgba(1,113,221,0.13),transparent_34%)]" />
                 <div className="mb-16 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-ink/35">{service.eyebrow}</span>
+                  <span className="text-xs font-semibold text-ink/[0.35]">{service.eyebrow}</span>
                   <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-white transition duration-500 group-hover:bg-ocean">
                     <Icon size={18} />
                   </span>
                 </div>
                 <h3 className="font-display text-3xl font-semibold leading-none">{service.title}</h3>
-                <p className="mt-5 text-sm leading-6 text-ink/56">{service.copy}</p>
+                <p className="mt-5 text-sm leading-6 text-ink/[0.56]">{service.copy}</p>
               </motion.article>
             </StaggerItem>
           );

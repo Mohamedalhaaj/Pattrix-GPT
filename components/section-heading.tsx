@@ -28,7 +28,7 @@ export function SectionHeading({
         </h2>
         {copy ? (
           <p
-            className={`max-w-xl text-base leading-7 text-ink/58 sm:text-lg ${
+            className={`max-w-xl text-base leading-7 text-ink/[0.58] sm:text-lg ${
               align === "center" ? "mx-auto" : "lg:ml-auto"
             }`}
           >

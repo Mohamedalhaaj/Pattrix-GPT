@@ -4,9 +4,9 @@ import { MagneticButton } from "@/components/magnetic-button";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion-primitives";
 import { SectionHeading } from "@/components/section-heading";
 import { projects } from "@/lib/content";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { MouseEvent, useRef } from "react";
 
 export function Portfolio() {
   return (
@@ -33,18 +33,32 @@ function ProjectCard({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const pointerX = useMotionValue(50);
+  const pointerY = useMotionValue(50);
+  const smoothX = useSpring(pointerX, { stiffness: 80, damping: 22, mass: 0.5 });
+  const smoothY = useSpring(pointerY, { stiffness: 80, damping: 22, mass: 0.5 });
+  const cardLight = useMotionTemplate`radial-gradient(circle at ${smoothX}% ${smoothY}%, rgba(255,255,255,0.22), transparent 34%)`;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
   const y = useTransform(scrollYProgress, [0, 1], [index % 2 ? 32 : 0, index % 2 ? -42 : -18]);
 
+  function handleMove(event: MouseEvent<HTMLElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    pointerX.set(((event.clientX - rect.left) / rect.width) * 100);
+    pointerY.set(((event.clientY - rect.top) / rect.height) * 100);
+  }
+
   return (
     <StaggerItem>
       <motion.article
         ref={ref}
         style={{ y }}
-        className="group relative min-h-[640px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white shadow-glass"
+        onMouseMove={handleMove}
+        whileHover={{ scale: 1.012 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="group relative min-h-[560px] overflow-hidden rounded-[1.6rem] bg-ink p-5 text-white shadow-glass sm:min-h-[640px] sm:rounded-[2rem]"
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${project.palette} opacity-60`} />
         <Image
@@ -54,30 +68,31 @@ function ProjectCard({
           sizes="(min-width: 1024px) 33vw, 100vw"
           className="object-cover opacity-[0.42] mix-blend-luminosity transition duration-700 ease-luxury group-hover:scale-105 group-hover:opacity-[0.58]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/34 to-transparent" />
-        <div className="relative flex h-full min-h-[600px] flex-col justify-between">
-          <div className="flex items-center justify-between text-xs uppercase text-white/62">
+        <motion.div style={{ background: cardLight }} className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/[0.34] to-transparent" />
+        <div className="relative flex h-full min-h-[520px] flex-col justify-between sm:min-h-[600px]">
+          <div className="flex items-center justify-between text-xs uppercase text-white/[0.62]">
             <span>{project.category}</span>
             <span>{project.year}</span>
           </div>
           <div>
-            <p className="mb-4 inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-xs font-medium text-white/72 backdrop-blur-xl">
+            <p className="mb-4 inline-flex rounded-full border border-white/[0.18] bg-white/10 px-4 py-2 text-xs font-medium text-white/[0.72] backdrop-blur-xl">
               {project.metric}
             </p>
-            <h3 className="max-w-sm font-display text-4xl font-semibold leading-none sm:text-5xl">
+            <h3 className="max-w-sm font-display text-3xl font-semibold leading-none sm:text-5xl">
               {project.title}
             </h3>
-            <div className="mt-6 space-y-4 text-sm leading-6 text-white/64">
+            <div className="mt-6 space-y-3 text-sm leading-6 text-white/[0.64] sm:space-y-4">
               <p>
-                <span className="text-white/38">Challenge: </span>
+                <span className="text-white/[0.38]">Challenge: </span>
                 {project.challenge}
               </p>
               <p>
-                <span className="text-white/38">Strategy: </span>
+                <span className="text-white/[0.38]">Strategy: </span>
                 {project.strategy}
               </p>
               <p>
-                <span className="text-white/38">Impact: </span>
+                <span className="text-white/[0.38]">Impact: </span>
                 {project.impact}
               </p>
             </div>

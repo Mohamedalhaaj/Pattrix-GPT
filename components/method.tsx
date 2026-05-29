@@ -22,7 +22,7 @@ export function Method() {
               <h3 className="mt-12 font-display text-5xl font-semibold leading-none sm:text-6xl">
                 From signal to reputation.
               </h3>
-              <p className="mt-6 text-pretty text-base leading-7 text-ink/58">
+              <p className="mt-6 text-pretty text-base leading-7 text-ink/[0.58]">
                 Pattrix moves like a strategy desk, an editorial room, and a production team working from the same brief.
               </p>
               <div className="mt-9">
@@ -44,10 +44,10 @@ export function Method() {
                         scale: visible ? 1 : 0.985
                       }}
                       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                      className="grid gap-8 rounded-[2rem] border border-ink/[0.08] bg-white/[0.72] p-6 backdrop-blur-xl sm:p-8 md:grid-cols-[0.25fr_1fr]"
+                      className="grid gap-7 rounded-[1.6rem] border border-ink/[0.08] bg-white/[0.72] p-6 backdrop-blur-xl sm:rounded-[2rem] sm:p-8 md:grid-cols-[0.25fr_1fr]"
                     >
                       <div className="flex items-center gap-4 md:block">
-                        <span className="text-sm font-semibold text-ink/32">
+                        <span className="text-sm font-semibold text-ink/[0.32]">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <div className="mt-0 grid h-12 w-12 place-items-center rounded-full bg-ink text-white md:mt-10">
@@ -58,7 +58,7 @@ export function Method() {
                         <h3 className="font-display text-4xl font-semibold leading-none sm:text-5xl">
                           {item.title}
                         </h3>
-                        <p className="mt-5 max-w-xl text-base leading-7 text-ink/58">{item.copy}</p>
+                        <p className="mt-5 max-w-xl text-base leading-7 text-ink/[0.58]">{item.copy}</p>
                       </div>
                     </motion.article>
                   )}

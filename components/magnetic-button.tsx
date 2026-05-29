@@ -35,7 +35,7 @@ export function MagneticButton({
   const theme =
     variant === "dark"
       ? "bg-ink text-white shadow-blue"
-      : "border border-white/40 bg-white/12 text-white backdrop-blur-xl";
+      : "border border-white/70 bg-white text-ink shadow-[0_16px_54px_rgba(0,0,0,0.22)] backdrop-blur-xl";
 
   return (
     <motion.div style={{ x: springX, y: springY }} className="inline-flex">
