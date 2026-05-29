@@ -11,8 +11,8 @@ export function Method() {
     <section id="method" className="section-pad bg-paper">
       <SectionHeading
         eyebrow="Method"
-        title="Scroll-paced craft, built as a production engine."
-        copy="Every phase has a clear role: clarify the center, build the atmosphere, systemize the output, then tune the finish."
+        title="A campaign rhythm for shaping public perception."
+        copy="Every phase has a role: understand the attention landscape, define the message, build the communication system, then execute with discipline."
       />
       <div className="mx-auto mt-16 max-w-7xl px-5 sm:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr]">
@@ -20,13 +20,13 @@ export function Method() {
             <div className="glass-panel rounded-[2rem] p-7 sm:p-8">
               <p className="text-xs font-semibold uppercase text-ocean">Operating rhythm</p>
               <h3 className="mt-12 font-display text-5xl font-semibold leading-none sm:text-6xl">
-                From signal to system.
+                From signal to reputation.
               </h3>
               <p className="mt-6 text-pretty text-base leading-7 text-ink/58">
-                Pattrix moves like an editorial room and ships like a product team. The outcome is expressive, but the process stays exact.
+                Pattrix moves like a strategy desk, an editorial room, and a production team working from the same brief.
               </p>
               <div className="mt-9">
-                <MagneticButton href="#contact">Reserve a sprint</MagneticButton>
+                <MagneticButton href="#contact">Plan a campaign</MagneticButton>
               </div>
             </div>
           </Reveal>

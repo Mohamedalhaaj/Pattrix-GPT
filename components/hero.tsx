@@ -28,7 +28,7 @@ export function Hero() {
     <section
       id="top"
       onMouseMove={handleMove}
-      className="relative min-h-[104svh] overflow-hidden bg-ink text-white"
+      className="relative min-h-[100svh] overflow-hidden bg-ink text-white"
     >
       <motion.div style={{ y: imageY, scale: imageScale }} className="absolute inset-0">
         <Image
@@ -40,8 +40,8 @@ export function Hero() {
           className="object-cover opacity-[0.74]"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_24%,rgba(1,113,221,0.28),transparent_28%),linear-gradient(90deg,rgba(11,16,32,0.95),rgba(11,16,32,0.56)_44%,rgba(11,16,32,0.12))]" />
-      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(1,113,221,0.3),transparent_27%),radial-gradient(circle_at_24%_74%,rgba(245,247,250,0.11),transparent_24%),linear-gradient(90deg,rgba(11,16,32,0.97),rgba(11,16,32,0.69)_48%,rgba(11,16,32,0.2))]" />
+      <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-ink via-ink/76 to-transparent" />
 
       <motion.div
         style={{ x, y }}
@@ -52,7 +52,7 @@ export function Hero() {
         className="absolute bottom-[18vh] right-[18vw] hidden h-28 w-72 rounded-full border border-white/10 bg-white/[0.08] backdrop-blur-2xl lg:block"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[104svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-32 sm:px-8 lg:pb-16">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-10 pt-28 sm:px-8 lg:pb-14">
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
           initial="hidden"
@@ -61,34 +61,34 @@ export function Hero() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.12, delayChildren: 0.18 } }
           }}
-          className="max-w-6xl"
+          className="max-w-7xl"
         >
           <motion.p
             variants={{
               hidden: { opacity: 0, y: 24 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }
             }}
-            className="mb-7 text-xs font-semibold uppercase text-white/68"
+            className="mb-6 text-xs font-semibold uppercase text-white/68"
           >
-            Strategy / Production / Social / Digital
+            Tripoli / Marketing / PR / Public Perception
           </motion.p>
           <motion.h1
             variants={{
               hidden: { opacity: 0, y: 54, filter: "blur(16px)" },
               visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.15, ease: [0.22, 1, 0.36, 1] } }
             }}
-            className="max-w-6xl font-display text-[clamp(4rem,13vw,13rem)] font-semibold leading-[0.82] text-balance"
+            className="max-w-7xl font-display text-[clamp(3.55rem,10.6vw,11rem)] font-semibold leading-[0.84] text-balance"
           >
-            Pattrix shapes desire into digital cinema.
+            We shape how brands are seen, remembered, and talked about.
           </motion.h1>
         </motion.div>
 
-        <div className="mt-10 grid gap-8 border-t border-white/14 pt-8 md:grid-cols-[0.72fr_1fr] md:items-end">
+        <div className="mt-9 grid gap-8 border-t border-white/14 pt-7 md:grid-cols-[0.72fr_1fr] md:items-end">
           <MagneticButton href="#work" variant="light">
-            View selected work
+            View campaign systems
           </MagneticButton>
           <p className="max-w-2xl text-pretty text-base leading-7 text-white/68 sm:text-lg md:ml-auto">
-            A luxury creative agency building brand systems, campaign worlds, and interactive experiences with cinematic restraint.
+            Pattrix is a premium Marketing & PR agency based in Tripoli, building communication systems for visibility, trust, and regional attention.
           </p>
         </div>
       </div>

@@ -12,9 +12,9 @@ export function Portfolio() {
   return (
     <section id="work" className="section-pad bg-paper">
       <SectionHeading
-        eyebrow="Selected work"
-        title="Portfolio storytelling with the pacing of a film."
-        copy="Each engagement is treated like a world: a visual system, a launch rhythm, and a set of digital moments that hold attention."
+        eyebrow="Campaign dossiers"
+        title="Strategic visibility, composed like a campaign film."
+        copy="The showcase is framed around real communication problems: reputation, public clarity, launch attention, and regional audience memory."
       />
       <Stagger className="mx-auto mt-16 grid max-w-7xl gap-5 px-5 sm:px-8 lg:grid-cols-3">
         {projects.map((project, index) => (
@@ -44,7 +44,7 @@ function ProjectCard({
       <motion.article
         ref={ref}
         style={{ y }}
-        className="group relative min-h-[560px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white shadow-glass"
+        className="group relative min-h-[640px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white shadow-glass"
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${project.palette} opacity-60`} />
         <Image
@@ -55,7 +55,7 @@ function ProjectCard({
           className="object-cover opacity-[0.42] mix-blend-luminosity transition duration-700 ease-luxury group-hover:scale-105 group-hover:opacity-[0.58]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/34 to-transparent" />
-        <div className="relative flex h-full min-h-[520px] flex-col justify-between">
+        <div className="relative flex h-full min-h-[600px] flex-col justify-between">
           <div className="flex items-center justify-between text-xs uppercase text-white/62">
             <span>{project.category}</span>
             <span>{project.year}</span>
@@ -64,10 +64,23 @@ function ProjectCard({
             <p className="mb-4 inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-xs font-medium text-white/72 backdrop-blur-xl">
               {project.metric}
             </p>
-            <h3 className="font-display text-4xl font-semibold leading-none sm:text-5xl">
+            <h3 className="max-w-sm font-display text-4xl font-semibold leading-none sm:text-5xl">
               {project.title}
             </h3>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-white/64">{project.copy}</p>
+            <div className="mt-6 space-y-4 text-sm leading-6 text-white/64">
+              <p>
+                <span className="text-white/38">Challenge: </span>
+                {project.challenge}
+              </p>
+              <p>
+                <span className="text-white/38">Strategy: </span>
+                {project.strategy}
+              </p>
+              <p>
+                <span className="text-white/38">Impact: </span>
+                {project.impact}
+              </p>
+            </div>
           </div>
         </div>
       </motion.article>

@@ -16,8 +16,11 @@ export function SiteHeader() {
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         className="mx-auto flex h-16 max-w-7xl items-center justify-between rounded-full border border-white/45 bg-white/55 px-4 shadow-glass backdrop-blur-2xl sm:px-6"
       >
-        <Link href="#top" className="font-display text-sm font-semibold text-ink">
-          Pattrix
+        <Link href="#top" className="leading-none text-ink">
+          <span className="block font-display text-sm font-semibold">Pattrix</span>
+          <span className="mt-1 hidden text-[10px] font-medium text-ink/46 sm:block">
+            Marketing & PR Agency
+          </span>
         </Link>
         <nav className="hidden items-center gap-1 rounded-full bg-ink/5 p-1 md:flex">
           {navItems.map((item) => (
@@ -34,7 +37,7 @@ export function SiteHeader() {
           href="#contact"
           className="rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:bg-ocean"
         >
-          Begin
+          Get in touch
         </Link>
       </motion.div>
       <motion.div

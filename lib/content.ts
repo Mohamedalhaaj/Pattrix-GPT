@@ -4,91 +4,151 @@ import {
   AudioLines,
   Clapperboard,
   Compass,
+  Megaphone,
   Layers3,
+  Landmark,
   PenTool,
+  RadioTower,
   Sparkles,
   Waypoints
 } from "lucide-react";
 
-export const navItems = ["Work", "Studio", "Method", "Contact"];
+export const navItems = ["Work", "Trust", "Services", "Method", "Contact"];
+
+export const credibility = {
+  clients: [
+    "Hyundai",
+    "United Nations",
+    "Musiad",
+    "Al Baraka Insurance",
+    "TBC",
+    "Optics",
+    "Retail Groups"
+  ],
+  sectors: [
+    "Institutional",
+    "Insurance",
+    "NGOs",
+    "Retail",
+    "Electronics",
+    "Optics",
+    "Construction",
+    "Events"
+  ],
+  metrics: [
+    { value: "Tripoli", label: "regional base" },
+    { value: "PR", label: "reputation systems" },
+    { value: "360", label: "campaign architecture" }
+  ]
+};
 
 export const services = [
   {
-    icon: Compass,
+    icon: RadioTower,
     eyebrow: "01",
-    title: "Brand Direction",
-    copy: "Positioning, narrative systems, identity language, and art direction for brands that need to feel inevitable."
+    title: "Strategic Communication",
+    copy: "Message architecture, stakeholder framing, public narratives, and visibility systems for serious organizations."
   },
   {
-    icon: Clapperboard,
+    icon: Landmark,
     eyebrow: "02",
-    title: "Cinematic Production",
-    copy: "Campaign films, social-first launches, editorial content, and motion-led worlds built with production discipline."
+    title: "PR & Reputation",
+    copy: "Reputation positioning, media presence, institutional trust, and response-ready communication discipline."
   },
   {
-    icon: Waypoints,
+    icon: Megaphone,
     eyebrow: "03",
-    title: "Digital Experiences",
-    copy: "Immersive websites, launch systems, and interaction design with clean engineering under the atmosphere."
+    title: "Campaign Strategy",
+    copy: "Regional campaign ecosystems designed around attention, cultural timing, audience behavior, and measurable recall."
   },
   {
     icon: AudioLines,
     eyebrow: "04",
-    title: "Social Architecture",
-    copy: "Content ecosystems, campaign cadence, platform rituals, and creator direction shaped for cultural memory."
+    title: "Social Media Systems",
+    copy: "Platform cadence, content strategy, editorial calendars, community presence, and always-on brand visibility."
+  },
+  {
+    icon: Clapperboard,
+    eyebrow: "05",
+    title: "Content Production",
+    copy: "Campaign films, launch assets, public event coverage, and visual systems built with cinematic restraint."
+  },
+  {
+    icon: Compass,
+    eyebrow: "06",
+    title: "Brand Positioning",
+    copy: "Market stance, audience perception, visual direction, and communication rules that make brands easier to trust."
+  },
+  {
+    icon: Waypoints,
+    eyebrow: "07",
+    title: "Digital Presence",
+    copy: "Web, launch, and digital touchpoints that turn strategic positioning into polished public-facing experience."
+  },
+  {
+    icon: Layers3,
+    eyebrow: "08",
+    title: "Event Communication",
+    copy: "Public moments, institutional events, coverage systems, and post-event narratives designed for credibility."
   }
 ];
 
 export const projects = [
   {
-    title: "Nocturne Atelier",
-    category: "Luxury Identity",
+    title: "Regional Campaign Launch",
+    category: "Visibility System",
     year: "2026",
-    metric: "+42% premium recall",
+    metric: "Tripoli to region",
     image: "/images/cinematic-studio.png",
     palette: "from-[#0B1020] via-[#182134] to-[#E7ECF4]",
-    copy: "A cinematic identity and launch system for a private fashion house built around restraint, tactility, and silence."
+    challenge: "A brand needed to move beyond local awareness without losing cultural specificity.",
+    strategy: "Build one campaign language across message, film, social cadence, and public-facing digital touchpoints.",
+    impact: "A launch system designed for recognition, repetition, and regional attention."
   },
   {
-    title: "Blueframe",
-    category: "Digital Flagship",
+    title: "Institutional Communication System",
+    category: "Trust Architecture",
     year: "2025",
-    metric: "3.8s first impression",
+    metric: "Public clarity",
     image: "/images/cinematic-studio.png",
     palette: "from-[#0171DD] via-[#10213A] to-[#EEF2F7]",
-    copy: "An interactive product narrative where each scroll beat reveals craft, performance, and market authority."
+    challenge: "A serious organization needed clearer public language across channels and stakeholder moments.",
+    strategy: "Translate complex activity into a calm communication system with hierarchy, proof, and editorial cadence.",
+    impact: "Sharper institutional presence across media, events, social, and digital channels."
   },
   {
-    title: "Maison Vale",
-    category: "Campaign System",
+    title: "Brand Visibility Campaign",
+    category: "Perception Strategy",
     year: "2025",
-    metric: "18 markets",
+    metric: "Audience attention",
     image: "/images/cinematic-studio.png",
     palette: "from-[#596F62] via-[#151B28] to-[#F5F7FA]",
-    copy: "A modular social and film language that turned a quiet object into a collectible cultural signal."
+    challenge: "A market-facing brand needed to become more memorable in a crowded attention environment.",
+    strategy: "Create a repeatable content and production system around proof, aspiration, and category authority.",
+    impact: "A more coherent public image built through campaign rhythm, social assets, and cinematic production."
   }
 ];
 
 export const method = [
   {
     icon: PenTool,
-    title: "Sharp Strategy",
-    copy: "We reduce the brief until the strongest idea has nowhere to hide."
+    title: "Strategic Diagnosis",
+    copy: "We locate the perception gap, the audience tension, and the public message that can move behavior."
   },
   {
     icon: Aperture,
-    title: "Cinematic Systems",
-    copy: "Every frame, hover, edit, and caption is designed as part of one visual instrument."
+    title: "Campaign Architecture",
+    copy: "We turn the strategy into a system of channels, moments, assets, and messages that can repeat with purpose."
   },
   {
     icon: Layers3,
-    title: "Modular Delivery",
-    copy: "Reusable content, components, and launch assets keep the system useful after the reveal."
+    title: "Public Execution",
+    copy: "Production, social, media presence, events, and digital touchpoints move together instead of competing for attention."
   },
   {
     icon: Sparkles,
-    title: "Premium Finish",
-    copy: "Spacing, timing, contrast, and hierarchy are tuned until the work feels expensive at a glance."
+    title: "Reputation Memory",
+    copy: "We refine the visible system until the brand is easier to recognize, easier to trust, and easier to talk about."
   }
 ];
 

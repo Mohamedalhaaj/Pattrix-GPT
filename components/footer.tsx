@@ -6,7 +6,7 @@ import { ArrowIcon } from "@/lib/content";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const links = ["Instagram", "LinkedIn", "Behance"];
+const links = ["Instagram", "LinkedIn", "Campaign desk"];
 
 export function Footer() {
   return (
@@ -16,7 +16,7 @@ export function Footer() {
         <Reveal>
           <p className="mb-8 text-xs font-semibold uppercase text-white/48">Contact</p>
           <h2 className="max-w-6xl font-display text-[clamp(3.8rem,11vw,11rem)] font-semibold leading-[0.84] text-balance">
-            Make the next launch impossible to ignore.
+            Build the campaign people notice, trust, and repeat.
           </h2>
         </Reveal>
 
@@ -49,8 +49,8 @@ export function Footer() {
         </div>
 
         <div className="mt-20 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <span>Pattrix Creative Agency</span>
-          <span>Strategy, production, social, digital experiences</span>
+          <span>Pattrix Marketing & PR Agency</span>
+          <span>Strategic communication, reputation, campaigns, social, production</span>
         </div>
       </div>
     </footer>

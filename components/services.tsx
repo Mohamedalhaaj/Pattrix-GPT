@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 
 export function Services() {
   return (
-    <section className="section-pad bg-platinum">
+    <section id="services" className="section-pad bg-platinum">
       <SectionHeading
         eyebrow="Capabilities"
-        title="One studio system across strategy, image, and interaction."
-        copy="The work is intentionally integrated so brand decisions can move cleanly through production, social cadence, and digital experience."
+        title="Communication, PR, campaign, and content systems under one direction."
+        copy="Pattrix connects strategy with execution so public language, media presence, social rhythm, events, and production move as one disciplined system."
       />
       <Stagger className="mx-auto mt-16 grid max-w-7xl gap-px overflow-hidden rounded-[2rem] bg-ink/10 px-0 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service) => {
@@ -22,7 +22,7 @@ export function Services() {
               <motion.article
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="group min-h-[360px] bg-paper p-7 transition duration-500 hover:bg-white sm:p-8"
+                className="group min-h-[344px] bg-paper p-7 transition duration-500 hover:bg-white sm:p-8"
               >
                 <div className="mb-16 flex items-center justify-between">
                   <span className="text-xs font-semibold text-ink/35">{service.eyebrow}</span>
