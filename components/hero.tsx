@@ -103,12 +103,13 @@ export function Hero() {
               hidden: { opacity: 0, y: 44 },
               visible: { opacity: 1, y: 0, transition: { duration: 1.05, ease: [0.22, 1, 0.36, 1] } }
             }}
-            className="w-full max-w-[73rem] font-display text-[clamp(2.15rem,9vw,8.75rem)] font-semibold leading-[0.95] text-balance sm:text-[clamp(3.05rem,7.65vw,8.75rem)] sm:leading-[0.9]"
+            className="w-full max-w-[73rem] font-display text-[clamp(2.05rem,8.15vw,8.75rem)] font-semibold leading-[0.96] text-balance sm:text-[clamp(3.05rem,7.25vw,8.2rem)] sm:leading-[0.9]"
           >
-            <span className="block sm:inline">We shape how </span>
-            <span className="block sm:inline">brands are seen, </span>
-            <span className="block sm:inline">remembered, and </span>
-            <span className="block sm:inline">talked about.</span>
+            <span className="block sm:inline">From Tripoli </span>
+            <span className="block sm:inline">to the region, </span>
+            <span className="block sm:inline">we build </span>
+            <span className="block sm:inline">campaigns people </span>
+            <span className="block sm:inline">remember.</span>
           </motion.h1>
         </motion.div>
 
@@ -118,8 +119,8 @@ export function Hero() {
               View campaign systems
             </MagneticButton>
           </div>
-          <div className="grid gap-5 md:ml-auto md:max-w-2xl">
-            <p className="text-pretty text-base leading-7 text-white/[0.72] sm:text-lg">
+          <div className="grid max-w-full gap-5 md:ml-auto md:max-w-2xl">
+            <p className="max-w-[23rem] text-pretty text-base leading-7 text-white/[0.72] sm:max-w-none sm:text-lg">
               Pattrix is a premium Marketing & PR agency based in Tripoli, building communication systems for visibility, trust, and regional attention.
             </p>
             <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 text-xs uppercase text-white/[0.54] sm:grid-cols-3">

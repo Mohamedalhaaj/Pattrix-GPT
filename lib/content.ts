@@ -1,5 +1,4 @@
 import {
-  Aperture,
   ArrowUpRight,
   AudioLines,
   Clapperboard,
@@ -7,13 +6,14 @@ import {
   Megaphone,
   Layers3,
   Landmark,
-  PenTool,
+  LineChart,
+  MapPin,
+  Newspaper,
   RadioTower,
-  Sparkles,
   Waypoints
 } from "lucide-react";
 
-export const navItems = ["Work", "Trust", "Services", "Method", "Contact"];
+export const navItems = ["Who", "Services", "Trust", "Systems", "Work", "Contact"];
 
 export const credibility = {
   clients: [
@@ -42,54 +42,48 @@ export const credibility = {
   ]
 };
 
-export const services = [
+export const divisions = [
   {
     icon: RadioTower,
     eyebrow: "01",
     title: "Strategic Communication",
-    copy: "Message architecture, stakeholder framing, public narratives, and visibility systems for serious organizations."
+    signal: "Message architecture",
+    copy: "Stakeholder framing, public narratives, launch language, and visibility systems for serious organizations."
   },
   {
     icon: Landmark,
     eyebrow: "02",
     title: "PR & Reputation",
-    copy: "Reputation positioning, media presence, institutional trust, and response-ready communication discipline."
-  },
-  {
-    icon: Megaphone,
-    eyebrow: "03",
-    title: "Campaign Strategy",
-    copy: "Regional campaign ecosystems designed around attention, cultural timing, audience behavior, and measurable recall."
+    signal: "Institutional trust",
+    copy: "Reputation positioning, media presence, response-ready communication, and long-term public credibility."
   },
   {
     icon: AudioLines,
-    eyebrow: "04",
+    eyebrow: "03",
     title: "Social Media Systems",
-    copy: "Platform cadence, content strategy, editorial calendars, community presence, and always-on brand visibility."
+    signal: "Always-on attention",
+    copy: "Platform cadence, content strategy, editorial calendars, community presence, and audience behavior loops."
+  },
+  {
+    icon: Megaphone,
+    eyebrow: "04",
+    title: "Campaign Strategy",
+    signal: "Regional momentum",
+    copy: "Campaign ecosystems designed around timing, memory, distribution, cultural context, and measurable recall."
   },
   {
     icon: Clapperboard,
     eyebrow: "05",
     title: "Content Production",
-    copy: "Campaign films, launch assets, public event coverage, and visual systems built with cinematic restraint."
-  },
-  {
-    icon: Compass,
-    eyebrow: "06",
-    title: "Brand Positioning",
-    copy: "Market stance, audience perception, visual direction, and communication rules that make brands easier to trust."
+    signal: "Cinematic proof",
+    copy: "Campaign films, launch assets, public event coverage, and visual systems built with production discipline."
   },
   {
     icon: Waypoints,
-    eyebrow: "07",
+    eyebrow: "06",
     title: "Digital Presence",
-    copy: "Web, launch, and digital touchpoints that turn strategic positioning into polished public-facing experience."
-  },
-  {
-    icon: Layers3,
-    eyebrow: "08",
-    title: "Event Communication",
-    copy: "Public moments, institutional events, coverage systems, and post-event narratives designed for credibility."
+    signal: "Public interface",
+    copy: "Web, launch, and digital touchpoints that turn strategic positioning into a polished public experience."
   }
 ];
 
@@ -129,27 +123,38 @@ export const projects = [
   }
 ];
 
-export const method = [
+export const campaignFlow = [
   {
-    icon: PenTool,
-    title: "Strategic Diagnosis",
-    copy: "We locate the perception gap, the audience tension, and the public message that can move behavior."
+    icon: Compass,
+    title: "Insight",
+    copy: "Identify the perception gap, audience tension, cultural timing, and public opportunity."
   },
   {
-    icon: Aperture,
-    title: "Campaign Architecture",
-    copy: "We turn the strategy into a system of channels, moments, assets, and messages that can repeat with purpose."
+    icon: Landmark,
+    title: "Strategy",
+    copy: "Define the message, stakeholder logic, channel priorities, and reputation posture."
   },
   {
-    icon: Layers3,
-    title: "Public Execution",
-    copy: "Production, social, media presence, events, and digital touchpoints move together instead of competing for attention."
+    icon: Clapperboard,
+    title: "Production",
+    copy: "Create the campaign assets, films, editorial content, and public-facing visual language."
   },
   {
-    icon: Sparkles,
-    title: "Reputation Memory",
-    copy: "We refine the visible system until the brand is easier to recognize, easier to trust, and easier to talk about."
+    icon: Newspaper,
+    title: "Distribution",
+    copy: "Move through social, media, events, partners, and digital surfaces with coordinated rhythm."
+  },
+  {
+    icon: LineChart,
+    title: "Measurement",
+    copy: "Read attention, trust signals, performance, and cultural response to sharpen the next wave."
   }
+];
+
+export const regionalSignals = [
+  { icon: MapPin, title: "Tripoli Base", copy: "Local intelligence, cultural awareness, and relationships that keep strategy grounded." },
+  { icon: RadioTower, title: "Regional Signal", copy: "Campaign systems designed to travel across markets without becoming generic." },
+  { icon: Layers3, title: "Institutional Fluency", copy: "Communication built for brands, public moments, NGOs, retail groups, and serious organizations." }
 ];
 
 export const ArrowIcon = ArrowUpRight;

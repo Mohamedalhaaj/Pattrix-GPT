@@ -17,7 +17,7 @@ export function SiteHeader() {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        className="inline-flex min-h-16 w-auto max-w-7xl items-center justify-between rounded-[2rem] border border-white/[0.55] bg-white/[0.78] px-4 py-3 shadow-glass backdrop-blur-2xl sm:rounded-full sm:px-6 md:mx-auto md:flex md:w-full"
+        className="inline-flex min-h-16 w-auto max-w-7xl items-center justify-between rounded-[2rem] border border-white/[0.55] bg-white/[0.78] px-4 py-3 shadow-glass backdrop-blur-2xl sm:rounded-full sm:px-6 lg:mx-auto lg:flex lg:w-full"
       >
         <Link href="#top" className="leading-none text-ink">
           <span className="block font-display text-sm font-semibold">Pattrix</span>
@@ -25,7 +25,7 @@ export function SiteHeader() {
             Marketing & PR Agency
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 rounded-full bg-ink/[0.06] p-1 md:flex">
+        <nav className="hidden items-center gap-1 rounded-full bg-ink/[0.06] p-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item}
@@ -38,7 +38,7 @@ export function SiteHeader() {
         </nav>
         <Link
           href="#contact"
-          className="hidden rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:bg-ocean md:inline-flex"
+          className="hidden rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:bg-ocean lg:inline-flex"
         >
           Get in touch
         </Link>
@@ -47,7 +47,7 @@ export function SiteHeader() {
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
-          className="ml-3 grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-white shadow-blue transition duration-300 hover:bg-ocean md:hidden"
+          className="ml-3 grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-white shadow-blue transition duration-300 hover:bg-ocean lg:hidden"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -59,7 +59,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[1.6rem] border border-white/[0.45] bg-white/[0.82] p-2 shadow-glass backdrop-blur-2xl md:hidden"
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[1.6rem] border border-white/[0.45] bg-white/[0.82] p-2 shadow-glass backdrop-blur-2xl lg:hidden"
           >
             <div className="grid gap-1">
               {navItems.map((item) => (
