@@ -6,11 +6,14 @@ import { StoryJourney } from "@/components/story-journey";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-paper text-ink">
+    <main className="min-h-screen overflow-x-hidden bg-paper text-ink">
       <SiteHeader />
       <Hero />
-      <div id="journey" className="h-px bg-ink" aria-hidden="true" />
-      <StoryJourney />
+      <section id="journey" className="scroll-mt-28 bg-ink">
+        <div id="systems" className="scroll-mt-28">
+          <StoryJourney />
+        </div>
+      </section>
       <Portfolio />
       <Footer />
     </main>

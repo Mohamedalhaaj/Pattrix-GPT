@@ -5,23 +5,46 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import type { MouseEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
+  const scrollToId = (id: string, behavior: ScrollBehavior = "smooth") => {
     const target = document.getElementById(id);
 
     if (!target) return;
 
-    window.history.pushState(null, "", `#${id}`);
+    const offset = window.innerWidth >= 1024 ? 112 : 92;
+
     window.scrollTo({
-      top: target.getBoundingClientRect().top + window.scrollY,
-      behavior: "smooth"
+      top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset),
+      behavior
     });
+  };
+
+  useEffect(() => {
+    function handleHashTarget() {
+      const id = window.location.hash.slice(1);
+
+      if (!id) return;
+
+      [40, 180, 460].forEach((delay) => {
+        window.setTimeout(() => scrollToId(id, "auto"), delay);
+      });
+    }
+
+    handleHashTarget();
+    window.addEventListener("hashchange", handleHashTarget);
+
+    return () => window.removeEventListener("hashchange", handleHashTarget);
+  }, []);
+
+  const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.history.pushState(null, "", `#${id}`);
+    scrollToId(id);
     setOpen(false);
   };
 

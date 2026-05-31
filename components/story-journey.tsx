@@ -59,12 +59,12 @@ export function StoryJourney() {
   const counterY = useTransform(y, (value) => value * -0.8);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end end"]
+    offset: ["start end", "end start"]
   });
 
-  const cameraScale = useTransform(scrollYProgress, [0, 0.45, 1], [1.08, 1.18, 1.03]);
-  const cameraY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const fogOpacity = useTransform(scrollYProgress, [0, 0.34, 0.72, 1], [0.2, 0.58, 0.34, 0.72]);
+  const cameraScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1.1, 1.02]);
+  const cameraY = useTransform(scrollYProgress, [0, 1], [36, -72]);
+  const fogOpacity = useTransform(scrollYProgress, [0, 0.45, 1], [0.48, 0.64, 0.52]);
   const blueGlow = useTransform(scrollYProgress, [0, 0.5, 1], [18, 62, 38]);
   const glow = useMotionTemplate`radial-gradient(circle at ${blueGlow}% 42%, rgba(1,113,221,0.26), transparent 32%)`;
 
@@ -78,10 +78,9 @@ export function StoryJourney() {
     <section
       ref={ref}
       onMouseMove={handleMove}
-      className="relative h-[560vh] bg-ink text-white sm:h-[620vh]"
+      className="relative overflow-hidden bg-ink text-white"
     >
-      <span id="systems" className="absolute top-[250vh] h-px w-px" />
-      <div className="sticky top-0 h-[100svh] overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div style={{ y: cameraY, scale: cameraScale }} className="absolute inset-0">
           <Image
             src="/images/cinematic-studio.png"
@@ -105,36 +104,73 @@ export function StoryJourney() {
           style={{ x: counterX, y: counterY }}
           className="absolute bottom-[10vh] right-[20vw] hidden h-24 w-80 rounded-full border border-white/10 bg-white/[0.07] backdrop-blur-2xl lg:block"
         />
+      </div>
 
-        <div className="relative z-10 mx-auto grid h-full max-w-7xl px-5 pb-20 pt-24 sm:px-8 sm:pb-24 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:pt-24">
-          <div className="relative flex h-[38svh] min-h-[19rem] items-end pb-5 sm:h-[48svh] sm:min-h-[25rem] sm:items-center sm:pb-0 lg:h-auto lg:min-h-[34rem]">
-            {chapters.map((chapter, index) => (
-              <ChapterCopy
-                key={chapter.title}
-                chapter={chapter}
-                index={index}
-                progress={scrollYProgress}
-              />
-            ))}
+      <div className="relative z-10 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:py-36">
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="grid gap-10 lg:grid-cols-[0.86fr_1fr] lg:items-end"
+        >
+          <div>
+            <p className="mb-5 border-l border-ocean pl-4 text-[11px] font-semibold uppercase tracking-normal text-white/[0.58]">
+              01 / Guided brand journey
+            </p>
+            <h2 className="max-w-4xl font-display text-[clamp(2.4rem,8vw,6.4rem)] font-semibold leading-[0.92] text-balance">
+              Attention is not bought. It is directed.
+            </h2>
           </div>
+          <div className="max-w-xl lg:ml-auto">
+            <p className="text-pretty text-base leading-7 text-white/[0.68] sm:text-lg sm:leading-8">
+              Pattrix builds the language, timing, production, and public rhythm that make campaigns easier to notice, trust, and remember.
+            </p>
+            <div className="pointer-events-auto mt-7">
+              <MagneticButton href="#systems-content" variant="light">
+                Enter the campaign room
+              </MagneticButton>
+            </div>
+          </div>
+        </motion.div>
 
-          <div className="relative grid min-h-[38svh] content-start sm:min-h-[40svh] sm:content-center lg:min-h-[38rem]">
+        <div id="systems-content" className="scroll-mt-28 pt-20 sm:pt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.18 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-8 grid gap-5 lg:grid-cols-[0.62fr_1fr] lg:items-end"
+          >
+            <div>
+              <p className="mb-4 border-l border-ocean pl-4 text-[11px] font-semibold uppercase text-white/[0.5]">
+                02 / Systems
+              </p>
+              <h3 className="font-display text-[clamp(2rem,5vw,4.8rem)] font-semibold leading-[0.95] text-balance">
+                Six divisions move as one campaign room.
+              </h3>
+            </div>
+            <p className="max-w-2xl text-pretty text-base leading-7 text-white/[0.62] lg:ml-auto">
+              Strategic communication, PR, social, campaign strategy, content production, and digital presence are sequenced into one operating system.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-5 lg:grid-cols-[1fr_0.94fr] lg:items-start">
             <DivisionScene progress={scrollYProgress} />
-            <FlowScene progress={scrollYProgress} />
-            <TrustScene progress={scrollYProgress} />
-            <RegionalScene progress={scrollYProgress} />
+            <div className="grid gap-5">
+              <TrustScene progress={scrollYProgress} />
+              <FlowScene progress={scrollYProgress} />
+            </div>
           </div>
-        </div>
 
-        <div className="pointer-events-none absolute inset-x-5 bottom-5 z-20 mx-auto hidden max-w-7xl sm:inset-x-8 sm:block">
-          <div className="grid gap-3 rounded-[1.4rem] border border-white/10 bg-white/[0.05] p-2 backdrop-blur-2xl sm:grid-cols-5">
-            {chapters.map((chapter, index) => (
-              <ProgressPill
-                key={chapter.note}
-                index={index}
-                label={chapter.note}
-                progress={scrollYProgress}
-              />
+          <RegionalScene progress={scrollYProgress} />
+
+          <div className="mt-10 hidden gap-3 rounded-[1.4rem] border border-white/10 bg-white/[0.05] p-2 backdrop-blur-2xl sm:grid sm:grid-cols-5">
+            {chapters.map((chapter) => (
+              <div key={chapter.note} className="relative overflow-hidden rounded-xl bg-white/[0.04] px-3 py-2 text-center">
+                <span className="absolute inset-x-0 bottom-0 h-px bg-ocean/50" />
+                <span className="text-[10px] font-semibold uppercase text-white/[0.64]">{chapter.note}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -184,13 +220,12 @@ function ChapterCopy({
 }
 
 function DivisionScene({ progress }: { progress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
-  const opacity = useTransform(progress, [0.22, 0.34, 0.6], [0, 1, 0]);
-  const y = useTransform(progress, [0.22, 0.38, 0.6], [46, 0, -26]);
-  const active = useTransform(progress, [0.34, 0.52], [0, divisions.length - 1]);
+  const y = useTransform(progress, [0, 1], [22, -16]);
+  const active = useTransform(progress, [0.2, 0.72], [0, divisions.length - 1]);
 
   return (
-    <motion.div style={{ opacity, y }} className="absolute inset-x-0">
-      <div className="grid max-h-[38svh] gap-2 overflow-hidden sm:max-h-none sm:gap-3">
+    <motion.div style={{ y }} className="relative">
+      <div className="grid gap-2 sm:gap-3">
         {divisions.map((division, index) => {
           return (
             <DivisionRow
@@ -207,12 +242,11 @@ function DivisionScene({ progress }: { progress: ReturnType<typeof useScroll>["s
 }
 
 function FlowScene({ progress }: { progress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
-  const opacity = useTransform(progress, [0.46, 0.58, 0.82], [0, 1, 0]);
-  const scale = useTransform(progress, [0.46, 0.58, 0.82], [0.96, 1, 0.98]);
-  const active = useTransform(progress, [0.55, 0.72], [0, campaignFlow.length - 1]);
+  const y = useTransform(progress, [0, 1], [10, -20]);
+  const active = useTransform(progress, [0.34, 0.82], [0, campaignFlow.length - 1]);
 
   return (
-    <motion.div style={{ opacity, scale }} className="absolute inset-x-0">
+    <motion.div style={{ y }} className="relative">
       <div className="rounded-[1.45rem] border border-white/10 bg-white/[0.06] p-3 backdrop-blur-2xl sm:rounded-[2rem] sm:p-6">
         <div className="mb-4 flex items-center justify-between text-[10px] uppercase text-white/[0.46] sm:mb-7 sm:text-xs">
           <span>Campaign system</span>
@@ -236,11 +270,10 @@ function FlowScene({ progress }: { progress: ReturnType<typeof useScroll>["scrol
 }
 
 function TrustScene({ progress }: { progress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
-  const opacity = useTransform(progress, [0.02, 0.14, 0.36], [0, 1, 0]);
-  const y = useTransform(progress, [0.02, 0.14, 0.36], [42, 0, -18]);
+  const y = useTransform(progress, [0, 1], [16, -12]);
 
   return (
-    <motion.div style={{ opacity, y }} className="absolute inset-x-0">
+    <motion.div style={{ y }} className="relative">
       <div className="rounded-[1.45rem] border border-white/10 bg-white/[0.055] p-4 backdrop-blur-2xl sm:rounded-[2rem] sm:p-7">
         <p className="mb-4 text-[10px] font-semibold uppercase text-white/[0.42] sm:mb-5 sm:text-xs">Trusted campaign sectors</p>
         <div className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-white/10">
@@ -264,12 +297,11 @@ function TrustScene({ progress }: { progress: ReturnType<typeof useScroll>["scro
 }
 
 function RegionalScene({ progress }: { progress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
-  const opacity = useTransform(progress, [0.7, 0.82, 1], [0, 1, 1]);
-  const y = useTransform(progress, [0.7, 0.82, 1], [42, 0, 0]);
+  const y = useTransform(progress, [0, 1], [24, -18]);
 
   return (
-    <motion.div style={{ opacity, y }} className="absolute inset-x-0">
-      <div className="grid gap-3 sm:gap-4">
+    <motion.div style={{ y }} className="relative mt-5">
+      <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
         {regionalSignals.map((item) => {
           const Icon = item.icon;
           return (
