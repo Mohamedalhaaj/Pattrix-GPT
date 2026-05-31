@@ -1,24 +1,17 @@
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
-import { WhoWeAre } from "@/components/who-we-are";
-import { Method } from "@/components/method";
 import { Portfolio } from "@/components/portfolio";
-import { Credibility } from "@/components/credibility";
-import { Services } from "@/components/services";
 import { SiteHeader } from "@/components/site-header";
-import { RegionalPresence } from "@/components/regional-presence";
+import { StoryJourney } from "@/components/story-journey";
 
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-paper text-ink">
       <SiteHeader />
       <Hero />
-      <WhoWeAre />
-      <Services />
-      <Credibility />
-      <Method />
+      <div id="journey" className="h-px bg-ink" aria-hidden="true" />
+      <StoryJourney />
       <Portfolio />
-      <RegionalPresence />
       <Footer />
     </main>
   );

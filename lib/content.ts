@@ -13,7 +13,7 @@ import {
   Waypoints
 } from "lucide-react";
 
-export const navItems = ["Who", "Services", "Trust", "Systems", "Work", "Contact"];
+export const navItems = ["Journey", "Systems", "Work", "Contact"];
 
 export const credibility = {
   clients: [

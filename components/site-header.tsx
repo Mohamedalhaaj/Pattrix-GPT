@@ -4,12 +4,26 @@ import { navItems } from "@/lib/content";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import type { MouseEvent } from "react";
 import { useState } from "react";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const target = document.getElementById(id);
+
+    if (!target) return;
+
+    window.history.pushState(null, "", `#${id}`);
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY,
+      behavior: "smooth"
+    });
+    setOpen(false);
+  };
 
   return (
     <header className="fixed left-4 top-4 z-50 w-[calc(100vw-2rem)] sm:left-6 sm:w-[calc(100vw-3rem)]">
@@ -30,6 +44,7 @@ export function SiteHeader() {
             <Link
               key={item}
               href={`#${item.toLowerCase()}`}
+              onClick={scrollToSection(item.toLowerCase())}
               className="rounded-full px-4 py-2 text-xs font-medium text-ink/[0.62] transition duration-300 hover:bg-white hover:text-ink"
             >
               {item}
@@ -66,7 +81,7 @@ export function SiteHeader() {
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  onClick={() => setOpen(false)}
+                  onClick={scrollToSection(item.toLowerCase())}
                   className="rounded-[1.15rem] px-4 py-4 text-sm font-semibold text-ink/[0.72] transition duration-300 hover:bg-ink hover:text-white"
                 >
                   {item}
