@@ -36,5 +36,5 @@ reorganizes per chapter. Concept, tokens, and rules live in:
 
 ## Typography
 
-Archivo (variable width axis) for everything structural; Newsreader italic for
+Archivo (variable width axis) for everything structural; Source Serif 4 italic for
 sparse editorial asides. Loaded via `next/font/google` — do not add font `<link>`s.

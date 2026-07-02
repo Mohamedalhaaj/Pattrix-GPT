@@ -15,7 +15,7 @@ No smooth-scroll library — native scroll (matches reference behaviour).
 
 ```
 app/
-  layout.tsx            fonts (Archivo, Newsreader), metadata, JSON-LD
+  layout.tsx            fonts (Archivo, Source Serif 4), metadata, JSON-LD
   page.tsx              chapter composition (server component)
   work/[slug]/page.tsx  case-study route (SSG via generateStaticParams)
   robots.ts, sitemap.ts, icon.svg, opengraph-image

@@ -13,8 +13,8 @@ const config: Config = {
         paper: "#F7F8FA",
         surface: "#FFFFFF",
         ink: "#101623",
-        "ink-2": "rgba(16,22,35,0.62)",
-        "ink-3": "rgba(16,22,35,0.40)",
+        "ink-2": "rgba(16,22,35,0.70)",
+        "ink-3": "rgba(16,22,35,0.58)",
         hairline: "rgba(16,22,35,0.10)",
         blue: "#0171DD",
         "blue-deep": "#0A50A8",
@@ -25,7 +25,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-archivo)", "ui-sans-serif", "system-ui", "sans-serif"],
-        editorial: ["var(--font-newsreader)", "Georgia", "serif"]
+        editorial: ["var(--font-editorial)", "Georgia", "serif"]
       },
       transitionTimingFunction: {
         "out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",

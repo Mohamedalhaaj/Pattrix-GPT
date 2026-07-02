@@ -22,7 +22,7 @@
 ## Fonts
 
 - Archivo (variable, latin subset) — OFL, via `next/font/google`, self-hosted at build.
-- Newsreader (italic, latin subset) — OFL, via `next/font/google`.
+- Source Serif 4 (italic, latin subset) — OFL, via `next/font/google`.
 
 ## Not available — see ASSET_REQUESTS.md
 

@@ -20,7 +20,7 @@ No render-blocking third parties; zero external requests.
 | Asset class | Size |
 |---|---|
 | JS total (React + Next runtime + GSAP + field engine + chapters) | **~243 KB** |
-| Preloaded fonts (Archivo variable wdth + Newsreader italic, latin) | **~232 KB** (was ~360 KB before dropping unused Newsreader upright) |
+| Preloaded fonts (Archivo variable wdth + italic editorial serif, latin) | **~232 KB** (was ~360 KB before dropping the unused upright serif cuts; the serif was later swapped Newsreader → Source Serif 4 in the design critique) |
 | HTML (includes 3 inline generative SVG covers) | ~63 KB |
 | Raster images | **0 KB** — every visual is procedural |
 
@@ -42,7 +42,7 @@ No render-blocking third parties; zero external requests.
 
 - No WebGL/three.js — Canvas 2D delivers the concept at a fraction of the cost.
 - No smooth-scroll library; native scrolling (also keeps INP clean).
-- `next/font` self-hosted subsets with `display: swap`; italic-only Newsreader.
+- `next/font` self-hosted subsets with `display: swap`; italic-only Source Serif 4.
 - Case-study covers are seeded inline SVG (zero requests, cache-free).
 - All routes prerendered (static/SSG) — no server work per request.
 

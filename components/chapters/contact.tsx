@@ -12,7 +12,7 @@ export function Contact() {
       <FieldTrigger formation="converge" ox={0.5} oy={0.4} energy={1} dim={0.9} theme="light" />
       <div className="container-x">
         <div className="overflow-hidden rounded-3xl bg-blue px-6 py-20 text-white shadow-[0_40px_120px_-40px_rgba(1,113,221,0.55)] md:px-16 md:py-28">
-          <p className="eyebrow flex items-center gap-4 text-white/70">
+          <p className="eyebrow flex items-center gap-4 text-white/85">
             <span>{c.chapter}</span>
             <span className="h-px w-10 bg-white/30" aria-hidden="true" />
             <span>{c.chapterName}</span>
@@ -20,7 +20,7 @@ export function Contact() {
           <h2 id="contact-heading" className="display mt-10 max-w-[10em] text-[clamp(2.6rem,7vw,6rem)]">
             {c.statement}
           </h2>
-          <p className="prose-measure mt-6 text-base font-medium text-white/85 md:text-lg">{c.sub}</p>
+          <p className="prose-measure mt-6 text-base font-medium text-white md:text-lg">{c.sub}</p>
 
           <div className="mt-14 flex flex-col gap-8 border-t border-white/20 pt-10 md:flex-row md:items-center md:justify-between">
             <a
@@ -37,7 +37,7 @@ export function Contact() {
                 </svg>
               </span>
             </a>
-            <p className="text-sm font-medium text-white/70">{site.contact.location}</p>
+            <p className="text-sm font-semibold text-white/90">{site.contact.location}</p>
           </div>
         </div>
       </div>

@@ -29,8 +29,8 @@ the only scenography.
 --paper:      #F7F8FA   base background (off-white, cool)
 --surface:    #FFFFFF   raised surfaces, cards
 --ink:        #101623   primary text (charcoal-navy)
---ink-2:      rgba(16,22,35,0.62)  secondary text
---ink-3:      rgba(16,22,35,0.40)  tertiary/captions
+--ink-2:      rgba(16,22,35,0.70)  secondary text (AA on paper)
+--ink-3:      rgba(16,22,35,0.58)  tertiary/captions (≈4.5:1 on paper)
 --hairline:   rgba(16,22,35,0.10)  rules, borders
 --blue:       #0171DD   Pattrix blue — identity, links, field, CTA band
 --blue-deep:  #0A50A8   hover/pressed, gradients into blue
@@ -54,7 +54,7 @@ Loaded via `next/font/google` (subset latin, `display: swap`):
     sizes clamp(2.6rem → 7.5rem), line-height 0.95–1.02.
   - Eyebrows/labels: 600, width 125, ALL-CAPS, tracking +14–18%, 11–12px.
   - Body: 400/500, width 100, 16–18px, line-height 1.6, max-width 34em.
-- **Newsreader** (italic, opsz) — the editorial voice. Used sparingly: one italic
+- **Source Serif 4** (italic, opsz) — the editorial voice. Used sparingly: one italic
   line per chapter (the "human" counterpoint), pull-quotes, image captions.
 
 Hierarchy per viewport: one display statement, one eyebrow, ≤1 paragraph, one CTA.

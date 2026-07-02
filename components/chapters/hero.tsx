@@ -53,7 +53,7 @@ export function Hero() {
         <p data-hero-eyebrow className="eyebrow text-ink-2">
           {site.hero.eyebrow}
         </p>
-        <h1 id="hero-heading" className="display mt-8 max-w-[11em] text-[clamp(2.75rem,8vw,7.25rem)]">
+        <h1 id="hero-heading" className="display mt-8 max-w-[11em] text-[clamp(2.75rem,7.5vw,6rem)]">
           <span data-hero-line className="block">
             We turn noise into
           </span>

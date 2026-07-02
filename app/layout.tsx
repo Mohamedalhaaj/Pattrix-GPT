@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Newsreader } from "next/font/google";
+import { Archivo, Source_Serif_4 } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -11,11 +11,11 @@ const archivo = Archivo({
 });
 
 // Italic only — the editorial voice is exclusively italic asides; shipping the
-// upright cuts would add ~200KB of unused font data.
-const newsreader = Newsreader({
+// upright cuts would add unused font data.
+const editorialSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-editorial",
   style: ["italic"],
   axes: ["opsz"]
 });
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${editorialSerif.variable}`}>
       <body className="font-sans">
         <a href="#main" className="skip-link">
           Skip to content
