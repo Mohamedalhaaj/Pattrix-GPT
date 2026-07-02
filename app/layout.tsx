@@ -10,11 +10,13 @@ const archivo = Archivo({
   axes: ["wdth"]
 });
 
+// Italic only — the editorial voice is exclusively italic asides; shipping the
+// upright cuts would add ~200KB of unused font data.
 const newsreader = Newsreader({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-newsreader",
-  style: ["normal", "italic"],
+  style: ["italic"],
   axes: ["opsz"]
 });
 
