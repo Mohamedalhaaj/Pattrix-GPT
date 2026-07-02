@@ -113,8 +113,8 @@ export function Header() {
       <div
         id="mobile-menu"
         ref={panelRef}
-        className={`fixed inset-0 z-40 flex flex-col justify-between bg-paper px-6 pb-10 pt-28 transition-opacity duration-300 md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-40 flex flex-col justify-between bg-paper px-6 pb-10 pt-28 transition-[opacity,visibility] duration-300 md:hidden ${
+          open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
         }`}
         aria-hidden={!open}
       >

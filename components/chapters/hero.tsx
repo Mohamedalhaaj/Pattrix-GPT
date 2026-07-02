@@ -48,7 +48,7 @@ export function Hero() {
   );
 
   return (
-    <section ref={ref} aria-labelledby="hero-heading" className="relative flex min-h-[100svh] items-end pb-24 pt-32 md:items-center md:pb-0">
+    <section ref={ref} aria-labelledby="hero-heading" className="relative flex min-h-[100svh] items-end pb-24 pt-32 md:items-center md:pb-28">
       <div className="container-x">
         <p data-hero-eyebrow className="eyebrow text-ink-2">
           {site.hero.eyebrow}

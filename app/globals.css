@@ -135,6 +135,34 @@ canvas {
   opacity: 1;
 }
 
+/* ---- scroll hint ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-line {
+    transform-origin: top;
+    animation: scroll-line-pulse 2.2s var(--ease-in-out-cubic) infinite;
+  }
+}
+
+@keyframes scroll-line-pulse {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
 /* ---- reduced motion ---- */
 
 @media (prefers-reduced-motion: reduce) {
