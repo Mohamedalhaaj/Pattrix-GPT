@@ -19,6 +19,15 @@ Nothing here blocks the build; the site handles every gap gracefully.
 
 | # | Item | Current state | Where to fix |
 |---|------|---------------|--------------|
+| A | **Three commercials' attribution** | Still open for the three in `Pattrix/Commercials/` (medical/surgical, rocket footage, "watermelon" piece). The 4K "Albaraka -Commerrcial.MP4" WAS identified and is now on the Albaraka case | tell Claude the attribution |
+| B | ~~Optics client naming~~ | ✅ RESOLVED — Drive `History/TRIPOLI Optics` folder confirms the client name used on the site | — |
+| C | **Albaraka app-promo source** | Phone-panels still from a WhatsApp export (808px); cover rebuilt with the print-res calendar render so the composite is much sharper overall. PSD exists in Drive `Albaraka/PSD/` for a perfect export | `public/images/work/albaraka.jpg` |
+| D | **Historical clients list** | Drive `History/` holds many more past clients (VIVO, GEELY, JETOUR, ZXAUTO, Doroub, Coral Seafood, Shaima Water, Sigma, AL-Mukhtar Takaful, Tajuri Group, Libyan Voices, UB, mustakbal…) — none added to the site without owner curation | `content/clients.ts` |
+| E | **UNSMIL FINAL film** | 371MB produced film (+8 parts) in Drive `UNSMIL/Media` — could yield a hero/showreel cut if desired | — |
+
+
+| # | Item | Current state | Where to fix |
+|---|------|---------------|--------------|
 | 1 | ~~Pattrix logo~~ | ✅ RESOLVED — official wordmark PNGs (dark + white) trimmed from brand source files, in `public/brand/`; vector SVG still welcome for perfect scaling | header/footer |
 | 2 | **Social profiles** | None rendered — add verified URLs only | `content/site.ts → contact.socials` |
 | 3 | **Client logo files** | Text-set names; MUSIAD + Karjen + Tripoli Optics logo files exist in the profile source folder — wall stays text-set until a complete, consistent logo set is available | `content/clients.ts` + `public/logos/` |

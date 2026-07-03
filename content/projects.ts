@@ -18,6 +18,14 @@ export interface ProjectImage {
   h: number;
 }
 
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+  label: string;
+  w: number;
+  h: number;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -38,6 +46,8 @@ export interface Project {
   coverH?: number;
   /** Additional real images shown on the case-study page. */
   gallery?: ProjectImage[];
+  /** Produced video work shown on the case-study page (click to play). */
+  videos?: ProjectVideo[];
 }
 
 export const projects: Project[] = [
@@ -67,6 +77,33 @@ export const projects: Project[] = [
         alt: "UNSMIL public-dialogue design in English: What do you think is meant by justice?",
         w: 1600,
         h: 1600
+      },
+      {
+        src: "/images/work/unsmil-post1.jpg",
+        alt: "UNSMIL media-literacy campaign: 96% of Libyans see false information online",
+        w: 1400,
+        h: 1400
+      },
+      {
+        src: "/images/work/unsmil-post12.jpg",
+        alt: "UNSMIL media-literacy campaign: your personal verification toolbox",
+        w: 1400,
+        h: 1400
+      },
+      {
+        src: "/images/work/unsmil-post6.jpg",
+        alt: "UNSMIL media-literacy campaign: protect Libya's elections from disinformation",
+        w: 1400,
+        h: 1400
+      }
+    ],
+    videos: [
+      {
+        src: "/videos/unsmil-roadmap.mp4",
+        poster: "/videos/unsmil-roadmap-poster.jpg",
+        label: "The Libyan Roadmap — explainer produced for the mission's public channels",
+        w: 720,
+        h: 1280
       }
     ]
   },
@@ -121,7 +158,7 @@ export const projects: Project[] = [
     accent: "#0A50A8",
     cover: "/images/work/albaraka.jpg",
     coverAlt:
-      "Albaraka Insurance campaign system: 2026 branded desk calendar and mobile app promotion with QR campaign screens",
+      "Albaraka Insurance campaign system: 2026 calendar design and mobile app campaign screens",
     coverW: 1800,
     coverH: 1200,
     gallery: [
@@ -136,6 +173,22 @@ export const projects: Project[] = [
         alt: "Albaraka Insurance 2026 branded desk calendar",
         w: 1280,
         h: 878
+      }
+    ],
+    videos: [
+      {
+        src: "/videos/albaraka-commercial.mp4",
+        poster: "/videos/albaraka-commercial-poster.jpg",
+        label: "Brand commercial — cinematic production, shot in 4K",
+        w: 1920,
+        h: 1080
+      },
+      {
+        src: "/videos/albaraka-car-insurance.mp4",
+        poster: "/videos/albaraka-car-insurance-poster.jpg",
+        label: "Car insurance — motion graphic from the campaign system",
+        w: 1440,
+        h: 1080
       }
     ]
   },
@@ -168,8 +221,73 @@ export const projects: Project[] = [
       {
         src: "/images/events/musiad-booth.jpg",
         alt: "Conversation at a MUSIAD event stand during a business gathering",
-        w: 1468,
-        h: 966
+        w: 2936,
+        h: 1932
+      }
+    ],
+    videos: [
+      {
+        src: "/videos/musiad-iftar.mp4",
+        poster: "/videos/musiad-iftar-poster.jpg",
+        label: "MUSIAD Ramadan Iftar — event film from the network's business gathering",
+        w: 1920,
+        h: 1080
+      }
+    ]
+  },
+  {
+    slug: "tripoli-optics-reels",
+    title: "Tripoli Optics — Reels & In-Store Content",
+    category: "Content Production",
+    year: "2025",
+    services: ["Production", "Social & Digital"],
+    premise:
+      "Reels, product photography, and in-store content production for an optics retailer in Tripoli.",
+    challenge:
+      "An optics retailer carrying premium eyewear brands needed its social presence to look as considered as its shelves — short-form content and product imagery that sell without cheapening the brands.",
+    approach:
+      "We produced a running series of in-store reels — product-led shooting with editorial pacing — and an art-directed studio photo session for the Joelle contact-lens line, from set design to final retouch.",
+    outcome:
+      "A consistent visual presence where every reel and product shot carries the store's premium positioning.",
+    accent: "#0E7490",
+    cover: "/images/work/optics.jpg",
+    coverAlt: "Frames from Tripoli Optics in-store reels: premium eyewear displays and store interiors",
+    coverW: 1800,
+    coverH: 1200,
+    gallery: [
+      {
+        src: "/images/work/joelle-green-bag.jpg",
+        alt: "Joelle contact lenses — art-directed product shot with leopard-print packaging in a green bag",
+        w: 1440,
+        h: 1800
+      },
+      {
+        src: "/images/work/joelle-opened-trav-bag.jpg",
+        alt: "Joelle contact lenses — campaign still life in an opened travel case with passport props",
+        w: 1440,
+        h: 1800
+      },
+      {
+        src: "/images/work/joelle-tripoli.jpg",
+        alt: "Joelle contact lenses — surreal campaign composite with a Tripoli landmark",
+        w: 1440,
+        h: 1800
+      }
+    ],
+    videos: [
+      {
+        src: "/videos/optics-reel-1.mp4",
+        poster: "/videos/optics-reel-1-poster.jpg",
+        label: "In-store reel — premium eyewear displays",
+        w: 720,
+        h: 1280
+      },
+      {
+        src: "/videos/optics-reel-2.mp4",
+        poster: "/videos/optics-reel-2-poster.jpg",
+        label: "In-store reel — store interior and product line",
+        w: 720,
+        h: 1280
       }
     ]
   }
