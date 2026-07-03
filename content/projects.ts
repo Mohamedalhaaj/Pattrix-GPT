@@ -158,7 +158,7 @@ export const projects: Project[] = [
     outcome:
       "A coherent commercial presence across digital and print — campaigns that build familiarity with every repetition.",
     accent: "#0A50A8",
-    cover: "/images/work/albaraka.jpg",
+    cover: "/images/work/albaraka-cover.jpg",
     coverAlt:
       "Albaraka Insurance 'download the app' campaign banner: QR code, mobile app in hand, and the Albaraka logo",
     coverW: 2200,
@@ -272,8 +272,8 @@ export const projects: Project[] = [
     outcome:
       "A consistent visual presence where every reel and product shot carries the store's premium positioning.",
     accent: "#0E7490",
-    cover: "/images/work/optics.jpg",
-    coverAlt: "Frames from Tripoli Optics in-store reels: premium eyewear displays and store interiors",
+    cover: "/images/work/optics-cover.jpg",
+    coverAlt: "Frames from Tripoli Optics product reels: premium eyewear, styled and shot in-store",
     coverW: 1800,
     coverH: 1200,
     gallery: [
@@ -298,16 +298,23 @@ export const projects: Project[] = [
     ],
     videos: [
       {
-        src: "/videos/optics-reel-1.mp4",
-        poster: "/videos/optics-reel-1-poster.jpg",
-        label: "Product reel — premium eyewear, styled and shot in-store",
+        src: "/videos/optics-reel-a.mp4",
+        poster: "/videos/optics-reel-a-poster.jpg",
+        label: "Product reel — optical frames, editorial styling",
         w: 720,
         h: 1280
       },
       {
-        src: "/videos/optics-reel-2.mp4",
-        poster: "/videos/optics-reel-2-poster.jpg",
-        label: "Product reel — seasonal eyewear campaign",
+        src: "/videos/optics-reel-b.mp4",
+        poster: "/videos/optics-reel-b-poster.jpg",
+        label: "Product reel — sunglasses, lifestyle set",
+        w: 720,
+        h: 1280
+      },
+      {
+        src: "/videos/optics-reel-c.mp4",
+        poster: "/videos/optics-reel-c-poster.jpg",
+        label: "Product reel — eyewear in a styled interior",
         w: 720,
         h: 1280
       }
