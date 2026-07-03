@@ -24,6 +24,8 @@ export interface ProjectVideo {
   label: string;
   w: number;
   h: number;
+  /** Featured videos render full-width; the rest render in a side-by-side grid. */
+  featured?: boolean;
 }
 
 export interface Project {
@@ -158,21 +160,33 @@ export const projects: Project[] = [
     accent: "#0A50A8",
     cover: "/images/work/albaraka.jpg",
     coverAlt:
-      "Albaraka Insurance campaign system: 2026 calendar design and mobile app campaign screens",
-    coverW: 1800,
-    coverH: 1200,
+      "Albaraka Insurance 'download the app' campaign banner: QR code, mobile app in hand, and the Albaraka logo",
+    coverW: 2200,
+    coverH: 1100,
     gallery: [
       {
-        src: "/images/work/albaraka-brand.jpg",
-        alt: "Albaraka Insurance brand visual direction board",
-        w: 1143,
-        h: 579
+        src: "/images/work/albaraka-cal-01.jpg",
+        alt: "Albaraka Insurance branded calendar — January, cyber risk insurance",
+        w: 1225,
+        h: 1177
       },
       {
-        src: "/images/work/albaraka-calendar.jpg",
-        alt: "Albaraka Insurance 2026 branded desk calendar",
-        w: 1280,
-        h: 878
+        src: "/images/work/albaraka-cal-02.jpg",
+        alt: "Albaraka Insurance branded calendar — February, property insurance",
+        w: 1214,
+        h: 1170
+      },
+      {
+        src: "/images/work/albaraka-cal-03.jpg",
+        alt: "Albaraka Insurance branded calendar — March, health insurance",
+        w: 1223,
+        h: 1192
+      },
+      {
+        src: "/images/work/albaraka-cal-04.jpg",
+        alt: "Albaraka Insurance branded calendar — April, car comprehensive insurance",
+        w: 1218,
+        h: 1204
       }
     ],
     videos: [
@@ -181,12 +195,20 @@ export const projects: Project[] = [
         poster: "/videos/albaraka-commercial-poster.jpg",
         label: "Brand commercial — cinematic production, shot in 4K",
         w: 1920,
-        h: 1080
+        h: 1080,
+        featured: true
       },
       {
         src: "/videos/albaraka-car-insurance.mp4",
         poster: "/videos/albaraka-car-insurance-poster.jpg",
         label: "Car insurance — motion graphic from the campaign system",
+        w: 1440,
+        h: 1080
+      },
+      {
+        src: "/videos/albaraka-comp1.mp4",
+        poster: "/videos/albaraka-comp1-poster.jpg",
+        label: "Insurance services — motion graphic from the campaign system",
         w: 1440,
         h: 1080
       }
@@ -278,14 +300,14 @@ export const projects: Project[] = [
       {
         src: "/videos/optics-reel-1.mp4",
         poster: "/videos/optics-reel-1-poster.jpg",
-        label: "In-store reel — premium eyewear displays",
+        label: "Product reel — premium eyewear, styled and shot in-store",
         w: 720,
         h: 1280
       },
       {
         src: "/videos/optics-reel-2.mp4",
         poster: "/videos/optics-reel-2-poster.jpg",
-        label: "In-store reel — store interior and product line",
+        label: "Product reel — seasonal eyewear campaign",
         w: 720,
         h: 1280
       }
