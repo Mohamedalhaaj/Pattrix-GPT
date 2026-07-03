@@ -27,6 +27,22 @@
 Extracted at 150dpi from the deck (~1100–1600px wide, ~700KB total). A Magnific
 upscale pass or the original photo files would sharpen them further (CONTENT_GAPS #4).
 
+## Video work (from the agency's Google Drive, 2026-07-03)
+
+| Asset | Source | Use |
+|---|---|---|
+| `public/videos/albaraka-car-insurance.mp4` (652KB, 1440×1080, 18s) | Albaraka MOTION GRAPHIC / CAR INSURANCE.mp4 (4000×3000 master) | Albaraka case — "In motion" |
+| `public/videos/unsmil-roadmap.mp4` (2MB, 720×1280, 45s) | UNSMIL Media / ROADMAP V.mp4 | UNSMIL case — "In motion" |
+| `public/videos/optics-reel-1.mp4` / `-2.mp4` (4MB each, 720×1280) | Al-Noor/Tripoli Optics reels (2160×3840 masters) | Tripoli Optics case — "In motion" |
+
+All served click-to-play (`preload="none"`, poster frames) — zero autoplay cost.
+
+**Downloaded but awaiting client/campaign attribution before use** (in Drive
+`Pattrix/Clients/Pattrix/Commercials/`): three produced commercials
+(surgical/medical 57s, rocket-footage 80s, "watermelon" stylized 146s).
+Also available in Drive: `UNSMIL FINAL.mov` (371MB produced film + 8 parts),
+Albaraka `SERVICES_DARK` + `Comp 1` motion graphics (40s, 4000×3000).
+
 ## Existing repo assets
 
 | Asset | Status |

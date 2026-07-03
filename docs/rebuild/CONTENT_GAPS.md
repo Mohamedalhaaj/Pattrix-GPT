@@ -19,6 +19,13 @@ Nothing here blocks the build; the site handles every gap gracefully.
 
 | # | Item | Current state | Where to fix |
 |---|------|---------------|--------------|
+| A | **Three commercials' attribution** | Downloaded from Drive `Commercials/` (medical/surgical, rocket footage, "watermelon" piece) — need client/campaign names before they can appear on the site | tell Claude the attribution |
+| B | **Optics client naming** | Site says "Tripoli Optics" (owner's wording + brand logo file); Drive folder says "Al-Noor Optics", store sign in reels says NOOR — confirm the public-facing name | `content/projects.ts`, `content/clients.ts` |
+| C | **Albaraka app-promo source** | The phone-panels image is a WhatsApp export (808px) — softest image on the site at retina; original PSD exists in Drive `Albaraka/PSD/` (needs a JPG/PNG export) | `public/images/work/albaraka.jpg` |
+
+
+| # | Item | Current state | Where to fix |
+|---|------|---------------|--------------|
 | 1 | ~~Pattrix logo~~ | ✅ RESOLVED — official wordmark PNGs (dark + white) trimmed from brand source files, in `public/brand/`; vector SVG still welcome for perfect scaling | header/footer |
 | 2 | **Social profiles** | None rendered — add verified URLs only | `content/site.ts → contact.socials` |
 | 3 | **Client logo files** | Text-set names; MUSIAD + Karjen + Tripoli Optics logo files exist in the profile source folder — wall stays text-set until a complete, consistent logo set is available | `content/clients.ts` + `public/logos/` |

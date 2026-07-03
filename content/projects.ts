@@ -18,6 +18,14 @@ export interface ProjectImage {
   h: number;
 }
 
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+  label: string;
+  w: number;
+  h: number;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -38,6 +46,8 @@ export interface Project {
   coverH?: number;
   /** Additional real images shown on the case-study page. */
   gallery?: ProjectImage[];
+  /** Produced video work shown on the case-study page (click to play). */
+  videos?: ProjectVideo[];
 }
 
 export const projects: Project[] = [
@@ -67,6 +77,15 @@ export const projects: Project[] = [
         alt: "UNSMIL public-dialogue design in English: What do you think is meant by justice?",
         w: 1600,
         h: 1600
+      }
+    ],
+    videos: [
+      {
+        src: "/videos/unsmil-roadmap.mp4",
+        poster: "/videos/unsmil-roadmap-poster.jpg",
+        label: "The Libyan Roadmap — explainer produced for the mission's public channels",
+        w: 720,
+        h: 1280
       }
     ]
   },
@@ -137,6 +156,15 @@ export const projects: Project[] = [
         w: 1280,
         h: 878
       }
+    ],
+    videos: [
+      {
+        src: "/videos/albaraka-car-insurance.mp4",
+        poster: "/videos/albaraka-car-insurance-poster.jpg",
+        label: "Car insurance — motion graphic from the campaign system",
+        w: 1440,
+        h: 1080
+      }
     ]
   },
   {
@@ -168,8 +196,44 @@ export const projects: Project[] = [
       {
         src: "/images/events/musiad-booth.jpg",
         alt: "Conversation at a MUSIAD event stand during a business gathering",
-        w: 1468,
-        h: 966
+        w: 2936,
+        h: 1932
+      }
+    ]
+  },
+  {
+    slug: "tripoli-optics-reels",
+    title: "Tripoli Optics — Reels & In-Store Content",
+    category: "Content Production",
+    year: "2025",
+    services: ["Production", "Social & Digital"],
+    premise:
+      "Product-led reels and in-store content production for an optics retailer in Tripoli.",
+    challenge:
+      "An optics retailer carrying premium eyewear brands needed its social presence to look as considered as its shelves — short-form content that sells the product without cheapening it.",
+    approach:
+      "We produced a running series of in-store reels: product-led shooting, editorial pacing, and an always-on cadence built around the retailer's brands and campaigns.",
+    outcome:
+      "A consistent short-form presence where every reel carries the store's premium positioning.",
+    accent: "#0E7490",
+    cover: "/images/work/optics.jpg",
+    coverAlt: "Frames from Tripoli Optics in-store reels: premium eyewear displays and store interiors",
+    coverW: 1800,
+    coverH: 1200,
+    videos: [
+      {
+        src: "/videos/optics-reel-1.mp4",
+        poster: "/videos/optics-reel-1-poster.jpg",
+        label: "In-store reel — premium eyewear displays",
+        w: 720,
+        h: 1280
+      },
+      {
+        src: "/videos/optics-reel-2.mp4",
+        poster: "/videos/optics-reel-2-poster.jpg",
+        label: "In-store reel — store interior and product line",
+        w: 720,
+        h: 1280
       }
     ]
   }
