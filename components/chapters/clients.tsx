@@ -44,15 +44,11 @@ export function Clients() {
               <span className="text-[0.6875rem] text-ink-3">{client.sector}</span>
             </div>
           ))}
-          {/* Filler cell keeps the grid rhythm on 4-col layouts. */}
-          <div className="hidden items-center justify-center bg-paper px-6 py-10 lg:flex">
-            <span className="text-[0.6875rem] uppercase tracking-eyebrow text-ink-3">{c.note}</span>
-          </div>
         </Reveal>
 
         <Reveal className="mt-10">
           <p className="text-xs leading-relaxed text-ink-3">
-            Sectors: {sectors.join(" · ")}
+            {c.note} · Sectors: {sectors.join(" · ")}
           </p>
         </Reveal>
       </div>

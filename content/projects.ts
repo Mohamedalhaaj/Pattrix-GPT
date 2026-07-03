@@ -4,16 +4,18 @@
  *
  * IMPORTANT: `challenge` / `approach` / `outcome` must stay qualitative and
  * truthful — no invented statistics or client-confidential details.
- * `cover` (path under /public) shows real work; when absent, a generative
- * pattern cover is rendered from the project's seed instead.
  *
- * All four engagements below are taken from the official Pattrix profile
- * (docs/rebuild reference: "Pattrix Profile.pdf", 2026).
+ * Images are the agency's own delivered material (uncropped originals from
+ * the Pattrix profile source files). `coverW`/`coverH` are the image's real
+ * pixel dimensions so pages can render it at its natural aspect ratio.
+ * When `cover` is absent, a generative pattern cover is rendered instead.
  */
 
 export interface ProjectImage {
   src: string;
   alt: string;
+  w: number;
+  h: number;
 }
 
 export interface Project {
@@ -32,6 +34,8 @@ export interface Project {
   /** Real cover image: path under /public. */
   cover?: string;
   coverAlt?: string;
+  coverW?: number;
+  coverH?: number;
   /** Additional real images shown on the case-study page. */
   gallery?: ProjectImage[];
 }
@@ -54,7 +58,17 @@ export const projects: Project[] = [
     accent: "#2B8CE6",
     cover: "/images/work/unsmil.jpg",
     coverAlt:
-      "UNSMIL bilingual social media designs: a governance-track discussion graphic and an online-discussion announcement with SRSG Hannah Tetteh"
+      "UNSMIL bilingual institutional media: an Arabic accountability-dialogue design and an online-discussion announcement with SRSG Hannah Tetteh",
+    coverW: 1800,
+    coverH: 1200,
+    gallery: [
+      {
+        src: "/images/work/unsmil-justice-en.jpg",
+        alt: "UNSMIL public-dialogue design in English: What do you think is meant by justice?",
+        w: 1600,
+        h: 1600
+      }
+    ]
   },
   {
     slug: "hyundai-libya-showroom-identity",
@@ -73,10 +87,20 @@ export const projects: Project[] = [
     accent: "#0171DD",
     cover: "/images/work/hyundai.jpg",
     coverAlt: "DLTA Duroue Libya workshop interior with red and grey Hyundai environmental branding",
+    coverW: 1536,
+    coverH: 1024,
     gallery: [
       {
+        src: "/images/work/hyundai-training.jpg",
+        alt: "DLTA training academy room with Hyundai environmental branding",
+        w: 1536,
+        h: 1024
+      },
+      {
         src: "/images/work/hyundai-red.jpg",
-        alt: "Hyundai Libya showroom brand wall and staff identity material"
+        alt: "Hyundai brand wall — New Thinking, New Possibilities entrance",
+        w: 1024,
+        h: 1024
       }
     ]
   },
@@ -97,7 +121,23 @@ export const projects: Project[] = [
     accent: "#0A50A8",
     cover: "/images/work/albaraka.jpg",
     coverAlt:
-      "Albaraka Insurance campaign system: mobile app promotion, QR campaign screens, and branded desk calendar"
+      "Albaraka Insurance campaign system: 2026 branded desk calendar and mobile app promotion with QR campaign screens",
+    coverW: 1800,
+    coverH: 1200,
+    gallery: [
+      {
+        src: "/images/work/albaraka-brand.jpg",
+        alt: "Albaraka Insurance brand visual direction board",
+        w: 1143,
+        h: 579
+      },
+      {
+        src: "/images/work/albaraka-calendar.jpg",
+        alt: "Albaraka Insurance 2026 branded desk calendar",
+        w: 1280,
+        h: 878
+      }
+    ]
   },
   {
     slug: "musiad-institutional-media-events",
@@ -115,11 +155,21 @@ export const projects: Project[] = [
       "An institutional presence that carries from printed program to event room to public channel.",
     accent: "#8A6D1D",
     cover: "/images/work/musiad.jpg",
-    coverAlt: "MUSIAD Libya institutional media: 2025 program launch designs and branded office environment",
+    coverAlt: "MUSIAD Libya 2025 program launch design — a new start for the network's activities and initiatives",
+    coverW: 1672,
+    coverH: 1115,
     gallery: [
       {
+        src: "/images/work/musiad-office.jpg",
+        alt: "MUSIAD Libya branded office — invest in your skills with MUSIAD Libya",
+        w: 1600,
+        h: 1600
+      },
+      {
         src: "/images/events/musiad-booth.jpg",
-        alt: "Conversation at a MUSIAD event stand during a business gathering"
+        alt: "Conversation at a MUSIAD event stand during a business gathering",
+        w: 1468,
+        h: 966
       }
     ]
   }

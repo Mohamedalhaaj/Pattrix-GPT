@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 
@@ -7,9 +8,7 @@ export function Footer() {
     <footer className="border-t border-hairline bg-paper">
       <div className="container-x grid gap-12 py-16 md:grid-cols-[2fr_1fr_1fr] md:py-20">
         <div>
-          <p className="eyebrow !text-[0.8125rem] font-bold text-ink">
-            Pattrix<span className="text-blue">.</span>
-          </p>
+          <Image src="/brand/logo-dark.png" alt="Pattrix" width={2335} height={561} className="h-5 w-auto" />
           <p className="prose-measure mt-4 max-w-xs text-sm leading-relaxed text-ink-2">{site.footer.line}</p>
         </div>
         <nav aria-label="Footer">

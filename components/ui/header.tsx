@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
@@ -58,13 +59,15 @@ export function Header() {
         }`}
       >
         <div className="container-x flex h-16 items-center justify-between md:h-20">
-          <Link
-            href="/"
-            className="eyebrow !text-[0.8125rem] font-bold text-ink"
-            aria-label="Pattrix — home"
-            onClick={() => setOpen(false)}
-          >
-            Pattrix<span className="text-blue">.</span>
+          <Link href="/" aria-label="Pattrix — home" onClick={() => setOpen(false)}>
+            <Image
+              src="/brand/logo-dark.png"
+              alt="Pattrix"
+              width={2335}
+              height={561}
+              priority
+              className="h-[1.15rem] w-auto md:h-[1.35rem]"
+            />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">

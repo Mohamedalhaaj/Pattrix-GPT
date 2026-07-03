@@ -77,8 +77,9 @@ test.describe("home", () => {
     const skip = page.locator(".skip-link");
     await expect(skip).toBeFocused();
     await page.keyboard.press("Tab");
-    const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
-    expect(focused).toBe("Pattrix.");
+    // Header logo is an image link; verify via its accessible name.
+    const focused = await page.evaluate(() => document.activeElement?.getAttribute("aria-label"));
+    expect(focused).toBe("Pattrix — home");
   });
 });
 

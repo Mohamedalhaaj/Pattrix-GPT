@@ -114,7 +114,7 @@ export const site = {
         copy: "Everything we release is built to survive scrutiny, not just launch day."
       }
     ],
-    /** Real event photography from the agency profile. */
+    /** Real event photography from the agency's delivered coverage. */
     proof: {
       caption: "Public rooms, delivered end-to-end — executive forums, international panels, and large-scale business gatherings.",
       images: [
@@ -127,8 +127,8 @@ export const site = {
           alt: "Speaker at the podium of an executive forum"
         },
         {
-          src: "/images/events/musiad-booth.jpg",
-          alt: "Guests in conversation at a branded event stand"
+          src: "/images/events/buffet.jpg",
+          alt: "Guests at a large-scale business gathering during a coordinated event"
         }
       ]
     }

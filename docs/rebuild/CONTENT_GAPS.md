@@ -19,12 +19,12 @@ Nothing here blocks the build; the site handles every gap gracefully.
 
 | # | Item | Current state | Where to fix |
 |---|------|---------------|--------------|
-| 1 | **Pattrix logo vector** | Typographic wordmark with blue period; the real logotype (custom "tt", blue i-notch) needs the SVG/AI source | header/footer + `app/icon.svg` |
+| 1 | ~~Pattrix logo~~ | ✅ RESOLVED — official wordmark PNGs (dark + white) trimmed from brand source files, in `public/brand/`; vector SVG still welcome for perfect scaling | header/footer |
 | 2 | **Social profiles** | None rendered — add verified URLs only | `content/site.ts → contact.socials` |
-| 3 | **Client logo files** | Text-set names (deck logos are angled/low-res on glass cards — not extraction-worthy) | `content/clients.ts` + `public/logos/` |
-| 4 | **Higher-res campaign photography** | Current images extracted from the profile PDF at 150dpi (≈1100–1600px) — good, but original photo files (or a Magnific upscale pass) would sharpen case-study covers | `public/images/work/`, `public/images/events/` |
+| 3 | **Client logo files** | Text-set names; MUSIAD + Karjen + Tripoli Optics logo files exist in the profile source folder — wall stays text-set until a complete, consistent logo set is available | `content/clients.ts` + `public/logos/` |
+| 4 | ~~Higher-res photography~~ | ✅ RESOLVED — all site images replaced with uncropped originals from the agency's source files (2026-07-03); Drive also holds 3 commercial videos + UNSMIL/Albaraka media trees (drop files into the local profile folder to use them) | `public/images/` |
 | 5 | **Takadum / Biout Aleaz sector labels** | Labeled "Corporate" / "Real estate" from logo reading — confirm | `content/clients.ts` |
-| 6 | **8th partner logo (page 3, unidentified)** | Omitted until the name is confirmed | `content/clients.ts` |
+| 6 | ~~8th partner logo~~ | ✅ RESOLVED — Tripoli Optics (بصريات طرابلس), logo found in brand source folder; added to roster | `content/clients.ts` |
 | 7 | **Per-project dates** | All real engagements labeled 2025 from profile context (UNSMIL event graphic dated Feb 2025) — confirm years | `content/projects.ts` |
 | 8 | **Legal pages** | None; footer links none. Add if required | new routes + footer nav |
 | 9 | **Arabic version** | English-only; RTL needs a dedicated decision | — |

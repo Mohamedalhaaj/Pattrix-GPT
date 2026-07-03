@@ -17,7 +17,8 @@ export const clients: Client[] = [
   { name: "MUSIAD", sector: "Business network" },
   { name: "Karjen Generators", sector: "Energy equipment" },
   { name: "Takadum", sector: "Corporate" },
-  { name: "Biout Aleaz", sector: "Real estate" }
+  { name: "Biout Aleaz", sector: "Real estate" },
+  { name: "Tripoli Optics", sector: "Optics" }
 ];
 
 export const sectors = [

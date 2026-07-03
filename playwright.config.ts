@@ -9,6 +9,8 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 45_000,
   fullyParallel: true,
+  /* Full parallelism can starve the single next-start server locally. */
+  workers: 2,
   retries: 0,
   reporter: [["list"]],
   use: {

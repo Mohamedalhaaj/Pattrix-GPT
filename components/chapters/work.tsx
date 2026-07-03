@@ -40,13 +40,13 @@ export function Work() {
                   }`}
                 >
                   {project.cover ? (
-                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden">
                       <Image
                         src={project.cover}
                         alt={project.coverAlt ?? `${project.title} — selected work`}
                         fill
                         sizes="(min-width: 1024px) 58vw, 100vw"
-                        className="object-cover transition-transform duration-700 ease-out-quart group-hover:scale-[1.04]"
+                        className="object-cover transition-transform duration-700 ease-out-quart group-hover:scale-[1.03]"
                       />
                     </div>
                   ) : (

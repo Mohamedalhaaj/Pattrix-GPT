@@ -42,7 +42,7 @@ export function About() {
           <div className="grid gap-4 md:grid-cols-3">
             {c.proof.images.map((img) => (
               <figure key={img.src} className="overflow-hidden rounded-2xl border border-hairline">
-                <div className="relative aspect-[16/10] w-full">
+                <div className="relative aspect-[3/2] w-full">
                   <Image
                     src={img.src}
                     alt={img.alt}
