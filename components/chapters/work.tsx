@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
@@ -34,17 +35,29 @@ export function Work() {
                 aria-label={`${project.title} — read the case study`}
               >
                 <div
-                  className={`overflow-hidden rounded-2xl border border-hairline lg:col-span-7 ${
+                  className={`relative overflow-hidden rounded-2xl border border-hairline lg:col-span-7 ${
                     i % 2 === 1 ? "lg:order-2 lg:col-start-6" : ""
                   }`}
                 >
-                  <PatternCover
-                    slug={project.slug}
-                    accent={project.accent}
-                    title={project.title}
-                    variant={(i % 3) as 0 | 1 | 2}
-                    className="aspect-[16/10] w-full transition-transform duration-700 ease-out-quart group-hover:scale-[1.03]"
-                  />
+                  {project.cover ? (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <Image
+                        src={project.cover}
+                        alt={project.coverAlt ?? `${project.title} — selected work`}
+                        fill
+                        sizes="(min-width: 1024px) 58vw, 100vw"
+                        className="object-cover transition-transform duration-700 ease-out-quart group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  ) : (
+                    <PatternCover
+                      slug={project.slug}
+                      accent={project.accent}
+                      title={project.title}
+                      variant={(i % 3) as 0 | 1 | 2}
+                      className="aspect-[16/10] w-full transition-transform duration-700 ease-out-quart group-hover:scale-[1.03]"
+                    />
+                  )}
                 </div>
                 <div className={`lg:col-span-4 ${i % 2 === 1 ? "lg:order-1 lg:col-start-1" : "lg:col-start-9"}`}>
                   <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-3">

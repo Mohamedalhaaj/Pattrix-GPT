@@ -26,10 +26,11 @@ Open **`content/projects.ts`** and copy an existing entry. Required fields:
 - `accent` — a hex color used by the generated cover art
 
 The project appears on the home page and gets its own page automatically.
-The cover image is generated (unique per slug). To use a real photo instead,
-put it in `public/images/` and set `cover: "/images/your-photo.jpg"`
-(the component prefers `cover` when present — ask a developer to wire it the
-first time).
+
+**Real photos**: put the image in `public/images/work/` and set
+`cover: "/images/work/your-photo.jpg"` plus a descriptive `coverAlt`.
+Extra photos go in `gallery: [{ src, alt }, ...]` — they render as a grid on
+the case-study page. If `cover` is omitted, a generated pattern cover is used.
 
 ## Add a client
 

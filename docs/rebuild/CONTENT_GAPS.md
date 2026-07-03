@@ -1,18 +1,37 @@
-# Content Gaps — needs owner input before launch
+# Content Gaps
 
+Updated 2026-07-03 after integrating the official Pattrix profile PDF.
 Nothing here blocks the build; the site handles every gap gracefully.
-Resolve each item in `content/` when the information is confirmed.
+
+## Resolved (from the profile)
+
+| Item | Resolution |
+|---|---|
+| Contact email | ✅ `info@pattrix.co` (profile, final page) |
+| Domain | ✅ `pattrix.co` — set in `content/site.ts → url` |
+| Phone numbers | ✅ `+218 91 097 0099` and `+218 91 164 6600` — contact band + footer, tel: links |
+| Client roster | ✅ UNSMIL, Hyundai Libya, Albaraka Insurance, MUSIAD, Karjen Generators, Takadum, Biout Aleaz |
+| Case studies | ✅ Four real engagements (UNSMIL, Hyundai Libya, Albaraka, MUSIAD) with real photography extracted from the profile |
+| Positioning language | ✅ "Strategic Communications & PR", "Where strategy meets creativity", "Tripoli — Working Globally" |
+| Wordmark cue | ✅ "Pattrix." with blue period reproduced typographically |
+
+## Still open
 
 | # | Item | Current state | Where to fix |
 |---|------|---------------|--------------|
-| 1 | **Contact email** | `studio@pattrix.com` carried over from the previous site — verify it is real and monitored | `content/site.ts → contact.email` |
-| 2 | **Domain** | `https://www.pattrix.com` assumed for SEO links | `content/site.ts → url` |
-| 3 | **Social profiles** | None rendered (old site had dead `#` links) — add verified URLs only | `content/site.ts → contact.socials` |
-| 4 | **Phone / WhatsApp** | Not present anywhere in the repo; add if the agency wants calls | `content/site.ts → contact` + footer/contact components |
-| 5 | **Official Pattrix logo** | Typographic wordmark in use; replace when a logo file exists | header/footer + `app/icon.svg` |
-| 6 | **Client logos** | Text-set names for all 7 clients (no logo files in repo) | `content/clients.ts` + `public/logos/` |
-| 7 | **Client name clarifications** | "TBC", "Optics", "Retail Groups" read as placeholders/categories, not company names — confirm real names | `content/clients.ts` |
-| 8 | **Case-study specifics** | Three engagements described qualitatively (carried from previous site copy). Client names, dates, deliverable lists, photography all unconfirmed | `content/projects.ts` |
-| 9 | **Founding year / team facts** | Deliberately absent (nothing verifiable in repo) — About stays qualitative until facts are provided | `content/site.ts → about` |
-| 10 | **Legal pages** | No privacy/terms pages; footer intentionally links none. Add if required for the market | new routes + footer nav |
-| 11 | **Arabic version** | Site is English-only; RTL/Arabic needs a dedicated decision | — |
+| 1 | **Pattrix logo vector** | Typographic wordmark with blue period; the real logotype (custom "tt", blue i-notch) needs the SVG/AI source | header/footer + `app/icon.svg` |
+| 2 | **Social profiles** | None rendered — add verified URLs only | `content/site.ts → contact.socials` |
+| 3 | **Client logo files** | Text-set names (deck logos are angled/low-res on glass cards — not extraction-worthy) | `content/clients.ts` + `public/logos/` |
+| 4 | **Higher-res campaign photography** | Current images extracted from the profile PDF at 150dpi (≈1100–1600px) — good, but original photo files (or a Magnific upscale pass) would sharpen case-study covers | `public/images/work/`, `public/images/events/` |
+| 5 | **Takadum / Biout Aleaz sector labels** | Labeled "Corporate" / "Real estate" from logo reading — confirm | `content/clients.ts` |
+| 6 | **8th partner logo (page 3, unidentified)** | Omitted until the name is confirmed | `content/clients.ts` |
+| 7 | **Per-project dates** | All real engagements labeled 2025 from profile context (UNSMIL event graphic dated Feb 2025) — confirm years | `content/projects.ts` |
+| 8 | **Legal pages** | None; footer links none. Add if required | new routes + footer nav |
+| 9 | **Arabic version** | English-only; RTL needs a dedicated decision | — |
+
+## Note on Magnific
+
+The user connected Magnific, but no Magnific/Freepik MCP tools are exposed in
+this Claude Code session (only claude.ai-side connectors). When available here,
+priority uses: upscale the 8 extracted photos, and generate the atmospheric
+brand film frames per ASSET_REQUESTS.md.

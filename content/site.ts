@@ -1,17 +1,18 @@
 /**
  * Global site content — edit text here, not inside components.
  * See docs/rebuild/EDITING_GUIDE.md
+ * Contact facts verified against the official Pattrix profile (2026).
  */
 
 export const site = {
   name: "Pattrix",
-  tagline: "Marketing & PR Agency — Tripoli",
+  tagline: "Strategic Communications & PR — Tripoli",
   /** Used in <title> and social sharing. */
-  metaTitle: "Pattrix — Marketing & PR Agency in Tripoli",
+  metaTitle: "Pattrix — Strategic Communications & PR, Tripoli",
   metaDescription:
-    "Pattrix is a marketing and PR agency in Tripoli. Strategy, public relations, campaigns, social media, and production for brands and institutions across Libya and the region.",
-  /** Base URL for canonical/OG links. Update when the domain is confirmed. */
-  url: "https://www.pattrix.com",
+    "Pattrix is a strategic communications and PR agency in Tripoli, working globally. Strategy, public relations, campaigns, social media, events, and production for brands and institutions.",
+  /** Base URL for canonical/OG links. */
+  url: "https://pattrix.co",
 
   nav: [
     { label: "Work", href: "/#work" },
@@ -22,20 +23,21 @@ export const site = {
   ],
 
   contact: {
-    /** Carried over from the previous site — verify before launch (CONTENT_GAPS.md). */
-    email: "studio@pattrix.com",
-    location: "Tripoli, Libya",
+    email: "info@pattrix.co",
+    phones: ["+218 91 097 0099", "+218 91 164 6600"],
+    location: "Tripoli — Working Globally",
+    website: "Pattrix.co",
     /** Social profiles: add { label, href } entries ONLY once URLs are verified. */
     socials: [] as { label: string; href: string }[]
   },
 
   hero: {
-    eyebrow: "Marketing & PR Agency — Tripoli",
+    eyebrow: "Strategic Communications & PR — Tripoli",
     /** The one-line identity statement. */
     headline: "We turn noise into patterns people remember.",
-    sub: "Strategy, public relations, and production for brands and institutions that need to be understood — from Tripoli, outward.",
+    sub: "Strategy, public relations, and production for brands and institutions that need to be understood — from Tripoli, working globally.",
     primaryCta: { label: "See selected work", href: "/#work" },
-    secondaryCta: { label: "Start a project", href: "mailto:studio@pattrix.com" },
+    secondaryCta: { label: "Start a project", href: "mailto:info@pattrix.co" },
     scrollHint: "Scroll — the signal begins"
   },
 
@@ -44,9 +46,9 @@ export const site = {
     chapterName: "The pattern",
     statement:
       "Attention is never won by volume. It is won by pattern — the message, repeated with discipline, until it becomes memory.",
-    editorialAside: "This is the quiet mechanics of reputation.",
+    editorialAside: "Where strategy meets creativity.",
     body:
-      "Pattrix is a marketing and PR consultancy with full production capability. We design the message, place it in the right rooms, and produce the material that carries it — so campaigns hold together from strategy to screen.",
+      "Pattrix is a strategic communications and PR agency with full production capability. We build brand experiences through integrated communication, content, and campaigns — designed to move audiences and hold together from strategy to screen.",
     pillars: [
       {
         title: "Strategy",
@@ -75,7 +77,7 @@ export const site = {
     chapter: "02",
     chapterName: "Selected work",
     statement: "Patterns that held attention.",
-    sub: "A selection of engagements. Each one is a system — message, media, and production moving together."
+    sub: "Engagements for international institutions and regional market leaders — each one a system of message, media, and production moving together."
   },
 
   services: {
@@ -88,16 +90,16 @@ export const site = {
   clients: {
     chapter: "04",
     chapterName: "Reach",
-    statement: "Trusted by organizations that need to be understood.",
-    note: "Selected clients and collaborations."
+    statement: "Trusted by leading brands and global organizations.",
+    note: "From international institutions to regional market leaders."
   },
 
   about: {
     chapter: "05",
     chapterName: "Origin",
-    statement: "From Tripoli, outward.",
+    statement: "From Tripoli, working globally.",
     body:
-      "Pattrix was founded in Tripoli, where communication carries real consequence. Working here taught us precision: reading context carefully, saying exactly what is meant, and producing work that stands up in public. We bring that discipline to brands and institutions across Libya and the region.",
+      "Pattrix was founded in Tripoli, where communication carries real consequence. Working here taught us precision: reading context carefully, saying exactly what is meant, and producing work that stands up in public. We bring that discipline to brands and institutions across Libya, the region, and beyond.",
     philosophy: [
       {
         title: "Precision before volume",
@@ -111,19 +113,37 @@ export const site = {
         title: "Public work must hold",
         copy: "Everything we release is built to survive scrutiny, not just launch day."
       }
-    ]
+    ],
+    /** Real event photography from the agency profile. */
+    proof: {
+      caption: "Public rooms, delivered end-to-end — executive forums, international panels, and large-scale business gatherings.",
+      images: [
+        {
+          src: "/images/events/banquet.jpg",
+          alt: "Large business gathering in a grand hall, coordinated by Pattrix"
+        },
+        {
+          src: "/images/events/forum.jpg",
+          alt: "Speaker at the podium of an executive forum"
+        },
+        {
+          src: "/images/events/musiad-booth.jpg",
+          alt: "Guests in conversation at a branded event stand"
+        }
+      ]
+    }
   },
 
   contactSection: {
     chapter: "06",
     chapterName: "Contact",
     statement: "Let's make the next pattern.",
-    sub: "Tell us what needs to be understood. We'll design how it travels."
+    sub: "Where strategy meets creativity — tell us what needs to be understood, and we'll design how it travels."
   },
 
   footer: {
-    line: "Marketing & PR — strategy, relations, campaigns, social, production.",
-    builtIn: "Built in Tripoli"
+    line: "Strategic communications & PR — strategy, relations, campaigns, social, events, production.",
+    builtIn: "Tripoli — Working Globally"
   }
 } as const;
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { site } from "@/content/site";
 import { FieldTrigger } from "@/components/field/field-trigger";
 import { ChapterMarker } from "@/components/ui/chapter-marker";
@@ -35,6 +36,26 @@ export function About() {
             </Reveal>
           ))}
         </div>
+
+        {/* Real rooms — event photography from the agency profile. */}
+        <Reveal className="mt-20">
+          <div className="grid gap-4 md:grid-cols-3">
+            {c.proof.images.map((img) => (
+              <figure key={img.src} className="overflow-hidden rounded-2xl border border-hairline">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+          <p className="prose-measure mt-4 text-sm leading-relaxed text-ink-3">{c.proof.caption}</p>
+        </Reveal>
       </div>
     </section>
   );

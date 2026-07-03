@@ -4,9 +4,17 @@
  *
  * IMPORTANT: `challenge` / `approach` / `outcome` must stay qualitative and
  * truthful — no invented statistics or client-confidential details.
- * `cover` is optional: when absent, a generative pattern cover is rendered
- * from the project's seed.
+ * `cover` (path under /public) shows real work; when absent, a generative
+ * pattern cover is rendered from the project's seed instead.
+ *
+ * All four engagements below are taken from the official Pattrix profile
+ * (docs/rebuild reference: "Pattrix Profile.pdf", 2026).
  */
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
 
 export interface Project {
   slug: string;
@@ -19,57 +27,101 @@ export interface Project {
   challenge: string;
   approach: string;
   outcome: string;
-  /** Accent used in the generative cover. */
+  /** Accent used in generative pattern accents. */
   accent: string;
-  /** Optional real image: path under /public. */
+  /** Real cover image: path under /public. */
   cover?: string;
+  coverAlt?: string;
+  /** Additional real images shown on the case-study page. */
+  gallery?: ProjectImage[];
 }
 
 export const projects: Project[] = [
   {
-    slug: "regional-campaign-launch",
-    title: "Regional Campaign Launch",
-    category: "Campaign System",
-    year: "2026",
-    services: ["Strategy & Positioning", "Production", "Social & Digital"],
-    premise: "One campaign language, built to travel beyond local awareness without losing cultural specificity.",
+    slug: "unsmil-strategic-communications",
+    title: "UNSMIL — Strategic Communications & Institutional Media",
+    category: "Institutional Media",
+    year: "2025",
+    services: ["Public Relations & Media", "Strategy & Positioning", "Social & Digital"],
+    premise:
+      "Institutional media and public-facing communication for the United Nations Support Mission in Libya.",
     challenge:
-      "A brand needed to move beyond local awareness without losing the cultural specificity that made it credible at home.",
+      "An international mission needed clear, credible public communication in Arabic and English — across governance dialogues, official announcements, and public discussion formats — in an environment where precision carries real consequence.",
     approach:
-      "We built one campaign language across message, film, social cadence, and public-facing digital touchpoints — a single system designed for recognition and repetition.",
+      "We produced the mission's public-facing visual communication: bilingual social media systems, event and dialogue announcements, and institutional media assets built to one disciplined visual language.",
     outcome:
-      "A launch system designed for recognition, repetition, and regional attention, with every asset produced to the same discipline.",
-    accent: "#0171DD"
+      "A consistent institutional voice across the mission's public channels — communication designed to be understood, trusted, and repeated.",
+    accent: "#2B8CE6",
+    cover: "/images/work/unsmil.jpg",
+    coverAlt:
+      "UNSMIL bilingual social media designs: a governance-track discussion graphic and an online-discussion announcement with SRSG Hannah Tetteh"
   },
   {
-    slug: "institutional-communication-system",
-    title: "Institutional Communication System",
-    category: "Public Relations",
+    slug: "hyundai-libya-showroom-identity",
+    title: "Hyundai Libya — Branding & Showroom Identity",
+    category: "Brand & Environments",
     year: "2025",
-    services: ["Public Relations & Media", "Strategy & Positioning"],
-    premise: "Complex institutional activity translated into calm, credible public language.",
+    services: ["Brand & Identity", "Production", "Events & Experiences"],
+    premise:
+      "Branding, showroom identity, and campaign visuals for Hyundai's Libyan operation.",
     challenge:
-      "A serious organization needed clearer public language across channels and stakeholder moments.",
+      "A global automotive brand needed its Libyan retail environments — showroom, workshop, and reception — to carry the brand with the same discipline as its campaigns.",
     approach:
-      "We translated complex activity into a calm communication system with hierarchy, proof, and editorial cadence — one voice across media, events, and digital channels.",
+      "We designed the showroom identity system end-to-end: environmental branding, interior brand walls, staff identity material, and the campaign visuals that connect the space to the market.",
     outcome:
-      "A sharper institutional presence across media, events, social, and digital channels.",
-    accent: "#0A50A8"
+      "A branded retail environment where every surface — from the workshop to the reception — speaks one visual language.",
+    accent: "#0171DD",
+    cover: "/images/work/hyundai.jpg",
+    coverAlt: "DLTA Duroue Libya workshop interior with red and grey Hyundai environmental branding",
+    gallery: [
+      {
+        src: "/images/work/hyundai-red.jpg",
+        alt: "Hyundai Libya showroom brand wall and staff identity material"
+      }
+    ]
   },
   {
-    slug: "brand-visibility-campaign",
-    title: "Brand Visibility Campaign",
-    category: "Brand & Content",
+    slug: "albaraka-insurance-campaigns",
+    title: "Albaraka Insurance — Commercial Campaigns",
+    category: "Campaigns & Brand Direction",
     year: "2025",
-    services: ["Brand & Identity", "Production", "Social & Digital"],
-    premise: "A repeatable content system for a brand competing in a crowded attention environment.",
+    services: ["Strategy & Positioning", "Brand & Identity", "Social & Digital"],
+    premise:
+      "Commercial campaigns and brand visual direction for a Libyan insurance institution.",
     challenge:
-      "A market-facing brand needed to become more memorable in a crowded attention environment.",
+      "A financial institution needed its digital products and commercial offers to feel as trustworthy as the institution itself — across app promotion, direct campaigns, and printed brand material.",
     approach:
-      "We created a repeatable content and production system around proof, aspiration, and category authority — campaign rhythm instead of one-off posts.",
+      "We set the brand's commercial visual direction and produced the campaign system: app-launch promotion, QR-driven campaign material, and branded print built to the same language.",
     outcome:
-      "A more coherent public image built through campaign rhythm, social assets, and cinematic production.",
-    accent: "#2B8CE6"
+      "A coherent commercial presence across digital and print — campaigns that build familiarity with every repetition.",
+    accent: "#0A50A8",
+    cover: "/images/work/albaraka.jpg",
+    coverAlt:
+      "Albaraka Insurance campaign system: mobile app promotion, QR campaign screens, and branded desk calendar"
+  },
+  {
+    slug: "musiad-institutional-media-events",
+    title: "MUSIAD — Institutional Media & Events",
+    category: "Institutional Media & Events",
+    year: "2025",
+    services: ["Public Relations & Media", "Events & Experiences", "Production"],
+    premise:
+      "Institutional media, event experiences, and strategic communications for the MUSIAD business network in Libya.",
+    challenge:
+      "An international business association needed its Libyan chapter's activities — launches, member programs, and business gatherings — to communicate at an institutional standard.",
+    approach:
+      "We delivered the communication system around the network's activity: launch and program media, office and event branding, and coverage of its business gatherings.",
+    outcome:
+      "An institutional presence that carries from printed program to event room to public channel.",
+    accent: "#8A6D1D",
+    cover: "/images/work/musiad.jpg",
+    coverAlt: "MUSIAD Libya institutional media: 2025 program launch designs and branded office environment",
+    gallery: [
+      {
+        src: "/images/events/musiad-booth.jpg",
+        alt: "Conversation at a MUSIAD event stand during a business gathering"
+      }
+    ]
   }
 ];
 

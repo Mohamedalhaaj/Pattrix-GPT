@@ -11,6 +11,22 @@
 | Favicon + OG image | Generated SVG/PNG from the field motif | `public/`, `app/` metadata |
 | Dark interlude starfield | Same field engine, `noise` formation | field engine |
 
+## Real photography (extracted from the official Pattrix profile PDF, 2026-07-03)
+
+| Asset | Use |
+|---|---|
+| `public/images/work/unsmil.jpg` | UNSMIL case cover — bilingual institutional media designs |
+| `public/images/work/hyundai.jpg` | Hyundai Libya case cover — DLTA workshop environmental branding |
+| `public/images/work/hyundai-red.jpg` | Hyundai case gallery — brand wall + staff identity |
+| `public/images/work/albaraka.jpg` | Albaraka case cover — app/QR/print campaign system |
+| `public/images/work/musiad.jpg` | MUSIAD case cover — 2025 program media + office branding |
+| `public/images/events/banquet.jpg` | About proof strip — large business gathering |
+| `public/images/events/forum.jpg` | About proof strip — executive forum speaker |
+| `public/images/events/musiad-booth.jpg` | About proof strip + MUSIAD gallery |
+
+Extracted at 150dpi from the deck (~1100–1600px wide, ~700KB total). A Magnific
+upscale pass or the original photo files would sharpen them further (CONTENT_GAPS #4).
+
 ## Existing repo assets
 
 | Asset | Status |

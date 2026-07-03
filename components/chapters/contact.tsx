@@ -37,7 +37,18 @@ export function Contact() {
                 </svg>
               </span>
             </a>
-            <p className="text-sm font-semibold text-white/90">{site.contact.location}</p>
+            <div className="flex flex-col gap-2 text-sm font-semibold text-white/90 md:text-right">
+              {site.contact.phones.map((phone) => (
+                <a
+                  key={phone}
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="transition-colors duration-200 hover:text-white"
+                >
+                  {phone}
+                </a>
+              ))}
+              <p>{site.contact.location}</p>
+            </div>
           </div>
         </div>
       </div>

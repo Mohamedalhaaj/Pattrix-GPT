@@ -7,7 +7,9 @@ export function Footer() {
     <footer className="border-t border-hairline bg-paper">
       <div className="container-x grid gap-12 py-16 md:grid-cols-[2fr_1fr_1fr] md:py-20">
         <div>
-          <p className="eyebrow !text-[0.8125rem] font-bold text-ink">Pattrix</p>
+          <p className="eyebrow !text-[0.8125rem] font-bold text-ink">
+            Pattrix<span className="text-blue">.</span>
+          </p>
           <p className="prose-measure mt-4 max-w-xs text-sm leading-relaxed text-ink-2">{site.footer.line}</p>
         </div>
         <nav aria-label="Footer">
@@ -30,6 +32,16 @@ export function Footer() {
                 {site.contact.email}
               </a>
             </li>
+            {site.contact.phones.map((phone) => (
+              <li key={phone}>
+                <a
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="transition-colors duration-200 hover:text-ink"
+                >
+                  {phone}
+                </a>
+              </li>
+            ))}
             <li>{site.contact.location}</li>
             {site.contact.socials.map((s) => (
               <li key={s.href}>

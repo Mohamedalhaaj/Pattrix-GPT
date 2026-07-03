@@ -25,10 +25,10 @@ pm2 start npm --name pattrix -- start
 The site is fully static-friendly (all routes prerender; no server actions,
 no dynamic APIs). Enable static export:
 
-1. In `next.config.mjs` add: `output: "export"`.
+1. In `next.config.mjs` add: `output: "export"` and
+   `images: { unoptimized: true }` (the site now ships real photography via
+   `next/image`, which needs the optimizer disabled for static export).
 2. `npm run build` → upload the generated `out/` directory to `public_html`.
-3. Because `images` uses no remote loader and we ship no raster images,
-   no extra image-loader config is required.
 
 Note: with static export, the `/work/[slug]` pages are prerendered from
 `generateStaticParams` — adding a new project requires a rebuild + re-upload.

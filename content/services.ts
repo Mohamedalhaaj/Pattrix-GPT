@@ -59,7 +59,12 @@ export const services: ServiceSystem[] = [
     name: "Events & Experiences",
     formation: "constellation",
     summary:
-      "Public moments designed end-to-end: exhibitions, launches, and the coverage that makes them travel afterwards.",
-    includes: ["Event coverage", "Exhibition & event experiences", "Launch moments"]
+      "High-impact institutional events from concept to flawless execution — executive forums, international panels, and large-scale business gatherings.",
+    includes: [
+      "Full event planning",
+      "Institutional coordination",
+      "Speaker & program management",
+      "Media & coverage execution"
+    ]
   }
 ];

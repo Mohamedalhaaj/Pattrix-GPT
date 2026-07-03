@@ -64,7 +64,7 @@ export function Header() {
             aria-label="Pattrix — home"
             onClick={() => setOpen(false)}
           >
-            Pattrix
+            Pattrix<span className="text-blue">.</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">

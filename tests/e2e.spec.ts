@@ -23,7 +23,7 @@ test.describe("home", () => {
   test("loads with correct metadata and hero", async ({ page }) => {
     const errors = collectErrors(page);
     await page.goto("/");
-    await expect(page).toHaveTitle(/Pattrix — Marketing & PR Agency in Tripoli/);
+    await expect(page).toHaveTitle(/Pattrix — Strategic Communications & PR, Tripoli/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("patterns");
     await expect(page.locator("main section")).toHaveCount(8);
     expect(errors).toEqual([]);
@@ -41,8 +41,10 @@ test.describe("home", () => {
 
   test("primary CTAs and contact actions are functional", async ({ page }) => {
     await page.goto("/");
-    const mailtos = page.locator('a[href^="mailto:studio@pattrix.com"]');
+    const mailtos = page.locator('a[href^="mailto:info@pattrix.co"]');
     expect(await mailtos.count()).toBeGreaterThanOrEqual(3);
+    // Verified phone actions (contact band + footer).
+    expect(await page.locator('a[href^="tel:+218"]').count()).toBeGreaterThanOrEqual(4);
     await expect(page.getByRole("link", { name: "See selected work" })).toHaveAttribute("href", "/#work");
     // No dead placeholder links anywhere.
     expect(await page.locator('a[href="#"]').count()).toBe(0);
@@ -76,7 +78,7 @@ test.describe("home", () => {
     await expect(skip).toBeFocused();
     await page.keyboard.press("Tab");
     const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
-    expect(focused).toBe("Pattrix");
+    expect(focused).toBe("Pattrix.");
   });
 });
 
@@ -86,13 +88,13 @@ test.describe("case studies", () => {
     // Let the section's once-only reveal fire before interacting.
     await page.waitForTimeout(1400);
     await page
-      .getByRole("link", { name: /Regional Campaign Launch — read the case study/ })
+      .getByRole("link", { name: /UNSMIL — Strategic Communications & Institutional Media — read the case study/ })
       .click();
-    await expect(page).toHaveURL(/\/work\/regional-campaign-launch/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Regional Campaign Launch");
+    await expect(page).toHaveURL(/\/work\/unsmil-strategic-communications/);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("UNSMIL");
     await expect(page.getByText("The challenge")).toBeVisible();
     await page.getByRole("link", { name: "Read next" }).click();
-    await expect(page).toHaveURL(/\/work\/institutional-communication-system/);
+    await expect(page).toHaveURL(/\/work\/hyundai-libya-showroom-identity/);
   });
 
   test("unknown slug 404s", async ({ page }) => {

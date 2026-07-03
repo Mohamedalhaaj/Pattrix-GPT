@@ -38,12 +38,14 @@ export default function OpenGraphImage() {
             }}
           />
         ))}
-        <div style={{ display: "flex", fontSize: 30, letterSpacing: 10, fontWeight: 700 }}>PATTRIX</div>
+        <div style={{ display: "flex", fontSize: 30, letterSpacing: 10, fontWeight: 700 }}>
+          PATTRIX<span style={{ color: "#0A1220" }}>.</span>
+        </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ display: "flex", fontSize: 64, fontWeight: 700, lineHeight: 1.05, maxWidth: 900 }}>
             We turn noise into patterns people remember.
           </div>
-          <div style={{ display: "flex", fontSize: 28, opacity: 0.85 }}>Marketing & PR Agency — Tripoli</div>
+          <div style={{ display: "flex", fontSize: 28, opacity: 0.85 }}>Strategic Communications & PR — Tripoli</div>
         </div>
       </div>
     ),

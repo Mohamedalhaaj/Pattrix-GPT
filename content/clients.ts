@@ -1,6 +1,7 @@
 /**
- * Client roster. Names only — add `logo` (path under /public/logos) when a
- * publishable logo file is provided; the UI renders text-set entries until then.
+ * Client roster — from the official Pattrix profile ("Brands We've Partnered
+ * With"). Add `logo` (path under /public/logos) when a publishable logo file
+ * is provided; the UI renders text-set entries until then.
  */
 
 export interface Client {
@@ -10,22 +11,21 @@ export interface Client {
 }
 
 export const clients: Client[] = [
-  { name: "Hyundai", sector: "Automotive" },
-  { name: "United Nations", sector: "Institutional" },
-  { name: "MUSIAD", sector: "Business association" },
-  { name: "Al Baraka Insurance", sector: "Insurance" },
-  { name: "TBC", sector: "Corporate" },
-  { name: "Optics", sector: "Retail" },
-  { name: "Retail Groups", sector: "Retail" }
+  { name: "UNSMIL", sector: "United Nations mission" },
+  { name: "Hyundai Libya", sector: "Automotive" },
+  { name: "Albaraka Insurance", sector: "Insurance" },
+  { name: "MUSIAD", sector: "Business network" },
+  { name: "Karjen Generators", sector: "Energy equipment" },
+  { name: "Takadum", sector: "Corporate" },
+  { name: "Biout Aleaz", sector: "Real estate" }
 ];
 
 export const sectors = [
-  "Institutional",
+  "International institutions",
+  "Automotive",
   "Insurance",
-  "NGOs",
-  "Retail",
-  "Electronics",
-  "Optics",
-  "Construction",
+  "Business networks",
+  "Energy",
+  "Real estate",
   "Events"
 ];
