@@ -5,7 +5,6 @@ dist
 .env*
 *.log
 next-env.d.ts
-work/
 test-results/
 playwright-report/
 .DS_Store
