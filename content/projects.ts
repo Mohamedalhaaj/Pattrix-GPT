@@ -46,6 +46,8 @@ export interface Project {
   coverAlt?: string;
   coverW?: number;
   coverH?: number;
+  /** How the cover fills the home-page card. "contain" shows a wide graphic in full. */
+  coverFit?: "cover" | "contain";
   /** Additional real images shown on the case-study page. */
   gallery?: ProjectImage[];
   /** Produced video work shown on the case-study page (click to play). */
@@ -97,15 +99,6 @@ export const projects: Project[] = [
         alt: "UNSMIL media-literacy campaign: protect Libya's elections from disinformation",
         w: 1400,
         h: 1400
-      }
-    ],
-    videos: [
-      {
-        src: "/videos/unsmil-roadmap.mp4",
-        poster: "/videos/unsmil-roadmap-poster.jpg",
-        label: "The Libyan Roadmap — explainer produced for the mission's public channels",
-        w: 720,
-        h: 1280
       }
     ]
   },
@@ -163,6 +156,7 @@ export const projects: Project[] = [
       "Albaraka Insurance 'download the app' campaign banner: QR code, mobile app in hand, and the Albaraka logo",
     coverW: 2200,
     coverH: 1100,
+    coverFit: "contain",
     gallery: [
       {
         src: "/images/work/albaraka-cal-01.jpg",
@@ -292,6 +286,12 @@ export const projects: Project[] = [
       {
         src: "/images/work/joelle-tripoli.jpg",
         alt: "Joelle contact lenses — surreal campaign composite with a Tripoli landmark",
+        w: 1440,
+        h: 1800
+      },
+      {
+        src: "/images/work/joelle-boarding.jpg",
+        alt: "Joelle EYECANDY contact lenses — travel-themed campaign composite with a boarding pass",
         w: 1440,
         h: 1800
       }
