@@ -77,6 +77,24 @@ export const projects: Project[] = [
         alt: "UNSMIL public-dialogue design in English: What do you think is meant by justice?",
         w: 1600,
         h: 1600
+      },
+      {
+        src: "/images/work/unsmil-post1.jpg",
+        alt: "UNSMIL media-literacy campaign: 96% of Libyans see false information online",
+        w: 1400,
+        h: 1400
+      },
+      {
+        src: "/images/work/unsmil-post12.jpg",
+        alt: "UNSMIL media-literacy campaign: your personal verification toolbox",
+        w: 1400,
+        h: 1400
+      },
+      {
+        src: "/images/work/unsmil-post6.jpg",
+        alt: "UNSMIL media-literacy campaign: protect Libya's elections from disinformation",
+        w: 1400,
+        h: 1400
       }
     ],
     videos: [
@@ -140,7 +158,7 @@ export const projects: Project[] = [
     accent: "#0A50A8",
     cover: "/images/work/albaraka.jpg",
     coverAlt:
-      "Albaraka Insurance campaign system: 2026 branded desk calendar and mobile app promotion with QR campaign screens",
+      "Albaraka Insurance campaign system: 2026 calendar design and mobile app campaign screens",
     coverW: 1800,
     coverH: 1200,
     gallery: [
@@ -158,6 +176,13 @@ export const projects: Project[] = [
       }
     ],
     videos: [
+      {
+        src: "/videos/albaraka-commercial.mp4",
+        poster: "/videos/albaraka-commercial-poster.jpg",
+        label: "Brand commercial — cinematic production, shot in 4K",
+        w: 1920,
+        h: 1080
+      },
       {
         src: "/videos/albaraka-car-insurance.mp4",
         poster: "/videos/albaraka-car-insurance-poster.jpg",
@@ -199,6 +224,15 @@ export const projects: Project[] = [
         w: 2936,
         h: 1932
       }
+    ],
+    videos: [
+      {
+        src: "/videos/musiad-iftar.mp4",
+        poster: "/videos/musiad-iftar-poster.jpg",
+        label: "MUSIAD Ramadan Iftar — event film from the network's business gathering",
+        w: 1920,
+        h: 1080
+      }
     ]
   },
   {
@@ -208,18 +242,38 @@ export const projects: Project[] = [
     year: "2025",
     services: ["Production", "Social & Digital"],
     premise:
-      "Product-led reels and in-store content production for an optics retailer in Tripoli.",
+      "Reels, product photography, and in-store content production for an optics retailer in Tripoli.",
     challenge:
-      "An optics retailer carrying premium eyewear brands needed its social presence to look as considered as its shelves — short-form content that sells the product without cheapening it.",
+      "An optics retailer carrying premium eyewear brands needed its social presence to look as considered as its shelves — short-form content and product imagery that sell without cheapening the brands.",
     approach:
-      "We produced a running series of in-store reels: product-led shooting, editorial pacing, and an always-on cadence built around the retailer's brands and campaigns.",
+      "We produced a running series of in-store reels — product-led shooting with editorial pacing — and an art-directed studio photo session for the Joelle contact-lens line, from set design to final retouch.",
     outcome:
-      "A consistent short-form presence where every reel carries the store's premium positioning.",
+      "A consistent visual presence where every reel and product shot carries the store's premium positioning.",
     accent: "#0E7490",
     cover: "/images/work/optics.jpg",
     coverAlt: "Frames from Tripoli Optics in-store reels: premium eyewear displays and store interiors",
     coverW: 1800,
     coverH: 1200,
+    gallery: [
+      {
+        src: "/images/work/joelle-green-bag.jpg",
+        alt: "Joelle contact lenses — art-directed product shot with leopard-print packaging in a green bag",
+        w: 1440,
+        h: 1800
+      },
+      {
+        src: "/images/work/joelle-opened-trav-bag.jpg",
+        alt: "Joelle contact lenses — campaign still life in an opened travel case with passport props",
+        w: 1440,
+        h: 1800
+      },
+      {
+        src: "/images/work/joelle-tripoli.jpg",
+        alt: "Joelle contact lenses — surreal campaign composite with a Tripoli landmark",
+        w: 1440,
+        h: 1800
+      }
+    ],
     videos: [
       {
         src: "/videos/optics-reel-1.mp4",

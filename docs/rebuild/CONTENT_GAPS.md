@@ -19,9 +19,11 @@ Nothing here blocks the build; the site handles every gap gracefully.
 
 | # | Item | Current state | Where to fix |
 |---|------|---------------|--------------|
-| A | **Three commercials' attribution** | Downloaded from Drive `Commercials/` (medical/surgical, rocket footage, "watermelon" piece) — need client/campaign names before they can appear on the site | tell Claude the attribution |
-| B | **Optics client naming** | Site says "Tripoli Optics" (owner's wording + brand logo file); Drive folder says "Al-Noor Optics", store sign in reels says NOOR — confirm the public-facing name | `content/projects.ts`, `content/clients.ts` |
-| C | **Albaraka app-promo source** | The phone-panels image is a WhatsApp export (808px) — softest image on the site at retina; original PSD exists in Drive `Albaraka/PSD/` (needs a JPG/PNG export) | `public/images/work/albaraka.jpg` |
+| A | **Three commercials' attribution** | Still open for the three in `Pattrix/Commercials/` (medical/surgical, rocket footage, "watermelon" piece). The 4K "Albaraka -Commerrcial.MP4" WAS identified and is now on the Albaraka case | tell Claude the attribution |
+| B | ~~Optics client naming~~ | ✅ RESOLVED — Drive `History/TRIPOLI Optics` folder confirms the client name used on the site | — |
+| C | **Albaraka app-promo source** | Phone-panels still from a WhatsApp export (808px); cover rebuilt with the print-res calendar render so the composite is much sharper overall. PSD exists in Drive `Albaraka/PSD/` for a perfect export | `public/images/work/albaraka.jpg` |
+| D | **Historical clients list** | Drive `History/` holds many more past clients (VIVO, GEELY, JETOUR, ZXAUTO, Doroub, Coral Seafood, Shaima Water, Sigma, AL-Mukhtar Takaful, Tajuri Group, Libyan Voices, UB, mustakbal…) — none added to the site without owner curation | `content/clients.ts` |
+| E | **UNSMIL FINAL film** | 371MB produced film (+8 parts) in Drive `UNSMIL/Media` — could yield a hero/showreel cut if desired | — |
 
 
 | # | Item | Current state | Where to fix |
