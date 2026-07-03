@@ -8,21 +8,18 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-ink text-white">
+      <body className="min-h-screen bg-paper text-ink">
         <main className="flex min-h-screen items-center justify-center px-6">
-          <div className="max-w-xl text-center">
-            <p className="mb-5 text-xs font-semibold uppercase text-white/[0.46]">Pattrix</p>
-            <h1 className="font-display text-5xl font-semibold leading-none sm:text-7xl">
-              Something fell out of frame.
-            </h1>
-            <p className="mx-auto mt-6 max-w-md text-base leading-7 text-white/[0.58]">
-              The experience can be reset cleanly.
-            </p>
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0171DD]">Pattrix</p>
+            <h1 className="mt-6 text-3xl font-semibold">Something went wrong.</h1>
+            <p className="mt-3 text-sm opacity-60">The signal dropped for a moment.</p>
             <button
-              onClick={reset}
-              className="mt-8 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition duration-300 hover:bg-ocean hover:text-white"
+              type="button"
+              onClick={() => reset()}
+              className="mt-8 rounded-full bg-[#101623] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#0171DD]"
             >
-              Reset
+              Try again
             </button>
           </div>
         </main>

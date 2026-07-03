@@ -4,48 +4,38 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
       colors: {
-        ink: "#0B1020",
-        ocean: "#0171DD",
-        paper: "#F5F7FA",
-        smoke: "#D8DFEA",
-        platinum: "#ECEFF5",
-        moss: "#596F62",
-        graphite: "#161D2E"
+        paper: "#F7F8FA",
+        surface: "#FFFFFF",
+        ink: "#101623",
+        "ink-2": "rgba(16,22,35,0.70)",
+        "ink-3": "rgba(16,22,35,0.58)",
+        hairline: "rgba(16,22,35,0.10)",
+        blue: "#0171DD",
+        "blue-deep": "#0A50A8",
+        "blue-tint": "#E9F2FC",
+        navy: "#0A1220",
+        "navy-ink": "#E9EEF6",
+        "navy-hairline": "rgba(233,238,246,0.14)"
       },
       fontFamily: {
-        sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "sans-serif"
-        ],
-        display: [
-          "SF Pro Display",
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif"
-        ],
-        editorial: ["Georgia", "Times New Roman", "serif"]
-      },
-      boxShadow: {
-        glass: "0 24px 80px rgba(11, 16, 32, 0.16)",
-        blue: "0 18px 70px rgba(1, 113, 221, 0.22)"
+        sans: ["var(--font-archivo)", "ui-sans-serif", "system-ui", "sans-serif"],
+        editorial: ["var(--font-editorial)", "Georgia", "serif"]
       },
       transitionTimingFunction: {
-        luxury: "cubic-bezier(0.22, 1, 0.36, 1)"
+        "out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "in-out-cubic": "cubic-bezier(0.65, 0, 0.35, 1)"
       },
-      backgroundImage: {
-        "fine-noise":
-          "radial-gradient(circle at 1px 1px, rgba(11, 16, 32, 0.09) 1px, transparent 0)"
+      maxWidth: {
+        site: "85rem"
+      },
+      letterSpacing: {
+        eyebrow: "0.16em"
       }
     }
   },

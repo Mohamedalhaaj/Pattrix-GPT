@@ -1,145 +1,40 @@
-# PATTRIX DESIGN SYSTEM
+# PATTRIX — Agent & Contributor Guide
 
-## Brand Identity
+Pattrix is a premium **Marketing & PR agency in Tripoli**. The site is a single
+continuous "Pattern Field" experience: a generative particle field that
+reorganizes per chapter. Concept, tokens, and rules live in:
 
-Pattrix is a luxury creative agency focused on:
-- Strategy
-- Production
-- Social Media
-- Digital Experiences
+- `docs/rebuild/DESIGN_SYSTEM.md` — the Pattern Field concept, color, type, grid
+- `docs/rebuild/MOTION_SYSTEM.md` — GSAP ownership model, timing, reduced motion
+- `docs/rebuild/EDITING_GUIDE.md` — how to change content (start here for copy)
 
-The aesthetic direction is:
-Hybrid Apple × Luxury Branding × Cinematic Minimalism.
+## Non-negotiables
 
-Avoid:
-- generic SaaS design
-- startup template look
-- overuse of gradients
-- childish motion
-- excessive glow
-- cluttered layouts
+- **Light-first.** Off-white `#F7F8FA` base; navy `#0A1220` appears only in the
+  single interlude beat. Never add more dark sections.
+- **Pattrix blue `#0171DD` is structural**, not decorative confetti: field dots,
+  chapter numbers, links, the contact band.
+- **One metaphor.** Everything visual derives from the field (dots, waves,
+  formations). No mountains, globes, blobs, glass cards, or icon grids.
+- **GSAP + ScrollTrigger own all scroll/reveal motion.** CSS transitions own
+  hover/focus micro-states. Do not add Framer Motion or another animation lib.
+- **Content lives in `content/*.ts`** — never hardcode business copy in
+  components. No invented stats, awards, testimonials, or client claims.
+- Native scroll only; no scroll hijack; `prefers-reduced-motion` must always
+  yield a fully readable static experience.
 
-The experience must feel:
-- premium
-- intentional
-- cinematic
-- modern
-- elegant
-- refined
+## Engineering rules
 
----
+- Next.js App Router + TypeScript strict + Tailwind. Keep components server-side
+  unless they genuinely need state/effects.
+- Animations: `useGSAP` with `scope`; cleanup is automatic; body/document tweens
+  must target elements by reference (scoped selector strings won't reach them).
+- The header must never carry a CSS transform (it would trap the fixed mobile
+  overlay); only the inner bar translates.
+- Verify with `npx tsc --noEmit && npm run lint && npm run build` plus the
+  Playwright suite before calling anything done.
 
-# Design Principles
+## Typography
 
-Follow these references and philosophies:
-
-- Emil Kowalski
-- Impeccable Design
-- Taste Skill
-- UI UX Pro Max
-- Apple Human Interface principles
-- Linear.app quality
-- Instrument Studio
-- Ramotion
-- Studio Freight
-
----
-
-# Typography Rules
-
-- Typography is the main visual element.
-- Large bold headlines.
-- Tight hierarchy.
-- Clean spacing rhythm.
-- Minimal text.
-- High readability.
-
-Avoid:
-- long paragraphs
-- weak hierarchy
-- random font sizing
-
----
-
-# Motion Rules
-
-Motion should feel:
-- smooth
-- subtle
-- premium
-- physical
-
-Use:
-- soft parallax
-- stagger reveals
-- smooth hover transforms
-- magnetic interactions
-- cinematic scroll pacing
-
-Avoid:
-- aggressive animations
-- fast bouncy motion
-- over-animation
-
-Motion should support hierarchy, not distract from it.
-
----
-
-# Layout Rules
-
-Use:
-- strong whitespace
-- asymmetrical balance
-- modular sections
-- clean grids
-- premium spacing
-
-The website should feel:
-- expensive
-- calm
-- futuristic
-- editorial
-
-Avoid:
-- crowded sections
-- template layouts
-- repetitive cards
-
----
-
-# Color Rules
-
-Primary Blue:
-#0171DD
-
-Base:
-#F5F7FA
-
-Dark:
-#0B1020
-
-Use blue strategically.
-Do not overuse it.
-
-Black should be softened slightly using deep navy tones.
-
----
-
-# Engineering Rules
-
-Use:
-- Next.js
-- Tailwind CSS
-- Framer Motion
-
-Code should be:
-- modular
-- scalable
-- production ready
-- cleanly separated into components
-
----
-
-# Goal
-
-Build a world-class luxury agency experience that feels custom-built and comparable to elite modern creative studios.
+Archivo (variable width axis) for everything structural; Source Serif 4 italic for
+sparse editorial asides. Loaded via `next/font/google` — do not add font `<link>`s.
