@@ -7,10 +7,14 @@
 export const site = {
   name: "Pattrix",
   tagline: "Strategic Communications & PR — Tripoli",
-  /** Used in <title> and social sharing. */
-  metaTitle: "Pattrix — Strategic Communications & PR, Tripoli",
+  /** Used in <title> (search snippet). */
+  metaTitle: "Pattrix — Strategic Communications & PR Agency in Tripoli, Libya",
   metaDescription:
-    "Pattrix is a strategic communications and PR agency in Tripoli, working globally. Strategy, public relations, campaigns, social media, events, and production for brands and institutions.",
+    "Pattrix is a strategic communications and PR agency in Tripoli, Libya, helping brands and institutions turn noise into patterns people remember through public relations, campaigns, social media, events, and production.",
+  /** Shorter variants for social sharing (Open Graph / Twitter cards). */
+  ogTitle: "Pattrix — Strategic Communications & PR",
+  ogDescription:
+    "Strategic communications, public relations, campaigns, social media, events, and production for brands and institutions in Libya and beyond.",
   /** Base URL for canonical/OG links. */
   url: "https://pattrix.co",
 
