@@ -35,6 +35,19 @@ export const site = {
     socials: [] as { label: string; href: string }[]
   },
 
+  /**
+   * Public business facts for structured data (JSON-LD) — approved by Mohamed
+   * on 2026-07-05. Only add fields here after explicit approval; never invent
+   * hours, ratings, coordinates, or other facts.
+   */
+  business: {
+    streetAddress: "Sidi Almasri Street",
+    addressLocality: "Tripoli",
+    postalCode: "00218",
+    addressCountry: "LY",
+    priceRange: "$500 - $10,000"
+  },
+
   hero: {
     eyebrow: "Strategic Communications & PR — Tripoli",
     /** The one-line identity statement. */
