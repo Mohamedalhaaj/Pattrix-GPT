@@ -23,7 +23,7 @@ test.describe("home", () => {
   test("loads with correct metadata and hero", async ({ page }) => {
     const errors = collectErrors(page);
     await page.goto("/");
-    await expect(page).toHaveTitle(/Pattrix — Strategic Communications & PR, Tripoli/);
+    await expect(page).toHaveTitle(/Pattrix — Strategic Communications & PR Agency in Tripoli, Libya/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("patterns");
     await expect(page.locator("main section")).toHaveCount(8);
     expect(errors).toEqual([]);

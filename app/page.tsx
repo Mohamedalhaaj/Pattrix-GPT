@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { FieldCanvas } from "@/components/field/field-canvas";
 import { About } from "@/components/chapters/about";
 import { Clients } from "@/components/chapters/clients";
@@ -9,6 +10,12 @@ import { Services } from "@/components/chapters/services";
 import { Work } from "@/components/chapters/work";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
+
+// Canonical is declared here (not in the root layout) so case-study pages
+// keep their own /work/<slug> canonicals instead of inheriting "/".
+export const metadata: Metadata = {
+  alternates: { canonical: "/" }
+};
 
 export default function Home() {
   return (

@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Source_Serif_4 } from "next/font/google";
+import { JsonLd } from "@/components/seo/json-ld";
 import { site } from "@/content/site";
 import "./globals.css";
+
+// Google Search Console: set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION (see
+// docs/SEO_CHECKLIST.md) after creating the property. Never hardcode a token.
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -28,8 +33,8 @@ export const metadata: Metadata = {
   },
   description: site.metaDescription,
   openGraph: {
-    title: site.metaTitle,
-    description: site.metaDescription,
+    title: site.ogTitle,
+    description: site.ogDescription,
     url: site.url,
     siteName: site.name,
     type: "website",
@@ -37,10 +42,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: site.metaTitle,
-    description: site.metaDescription
+    title: site.ogTitle,
+    description: site.ogDescription
   },
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  ...(googleSiteVerification ? { verification: { google: googleSiteVerification } } : {})
 };
 
 export const viewport: Viewport = {
@@ -61,6 +67,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <JsonLd />
       </body>
     </html>
   );

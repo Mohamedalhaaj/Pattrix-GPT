@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/content/projects";
+import { site } from "@/content/site";
 import { CtaLink } from "@/components/ui/cta-link";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
@@ -20,9 +21,27 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
+  // Unique per page, built only from published project data (no invented facts).
+  const description = `${project.premise} A Pattrix case study — ${project.category}, ${project.year}.`;
+  const path = `/work/${project.slug}`;
+  const socialTitle = `${project.title} — ${site.name}`;
   return {
     title: project.title,
-    description: project.premise
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: socialTitle,
+      description,
+      url: path,
+      siteName: site.name,
+      type: "article",
+      locale: "en_US"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description
+    }
   };
 }
 
