@@ -83,6 +83,82 @@ test.describe("home", () => {
   });
 });
 
+const SERVICE_PAGES = [
+  { path: "/services/pr-agency-libya", h1: /public relations agency in Tripoli, Libya/, rtl: false },
+  { path: "/services/strategic-communications-libya", h1: /Strategic communications for brands/, rtl: false },
+  { path: "/ar/services/pr-agency-libya", h1: /شركة علاقات عامة في طرابلس/, rtl: true },
+  { path: "/ar/services/strategic-communications-libya", h1: /اتصال استراتيجي وحملات إعلامية/, rtl: true }
+];
+
+test.describe("service pages", () => {
+  for (const sp of SERVICE_PAGES) {
+    test(`${sp.path} renders with correct SEO`, async ({ page }) => {
+      const errors = collectErrors(page);
+      const res = await page.goto(sp.path);
+      expect(res?.status()).toBe(200);
+      // Exactly one visible H1 with the expected heading.
+      expect(await page.locator("h1").count()).toBe(1);
+      await expect(page.getByRole("heading", { level: 1 })).toContainText(sp.h1);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        `https://pattrix.co${sp.path}`
+      );
+      // hreflang pair: en, ar, and x-default.
+      for (const hl of ["en", "ar", "x-default"]) {
+        expect(await page.locator(`link[rel="alternate"][hreflang="${hl}"]`).count()).toBe(1);
+      }
+      if (sp.rtl) {
+        await expect(page.locator('article[dir="rtl"][lang="ar"]')).toBeAttached();
+      }
+      // Site-wide @graph plus the page's Service/Breadcrumb block — exactly two.
+      expect(await page.locator('script[type="application/ld+json"]').count()).toBe(2);
+      // Public pages must stay indexable.
+      expect(await page.locator('meta[name="robots"][content*="noindex"]').count()).toBe(0);
+      expect(errors).toEqual([]);
+    });
+  }
+
+  test("service pages cross-link and CTA works", async ({ page }) => {
+    await page.goto("/services/pr-agency-libya");
+    await expect(
+      page.locator("main").getByRole("link", { name: "Strategic communications in Libya" })
+    ).toHaveAttribute("href", "/services/strategic-communications-libya");
+    await expect(page.getByRole("link", { name: "اقرأ هذه الصفحة بالعربية" })).toHaveAttribute(
+      "href",
+      "/ar/services/pr-agency-libya"
+    );
+    expect(await page.locator('a[href^="mailto:info@pattrix.co"]').count()).toBeGreaterThanOrEqual(1);
+  });
+
+  test("sitemap includes all four service URLs", async ({ request }) => {
+    const res = await request.get("/sitemap.xml");
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    for (const sp of SERVICE_PAGES) {
+      expect(body).toContain(`https://pattrix.co${sp.path}`);
+    }
+  });
+
+  test("footer links to the English service pages", async ({ page }) => {
+    await page.goto("/");
+    const footer = page.getByRole("contentinfo");
+    await expect(footer.getByRole("link", { name: "PR Agency in Libya" })).toHaveAttribute(
+      "href",
+      "/services/pr-agency-libya"
+    );
+    await expect(
+      footer.getByRole("link", { name: "Strategic Communications in Libya" })
+    ).toHaveAttribute("href", "/services/strategic-communications-libya");
+  });
+
+  test("unknown service slug 404s", async ({ page }) => {
+    const res = await page.goto("/services/not-a-real-service");
+    expect(res?.status()).toBe(404);
+    const resAr = await page.goto("/ar/services/not-a-real-service");
+    expect(resAr?.status()).toBe(404);
+  });
+});
+
 test.describe("case studies", () => {
   test("home work card navigates to case study and next-case works", async ({ page }) => {
     await page.goto("/#work");

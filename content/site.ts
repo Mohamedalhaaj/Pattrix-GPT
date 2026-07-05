@@ -26,6 +26,12 @@ export const site = {
     { label: "Contact", href: "/#contact" }
   ],
 
+  /** Service pages linked from the footer only (header nav stays unchanged). */
+  footerServices: [
+    { label: "PR Agency in Libya", href: "/services/pr-agency-libya" },
+    { label: "Strategic Communications in Libya", href: "/services/strategic-communications-libya" }
+  ],
+
   contact: {
     email: "info@pattrix.co",
     phones: ["+218 91 097 0099", "+218 91 164 6600"],

@@ -11,6 +11,9 @@ export interface ServiceSystem {
   formation: FormationName;
   summary: string;
   includes: string[];
+  /** Optional dedicated service page; renders a link in the open panel. */
+  href?: string;
+  hrefLabel?: string;
 }
 
 export const services: ServiceSystem[] = [
@@ -20,7 +23,9 @@ export const services: ServiceSystem[] = [
     formation: "signal",
     summary:
       "The starting system: what should be said, to whom, and in what order. Campaign architecture before any asset exists.",
-    includes: ["Campaign development", "Message architecture", "Audience & channel planning"]
+    includes: ["Campaign development", "Message architecture", "Audience & channel planning"],
+    href: "/services/strategic-communications-libya",
+    hrefLabel: "More on strategic communications"
   },
   {
     index: "02",
@@ -28,7 +33,9 @@ export const services: ServiceSystem[] = [
     formation: "orbit",
     summary:
       "Reputation built in public: press relationships, coordinated coverage, and communication that stands up to scrutiny.",
-    includes: ["Public relations", "Media coordination", "News coverage"]
+    includes: ["Public relations", "Media coordination", "News coverage"],
+    href: "/services/pr-agency-libya",
+    hrefLabel: "More on public relations"
   },
   {
     index: "03",
