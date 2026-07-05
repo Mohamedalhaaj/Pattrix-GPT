@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { setField } from "@/components/field/store";
 import { FieldTrigger } from "@/components/field/field-trigger";
 import { ChapterMarker } from "@/components/ui/chapter-marker";
+import { CtaLink } from "@/components/ui/cta-link";
 import { Reveal } from "@/components/ui/reveal";
 
 /**
@@ -79,14 +80,21 @@ export function Services() {
                     id={panelId}
                     role="region"
                     aria-labelledby={buttonId}
+                    // inert keeps the panel's link out of tab order while visually collapsed
+                    inert={!isOpen}
                     className="grid transition-[grid-template-rows] duration-500 ease-in-out-cubic"
                     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">
                       <div className="grid gap-8 pb-10 pl-[4rem] pr-4 md:grid-cols-12 md:pl-[6rem]">
-                        <p className="prose-measure text-base leading-relaxed text-ink-2 md:col-span-6">
-                          {service.summary}
-                        </p>
+                        <div className="md:col-span-6">
+                          <p className="prose-measure text-base leading-relaxed text-ink-2">{service.summary}</p>
+                          {service.href && service.hrefLabel ? (
+                            <CtaLink href={service.href} className="mt-7">
+                              {service.hrefLabel}
+                            </CtaLink>
+                          ) : null}
+                        </div>
                         <ul className="flex flex-col gap-2 md:col-span-5 md:col-start-8">
                           {service.includes.map((item) => (
                             <li key={item} className="flex items-baseline gap-3 text-sm text-ink-2">

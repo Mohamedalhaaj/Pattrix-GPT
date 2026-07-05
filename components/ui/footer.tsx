@@ -14,7 +14,7 @@ export function Footer() {
         <nav aria-label="Footer">
           <p className="eyebrow mb-5 text-ink-3">Navigate</p>
           <ul className="flex flex-col gap-3">
-            {site.nav.map((item) => (
+            {[...site.nav, ...site.footerServices].map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-sm text-ink-2 transition-colors duration-200 hover:text-ink">
                   {item.label}

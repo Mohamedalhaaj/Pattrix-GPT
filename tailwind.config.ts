@@ -25,7 +25,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-archivo)", "ui-sans-serif", "system-ui", "sans-serif"],
-        editorial: ["var(--font-editorial)", "Georgia", "serif"]
+        editorial: ["var(--font-editorial)", "Georgia", "serif"],
+        // IBM Plex Sans Arabic — variable is only defined under /ar (app/ar/layout.tsx).
+        arabic: ["var(--font-arabic)", "var(--font-archivo)", "system-ui", "sans-serif"]
       },
       transitionTimingFunction: {
         "out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
