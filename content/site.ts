@@ -8,13 +8,13 @@ export const site = {
   name: "Pattrix",
   tagline: "Strategic Communications & PR — Tripoli",
   /** Used in <title> (search snippet). */
-  metaTitle: "Pattrix — Strategic Communications & PR Agency in Tripoli, Libya",
+  metaTitle: "Pattrix — Marketing & PR Agency in Tripoli, Libya",
   metaDescription:
-    "Pattrix is a strategic communications and PR agency in Tripoli, Libya, helping brands and institutions turn noise into patterns people remember through public relations, campaigns, social media, events, and production.",
+    "Marketing, public relations, and media analysis in Libya. Pattrix builds strategy, campaigns, social media, events, and production from Tripoli — working globally.",
   /** Shorter variants for social sharing (Open Graph / Twitter cards). */
-  ogTitle: "Pattrix — Strategic Communications & PR",
+  ogTitle: "Pattrix — Marketing & PR Agency in Libya",
   ogDescription:
-    "Strategic communications, public relations, campaigns, social media, events, and production for brands and institutions in Libya and beyond.",
+    "Marketing, public relations, analysis, campaigns, social media, events, and production for brands and institutions in Libya and beyond.",
   /** Base URL for canonical/OG links. */
   url: "https://pattrix.co",
 
@@ -29,7 +29,13 @@ export const site = {
   /** Service pages linked from the footer only (header nav stays unchanged). */
   footerServices: [
     { label: "PR Agency in Libya", href: "/services/pr-agency-libya" },
-    { label: "Strategic Communications in Libya", href: "/services/strategic-communications-libya" }
+    { label: "Strategic Communications in Libya", href: "/services/strategic-communications-libya" },
+    { label: "Marketing Agency in Tripoli", href: "/services/marketing-agency-tripoli" },
+    { label: "Social Media Management in Libya", href: "/services/social-media-management-libya" },
+    { label: "Event Coverage in Tripoli", href: "/services/event-coverage-tripoli" },
+    { label: "Content Production in Libya", href: "/services/content-production-libya" },
+    { label: "Market & Media Analysis in Libya", href: "/services/market-analysis-libya" },
+    { label: "Insights", href: "/insights" }
   ],
 
   contact: {

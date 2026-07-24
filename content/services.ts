@@ -51,7 +51,9 @@ export const services: ServiceSystem[] = [
     formation: "stream",
     summary:
       "Always-on presence with editorial discipline: platform strategy, management, and the short-form content that feeds it.",
-    includes: ["Social media strategy & management", "Reels & digital content", "Influencer coordination"]
+    includes: ["Social media strategy & management", "Reels & digital content", "Influencer coordination"],
+    href: "/services/social-media-management-libya",
+    hrefLabel: "More on social media management"
   },
   {
     index: "05",
@@ -59,7 +61,9 @@ export const services: ServiceSystem[] = [
     formation: "weave",
     summary:
       "In-house film and photography, produced to campaign discipline — the proof layer of every message.",
-    includes: ["Content production", "Photography & video", "Post-production"]
+    includes: ["Content production", "Photography & video", "Post-production"],
+    href: "/services/content-production-libya",
+    hrefLabel: "More on content production"
   },
   {
     index: "06",
@@ -72,6 +76,8 @@ export const services: ServiceSystem[] = [
       "Institutional coordination",
       "Speaker & program management",
       "Media & coverage execution"
-    ]
+    ],
+    href: "/services/event-coverage-tripoli",
+    hrefLabel: "More on event coverage"
   }
 ];
