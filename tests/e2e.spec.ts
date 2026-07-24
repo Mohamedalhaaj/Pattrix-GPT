@@ -1,4 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
+import { insights } from "../content/insights";
+import { servicePages } from "../content/service-pages";
+import { site } from "../content/site";
 
 const VIEWPORTS = [
   { w: 1440, h: 900 },
@@ -23,7 +26,7 @@ test.describe("home", () => {
   test("loads with correct metadata and hero", async ({ page }) => {
     const errors = collectErrors(page);
     await page.goto("/");
-    await expect(page).toHaveTitle(/Pattrix — Strategic Communications & PR Agency in Tripoli, Libya/);
+    await expect(page).toHaveTitle(/Pattrix — Marketing & PR Agency in Tripoli, Libya/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("patterns");
     await expect(page.locator("main section")).toHaveCount(8);
     expect(errors).toEqual([]);
@@ -83,15 +86,10 @@ test.describe("home", () => {
   });
 });
 
-const SERVICE_PAGES = [
-  { path: "/services/pr-agency-libya", h1: /public relations agency in Tripoli, Libya/, rtl: false },
-  { path: "/services/strategic-communications-libya", h1: /Strategic communications for brands/, rtl: false },
-  { path: "/ar/services/pr-agency-libya", h1: /شركة علاقات عامة في طرابلس/, rtl: true },
-  { path: "/ar/services/strategic-communications-libya", h1: /اتصال استراتيجي وحملات إعلامية/, rtl: true }
-];
-
 test.describe("service pages", () => {
-  for (const sp of SERVICE_PAGES) {
+  // Data-driven: every entry in content/service-pages.ts is exercised, so new
+  // pages are covered the moment they are added to the content file.
+  for (const sp of servicePages) {
     test(`${sp.path} renders with correct SEO`, async ({ page }) => {
       const errors = collectErrors(page);
       const res = await page.goto(sp.path);
@@ -107,7 +105,7 @@ test.describe("service pages", () => {
       for (const hl of ["en", "ar", "x-default"]) {
         expect(await page.locator(`link[rel="alternate"][hreflang="${hl}"]`).count()).toBe(1);
       }
-      if (sp.rtl) {
+      if (sp.locale === "ar") {
         await expect(page.locator('article[dir="rtl"][lang="ar"]')).toBeAttached();
       }
       // Site-wide @graph plus the page's Service/Breadcrumb block — exactly two.
@@ -130,25 +128,30 @@ test.describe("service pages", () => {
     expect(await page.locator('a[href^="mailto:info@pattrix.co"]').count()).toBeGreaterThanOrEqual(1);
   });
 
-  test("sitemap includes all four service URLs", async ({ request }) => {
+  test("sitemap includes every service, insight, and hub URL", async ({ request }) => {
     const res = await request.get("/sitemap.xml");
     expect(res.status()).toBe(200);
     const body = await res.text();
-    for (const sp of SERVICE_PAGES) {
+    for (const sp of servicePages) {
       expect(body).toContain(`https://pattrix.co${sp.path}`);
+    }
+    if (insights.length > 0) {
+      expect(body).toContain("https://pattrix.co/insights");
+      for (const a of insights) {
+        expect(body).toContain(`https://pattrix.co${a.path}`);
+      }
     }
   });
 
-  test("footer links to the English service pages", async ({ page }) => {
+  test("footer links to every footer service entry", async ({ page }) => {
     await page.goto("/");
     const footer = page.getByRole("contentinfo");
-    await expect(footer.getByRole("link", { name: "PR Agency in Libya" })).toHaveAttribute(
-      "href",
-      "/services/pr-agency-libya"
-    );
-    await expect(
-      footer.getByRole("link", { name: "Strategic Communications in Libya" })
-    ).toHaveAttribute("href", "/services/strategic-communications-libya");
+    for (const item of site.footerServices) {
+      await expect(footer.getByRole("link", { name: item.label })).toHaveAttribute(
+        "href",
+        item.href
+      );
+    }
   });
 
   test("unknown service slug 404s", async ({ page }) => {
@@ -156,6 +159,57 @@ test.describe("service pages", () => {
     expect(res?.status()).toBe(404);
     const resAr = await page.goto("/ar/services/not-a-real-service");
     expect(resAr?.status()).toBe(404);
+  });
+});
+
+test.describe("insights", () => {
+  test("hub renders with all article cards", async ({ page }) => {
+    const errors = collectErrors(page);
+    const res = await page.goto("/insights");
+    expect(res?.status()).toBe(200);
+    expect(await page.locator("h1").count()).toBe(1);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://pattrix.co/insights"
+    );
+    for (const a of insights) {
+      await expect(page.locator(`main a[href="${a.path}"]`)).toBeAttached();
+    }
+    expect(errors).toEqual([]);
+  });
+
+  // Data-driven: every entry in content/insights.ts is exercised.
+  for (const a of insights) {
+    test(`${a.path} renders with correct SEO`, async ({ page }) => {
+      const errors = collectErrors(page);
+      const res = await page.goto(a.path);
+      expect(res?.status()).toBe(200);
+      expect(await page.locator("h1").count()).toBe(1);
+      await expect(page.getByRole("heading", { level: 1 })).toContainText(a.h1);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        `https://pattrix.co${a.path}`
+      );
+      if (a.counterpartPath) {
+        for (const hl of ["en", "ar", "x-default"]) {
+          expect(await page.locator(`link[rel="alternate"][hreflang="${hl}"]`).count()).toBe(1);
+        }
+      }
+      if (a.locale === "ar") {
+        await expect(page.locator('article[dir="rtl"][lang="ar"]')).toBeAttached();
+      }
+      // Site-wide @graph plus the Article/Breadcrumb block — exactly two.
+      expect(await page.locator('script[type="application/ld+json"]').count()).toBe(2);
+      expect(await page.locator('meta[name="robots"][content*="noindex"]').count()).toBe(0);
+      // Article links back to its supporting service page.
+      await expect(page.locator(`main a[href="${a.relatedService.href}"]`).first()).toBeAttached();
+      expect(errors).toEqual([]);
+    });
+  }
+
+  test("unknown insight slug 404s", async ({ page }) => {
+    const res = await page.goto("/insights/not-a-real-article");
+    expect(res?.status()).toBe(404);
   });
 });
 
