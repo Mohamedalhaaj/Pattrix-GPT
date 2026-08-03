@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { CtaLink } from "@/components/ui/cta-link";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
+import { ProjectJsonLd } from "@/components/seo/project-json-ld";
 import { PatternCover } from "@/components/work/pattern-cover";
 
 interface CaseStudyParams {
@@ -221,6 +222,7 @@ export default async function CaseStudyPage({ params }: CaseStudyParams) {
       <div className="content-layer">
         <Footer />
       </div>
+      <ProjectJsonLd project={project} />
     </>
   );
 }

@@ -8,7 +8,8 @@ export function Footer() {
     <footer className="border-t border-hairline bg-paper">
       <div className="container-x grid gap-12 py-16 md:grid-cols-[2fr_1fr_1fr] md:py-20">
         <div>
-          <Image src="/brand/logo-dark.png" alt="Pattrix" width={2335} height={561} className="h-5 w-auto" />
+          {/* Rendered box, not source dimensions — see the note in header.tsx. */}
+          <Image src="/brand/logo-dark.png" alt="Pattrix" width={187} height={45} className="h-5 w-auto" />
           <p className="prose-measure mt-4 max-w-xs text-sm leading-relaxed text-ink-2">{site.footer.line}</p>
         </div>
         <nav aria-label="Footer">

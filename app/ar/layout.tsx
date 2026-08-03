@@ -12,9 +12,14 @@ import { IBM_Plex_Sans_Arabic } from "next/font/google";
  * must keep their designed LTR layout. Revisit with locale route groups if
  * the site ever becomes fully bilingual.
  */
+// Weights are exactly the three the Arabic articles render (regular,
+// font-medium, font-semibold) — 700 was shipped but never used. The "latin"
+// subset is dropped too: the `font-arabic` family falls through to Archivo for
+// Latin glyphs (see tailwind.config.ts), so those cuts were pure duplication.
+// Together this takes the family from 8 files / ~194KB to 3 files / ~101KB.
 const arabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "500", "600", "700"],
+  subsets: ["arabic"],
+  weight: ["400", "500", "600"],
   display: "swap",
   variable: "--font-arabic"
 });

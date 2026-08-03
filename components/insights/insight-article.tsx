@@ -43,8 +43,11 @@ export function InsightArticleBody({ article }: { article: InsightArticleData })
         <p className="prose-measure mt-6 text-lg leading-relaxed text-ink-2">{article.intro}</p>
         {article.langSwitch ? (
           <p className="mt-8">
+            {/* prefetch off — see the note on the same switcher in
+                components/services/service-article.tsx. */}
             <Link
               href={article.langSwitch.href}
+              prefetch={false}
               lang={isAr ? "en" : "ar"}
               dir={isAr ? "ltr" : "rtl"}
               className={`text-sm font-medium text-ink-2 underline decoration-1 underline-offset-4 transition-colors duration-200 hover:text-blue ${isAr ? "" : "font-arabic"}`}

@@ -60,11 +60,15 @@ export function Header() {
       >
         <div className="container-x flex h-16 items-center justify-between md:h-20">
           <Link href="/" aria-label="Pattrix — home" onClick={() => setOpen(false)}>
+            {/* width/height describe the RENDERED box (~90px wide), not the
+                source file. Passing the source's 2335×561 made Next request
+                /_next/image?w=3840 — a 3840px render of a wordmark shown at
+                90px, preloaded at high priority on every page. */}
             <Image
               src="/brand/logo-dark.png"
               alt="Pattrix"
-              width={2335}
-              height={561}
+              width={187}
+              height={45}
               priority
               className="h-[1.15rem] w-auto md:h-[1.35rem]"
             />

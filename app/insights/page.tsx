@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { insights } from "@/content/insights";
+import { site } from "@/content/site";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
 
@@ -10,6 +11,51 @@ export const metadata: Metadata = {
     "Practical guides on marketing, public relations, strategic communications, and media analysis in Libya — written by Pattrix in Tripoli, in English and Arabic.",
   alternates: { canonical: "/insights" }
 };
+
+/**
+ * Hub-level structured data. Individual articles already declare Article +
+ * BreadcrumbList; without this the hub that links them was the one page type
+ * search engines saw as an unlabelled list of anchors. ItemList mirrors the
+ * on-page order so the relationship between hub and articles is explicit.
+ */
+function InsightsHubJsonLd() {
+  const url = `${site.url}/insights`;
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#collection`,
+        name: "Insights on Marketing, PR & Analysis in Libya",
+        url,
+        isPartOf: { "@id": `${site.url}/#website` },
+        publisher: { "@id": `${site.url}/#organization` },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListOrder: "https://schema.org/ItemListUnordered",
+          numberOfItems: insights.length,
+          itemListElement: insights.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: a.h1,
+            url: `${site.url}${a.path}`
+          }))
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumbs`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: site.name, item: site.url },
+          { "@type": "ListItem", position: 2, name: "Insights", item: url }
+        ]
+      }
+    ]
+  };
+  // `<` is escaped so content can never close the script tag (same pattern as json-ld.tsx).
+  const json = JSON.stringify(graph).replace(/</g, "\\u003c");
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
+}
 
 /**
  * Insights hub — a typographic index of articles in both languages.
@@ -67,11 +113,16 @@ export default function InsightsIndex() {
             <h2 className="display-sub font-arabic text-2xl md:text-3xl" lang="ar" dir="rtl">
               مقالات بالعربية
             </h2>
+            {/* prefetch is off on the cards below: prefetching an /ar route
+                pulls its font CSS, which downloads the whole Arabic family —
+                and this hub has no --font-arabic variable to render it with,
+                so those bytes could never reach the screen. */}
             <div className="mt-8 grid items-start gap-8 md:grid-cols-2">
               {ar.map((a) => (
                 <Link
                   key={a.path}
                   href={a.path}
+                  prefetch={false}
                   lang="ar"
                   dir="rtl"
                   className="group block rounded-2xl border border-hairline bg-surface p-8 font-arabic transition-colors duration-200 hover:border-blue/40 md:p-10"
@@ -96,6 +147,7 @@ export default function InsightsIndex() {
       <div className="content-layer">
         <Footer />
       </div>
+      <InsightsHubJsonLd />
     </>
   );
 }

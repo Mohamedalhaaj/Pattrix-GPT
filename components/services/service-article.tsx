@@ -37,8 +37,15 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
         <h1 className="display mt-8 max-w-[14em] text-[clamp(2.4rem,6vw,5.2rem)]">{page.h1}</h1>
         <p className="prose-measure mt-6 text-lg leading-relaxed text-ink-2">{page.intro}</p>
         <p className="mt-8">
+          {/* prefetch is off on purpose. Next prefetches in-viewport links, and
+              prefetching the counterpart-language route pulled in its font CSS,
+              which then matched the `font-arabic` class on this one link and
+              downloaded the whole IBM Plex Sans Arabic family (~194KB) on every
+              English page view. The switcher is a rare click; it can load on
+              demand. */}
           <Link
             href={page.langSwitch.href}
+            prefetch={false}
             lang={isAr ? "en" : "ar"}
             dir={isAr ? "ltr" : "rtl"}
             className={`text-sm font-medium text-ink-2 underline decoration-1 underline-offset-4 transition-colors duration-200 hover:text-blue ${isAr ? "" : "font-arabic"}`}

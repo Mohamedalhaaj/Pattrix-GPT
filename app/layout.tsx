@@ -17,9 +17,17 @@ const archivo = Archivo({
 
 // Italic only — the editorial voice is exclusively italic asides; shipping the
 // upright cuts would add unused font data.
+//
+// preload:false is deliberate. This face styles two short asides on the home
+// page and nothing at all on service, insight, and case-study pages, yet a
+// preload put its ~127KB on the critical path of every route — more than a
+// quarter of the home page's total transfer, competing with Archivo (which
+// does render the H1). It now loads at normal priority, after the text that
+// matters. `display: swap` already guarantees the asides stay readable.
 const editorialSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
+  preload: false,
   variable: "--font-editorial",
   style: ["italic"],
   axes: ["opsz"]

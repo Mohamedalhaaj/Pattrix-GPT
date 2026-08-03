@@ -3,3 +3,25 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Netlify serves files from /public with `cache-control: public, max-age=0,
+# must-revalidate` by default, so every repeat visitor pays a revalidation
+# round-trip for the case-study videos and their posters. These paths are only
+# ever changed by shipping a new filename, so they are safe to cache hard.
+# `stale-while-revalidate` keeps a replaced-in-place file from going stale for
+# longer than a day.
+
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
