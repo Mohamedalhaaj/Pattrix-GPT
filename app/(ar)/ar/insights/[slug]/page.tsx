@@ -59,12 +59,12 @@ export default async function InsightPageAr({ params }: InsightParams) {
 
   return (
     <>
-      <Header />
+      <Header locale="ar" />
       <main id="main" className="content-layer">
         <InsightArticleBody article={article} />
       </main>
       <div className="content-layer">
-        <Footer />
+        <Footer locale="ar" />
       </div>
       <InsightJsonLd article={article} />
     </>

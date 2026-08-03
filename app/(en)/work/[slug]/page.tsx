@@ -29,7 +29,19 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
   return {
     title: project.title,
     description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      // Only projects with an Arabic block have an /ar/work counterpart.
+      ...(project.ar
+        ? {
+            languages: {
+              en: path,
+              ar: `/ar/work/${project.slug}`,
+              "x-default": path
+            }
+          }
+        : {})
+    },
     openGraph: {
       title: socialTitle,
       description,

@@ -11,7 +11,10 @@ import { Header } from "@/components/ui/header";
 export const metadata: Metadata = {
   title: { absolute: workIndex.metaTitle },
   description: workIndex.metaDescription,
-  alternates: { canonical: "/work" }
+  alternates: {
+    canonical: "/work",
+    languages: { en: "/work", ar: "/ar/work", "x-default": "/work" }
+  }
 };
 
 /**

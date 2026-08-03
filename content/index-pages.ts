@@ -16,6 +16,43 @@
  * literally.
  */
 
+/**
+ * Arabic site chrome — the header, footer, and skip link for /ar/*.
+ *
+ * The Arabic routes used to render the English Header/Footer verbatim, because
+ * a single root layout meant one <html lang>. /ar now has its own root layout
+ * (app/(ar)/layout.tsx), so the chrome is translated and the whole document
+ * flips to dir="rtl" rather than only the article body.
+ *
+ * Nav hrefs mirror site.nav but point at Arabic destinations: the Arabic home
+ * page has no Work/Clients/About chapters, so those entries link to the Arabic
+ * routes that do exist instead of to dead same-page anchors.
+ */
+export const arSite = {
+  skipToContent: "تخطَّ إلى المحتوى",
+  logoAriaLabel: "باتريكس — الصفحة الرئيسية",
+  primaryNavLabel: "التنقل الرئيسي",
+  mobileNavLabel: "قائمة الجوال",
+  footerNavLabel: "تذييل الصفحة",
+  openMenu: "افتح القائمة",
+  closeMenu: "أغلق القائمة",
+  navigateHeading: "تنقل",
+  contactHeading: "تواصل",
+  ctaLabel: "ابدأ مشروعاً",
+  rightsReserved: "جميع الحقوق محفوظة.",
+  location: "طرابلس، ليبيا — نعمل عالمياً",
+  footerLine:
+    "اتصال استراتيجي وعلاقات عامة — استراتيجية، علاقات، حملات، سوشيال ميديا، فعاليات، وإنتاج.",
+  nav: [
+    { label: "الخدمات", href: "/ar/services" },
+    { label: "مقالات", href: "/ar/insights" },
+    { label: "أعمالنا", href: "/ar/work" },
+    { label: "تواصل", href: "/ar#ar-contact-heading" }
+  ],
+  /** Link back to the English site (hreflang counterpart of the home page). */
+  langSwitch: { label: "English", href: "/" }
+} as const;
+
 export interface IndexPageCopy {
   metaTitle: string;
   metaDescription: string;
@@ -56,6 +93,27 @@ export const arServicesIndex: IndexPageCopy = {
   intro:
     "كل تعاون يُبنى من أنظمة لها أسماء واضحة، ليعرف العميل دائماً ما الذي يُنفَّذ ولماذا. كل خدمة أدناه لها صفحة كاملة تشرح ما تشمله وكيف تُدار."
 };
+
+/** AR — /ar/work */
+export const arWorkIndex: IndexPageCopy = {
+  metaTitle: "أعمالنا — دراسات حالة | باتريكس",
+  metaDescription:
+    "دراسات حالة من باتريكس: اتصال استراتيجي، علاقات عامة، حملات، فعاليات، وإنتاج لمؤسسات دولية وعلامات رائدة في السوق.",
+  eyebrow: "أعمالنا",
+  h1: "أنماط حافظت على الانتباه.",
+  intro:
+    "تعاونات مع مؤسسات دولية وعلامات رائدة في السوق — كل واحدة منها نظام من الرسالة والإعلام والإنتاج يتحرك معاً."
+};
+
+/** AR — section labels on /ar/work/<slug>, mirroring the English case-study page. */
+export const arCaseStudy = {
+  challenge: "التحدي",
+  approach: "المقاربة",
+  outcome: "ما صار إليه",
+  servicesLabel: "الخدمات",
+  backToWork: "كل الأعمال",
+  readCase: "اقرأ دراسة الحالة"
+} as const;
 
 /** AR — /ar/insights */
 export const arInsightsIndex: IndexPageCopy = {

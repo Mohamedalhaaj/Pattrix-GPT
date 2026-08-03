@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import { insights } from "../content/insights";
+import { projects } from "../content/projects";
 import { servicePages } from "../content/service-pages";
 import { site } from "../content/site";
 
@@ -141,6 +142,15 @@ test.describe("service pages", () => {
         expect(body).toContain(`https://pattrix.co${a.path}`);
       }
     }
+    // Hub routes carry the middle crumb of every service and case-study
+    // BreadcrumbList, so they must be listed.
+    for (const hub of ["/services", "/work", "/ar", "/ar/services", "/ar/insights", "/ar/work"]) {
+      expect(body).toContain(`https://pattrix.co${hub}`);
+    }
+    for (const p of projects) {
+      expect(body).toContain(`https://pattrix.co/work/${p.slug}`);
+      if (p.ar) expect(body).toContain(`https://pattrix.co/ar/work/${p.slug}`);
+    }
   });
 
   test("footer links to every footer service entry", async ({ page }) => {
@@ -260,26 +270,94 @@ test.describe("mobile", () => {
   });
 });
 
-test.describe("responsive: no horizontal overflow", () => {
-  for (const vp of VIEWPORTS) {
-    test(`${vp.w}x${vp.h}`, async ({ page }) => {
-      await page.setViewportSize({ width: vp.w, height: vp.h });
+/**
+ * The Arabic site. /ar/* has its own root layout (app/(ar)/layout.tsx), so the
+ * document itself — not just an inner wrapper — must declare Arabic and RTL,
+ * and the chrome must be translated. These assertions are what would have
+ * caught the English header shipping on Arabic pages.
+ */
+test.describe("arabic site", () => {
+  const arRoutes = [
+    "/ar",
+    "/ar/services",
+    "/ar/insights",
+    "/ar/work",
+    ...projects.filter((p) => p.ar).map((p) => `/ar/work/${p.slug}`),
+    ...servicePages.filter((p) => p.locale === "ar").map((p) => p.path)
+  ];
+
+  for (const path of arRoutes) {
+    test(`${path} declares Arabic and RTL on <html>`, async ({ page }) => {
       const errors = collectErrors(page);
-      await page.goto("/");
-      // Walk the page so lazy reveals run and layout settles.
-      await page.evaluate(async () => {
-        const step = window.innerHeight * 0.8;
-        for (let y = 0; y <= document.body.scrollHeight; y += step) {
-          window.scrollTo(0, y);
-          await new Promise((r) => setTimeout(r, 60));
-        }
-      });
-      const overflow = await page.evaluate(
-        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-      );
-      expect(overflow, "horizontal overflow px").toBeLessThanOrEqual(0);
+      const res = await page.goto(path);
+      expect(res?.status()).toBe(200);
+      const html = page.locator("html");
+      await expect(html).toHaveAttribute("lang", "ar");
+      await expect(html).toHaveAttribute("dir", "rtl");
+      expect(await page.locator("h1").count()).toBe(1);
+      // Chrome is translated, not the English nav.
+      await expect(page.getByRole("banner").getByRole("link", { name: "الخدمات" })).toBeAttached();
       expect(errors).toEqual([]);
     });
+  }
+
+  test("english routes stay LTR", async ({ page }) => {
+    for (const path of ["/", "/services", "/work", "/insights"]) {
+      await page.goto(path);
+      await expect(page.locator("html")).toHaveAttribute("lang", "en");
+      await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
+    }
+  });
+
+  test("arabic case studies mirror their english counterparts", async ({ page }) => {
+    for (const p of projects.filter((x) => x.ar)) {
+      const res = await page.goto(`/ar/work/${p.slug}`);
+      expect(res?.status()).toBe(200);
+      await expect(page.getByRole("heading", { level: 1 })).toContainText(p.ar!.title);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        `https://pattrix.co/ar/work/${p.slug}`
+      );
+      for (const hl of ["en", "ar", "x-default"]) {
+        expect(await page.locator(`link[rel="alternate"][hreflang="${hl}"]`).count()).toBe(1);
+      }
+    }
+  });
+
+  test("language switch round-trips between the two sites", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("banner").getByRole("link", { name: "العربية" }).click();
+    await expect(page).toHaveURL(/\/ar$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "ar");
+    await page.getByRole("banner").getByRole("link", { name: "English" }).click();
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  });
+});
+
+test.describe("responsive: no horizontal overflow", () => {
+  // Both sites: RTL mirrors every logical property, so overflow can regress on
+  // one side while the other stays clean.
+  for (const vp of VIEWPORTS) {
+    for (const route of ["/", "/ar"]) {
+      test(`${route} ${vp.w}x${vp.h}`, async ({ page }) => {
+        await page.setViewportSize({ width: vp.w, height: vp.h });
+        const errors = collectErrors(page);
+        await page.goto(route);
+        await page.evaluate(async () => {
+          const step = window.innerHeight * 0.8;
+          for (let y = 0; y <= document.body.scrollHeight; y += step) {
+            window.scrollTo(0, y);
+            await new Promise((r) => setTimeout(r, 60));
+          }
+        });
+        const overflow = await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        );
+        expect(overflow, "horizontal overflow px").toBeLessThanOrEqual(0);
+        expect(errors).toEqual([]);
+      });
+    }
   }
 });
 

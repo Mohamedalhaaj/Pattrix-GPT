@@ -80,7 +80,7 @@ export default function ArabicHome() {
   return (
     <>
       <FieldCanvas />
-      <Header />
+      <Header locale="ar" />
       <main id="main" className="content-layer">
         <div lang="ar" dir="rtl" className="font-arabic">
           {/* Hero */}
@@ -290,7 +290,7 @@ export default function ArabicHome() {
         </div>
       </main>
       <div className="content-layer">
-        <Footer />
+        <Footer locale="ar" />
       </div>
       <ArHomeJsonLd />
     </>

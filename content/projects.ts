@@ -28,6 +28,27 @@ export interface ProjectVideo {
   featured?: boolean;
 }
 
+/**
+ * Arabic counterpart of a case study, rendered at /ar/work/<slug>.
+ *
+ * Same rule as the English fields: qualitative and truthful, no invented
+ * statistics or client-confidential details. These carry exactly the facts of
+ * their English counterparts — nothing is added, dropped, or strengthened —
+ * phrased in professional MSA rather than literally translated, matching the
+ * register of content/service-pages.ts. Structural values (year, slug, images,
+ * accent) are shared, not duplicated.
+ */
+export interface ProjectAr {
+  title: string;
+  category: string;
+  services: string[];
+  premise: string;
+  challenge: string;
+  approach: string;
+  outcome: string;
+  coverAlt?: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -48,6 +69,8 @@ export interface Project {
   coverH?: number;
   /** How the cover fills the home-page card. "contain" shows a wide graphic in full. */
   coverFit?: "cover" | "contain";
+  /** Arabic case study. When absent, the project has no /ar/work/<slug> route. */
+  ar?: ProjectAr;
   /** Additional real images shown on the case-study page. */
   gallery?: ProjectImage[];
   /** Produced video work shown on the case-study page (click to play). */
@@ -69,6 +92,18 @@ export const projects: Project[] = [
       "We produced the mission's public-facing visual communication: bilingual social media systems, event and dialogue announcements, and institutional media assets built to one disciplined visual language.",
     outcome:
       "A consistent institutional voice across the mission's public channels — communication designed to be understood, trusted, and repeated.",
+    ar: {
+      title: "بعثة الأمم المتحدة للدعم في ليبيا — اتصال استراتيجي وإعلام مؤسسي",
+      category: "إعلام مؤسسي",
+      services: ["العلاقات العامة والإعلام", "الاستراتيجية والتموضع", "السوشيال والديجيتال"],
+      premise: "إعلام مؤسسي واتصال عام لبعثة الأمم المتحدة للدعم في ليبيا.",
+      challenge:
+        "احتاجت بعثة دولية إلى اتصال عام واضح وموثوق بالعربية والإنجليزية — عبر حوارات الحوكمة والإعلانات الرسمية وصيغ النقاش العام — في بيئة تحمل فيها الدقة أثراً حقيقياً.",
+      approach:
+        "أنتجنا الاتصال البصري الموجّه إلى جمهور البعثة: أنظمة سوشيال ميديا ثنائية اللغة، وإعلانات الفعاليات والحوارات، ومواد إعلامية مؤسسية مبنية على لغة بصرية واحدة منضبطة.",
+      outcome:
+        "صوت مؤسسي متسق عبر قنوات البعثة العامة — اتصال مصمّم ليُفهم، ويُوثق به، ويتكرر."
+    },
     accent: "#2B8CE6",
     cover: "/images/work/unsmil.jpg",
     coverAlt:
@@ -116,6 +151,18 @@ export const projects: Project[] = [
       "We designed the showroom identity system end-to-end: environmental branding, interior brand walls, staff identity material, and the campaign visuals that connect the space to the market.",
     outcome:
       "A branded retail environment where every surface — from the workshop to the reception — speaks one visual language.",
+    ar: {
+      title: "هيونداي ليبيا — العلامة وهوية صالة العرض",
+      category: "العلامة والبيئات",
+      services: ["العلامة والهوية", "الإنتاج", "الفعاليات والتجارب"],
+      premise: "العلامة وهوية صالة العرض والمواد البصرية للحملات لعمليات هيونداي في ليبيا.",
+      challenge:
+        "احتاجت علامة سيارات عالمية إلى أن تحمل بيئاتها البيعية في ليبيا — صالة العرض والورشة والاستقبال — العلامة بالانضباط نفسه الذي تحمله حملاتها.",
+      approach:
+        "صمّمنا نظام هوية صالة العرض من طرف إلى طرف: العلامة في البيئة الداخلية، وجدران العلامة، ومواد هوية الفريق، والمواد البصرية للحملات التي تربط المكان بالسوق.",
+      outcome:
+        "بيئة بيعية موسومة بالعلامة، يتحدث فيها كل سطح — من الورشة إلى الاستقبال — لغة بصرية واحدة."
+    },
     accent: "#0171DD",
     cover: "/images/work/hyundai.jpg",
     coverAlt: "DLTA Duroue Libya workshop interior with red and grey Hyundai environmental branding",
@@ -150,6 +197,18 @@ export const projects: Project[] = [
       "We set the brand's commercial visual direction and produced the campaign system: app-launch promotion, QR-driven campaign material, and branded print built to the same language.",
     outcome:
       "A coherent commercial presence across digital and print — campaigns that build familiarity with every repetition.",
+    ar: {
+      title: "البركة للتأمين — حملات تجارية",
+      category: "الحملات والتوجيه البصري",
+      services: ["الاستراتيجية والتموضع", "العلامة والهوية", "السوشيال والديجيتال"],
+      premise: "حملات تجارية وتوجيه بصري للعلامة لمؤسسة تأمين ليبية.",
+      challenge:
+        "احتاجت مؤسسة مالية إلى أن تبدو منتجاتها الرقمية وعروضها التجارية جديرة بالثقة كالمؤسسة نفسها — عبر الترويج للتطبيق، والحملات المباشرة، والمواد المطبوعة.",
+      approach:
+        "وضعنا التوجيه البصري التجاري للعلامة وأنتجنا نظام الحملة: الترويج لإطلاق التطبيق، ومواد الحملة المعتمدة على رمز الاستجابة السريعة، ومطبوعات موسومة باللغة البصرية نفسها.",
+      outcome:
+        "حضور تجاري متماسك عبر الرقمي والمطبوع — حملات تبني الألفة مع كل تكرار."
+    },
     accent: "#0A50A8",
     cover: "/images/work/albaraka-cover.jpg",
     coverAlt:
@@ -222,6 +281,17 @@ export const projects: Project[] = [
       "We delivered the communication system around the network's activity: launch and program media, office and event branding, and coverage of its business gatherings.",
     outcome:
       "An institutional presence that carries from printed program to event room to public channel.",
+    ar: {
+      title: "مصياد — إعلام مؤسسي وفعاليات",
+      category: "إعلام مؤسسي وفعاليات",
+      services: ["العلاقات العامة والإعلام", "الفعاليات والتجارب", "الإنتاج"],
+      premise: "إعلام مؤسسي وتجارب فعاليات واتصال استراتيجي لشبكة أعمال مصياد في ليبيا.",
+      challenge:
+        "احتاجت جمعية أعمال دولية إلى أن تتواصل أنشطة فرعها الليبي — الإطلاقات وبرامج الأعضاء وتجمعات الأعمال — بمعيار مؤسسي.",
+      approach:
+        "قدّمنا نظام الاتصال المحيط بنشاط الشبكة: إعلام الإطلاق والبرامج، وتوسيم المكتب والفعاليات، وتغطية تجمعات الأعمال.",
+      outcome: "حضور مؤسسي ينتقل من البرنامج المطبوع إلى قاعة الفعالية إلى القناة العامة."
+    },
     accent: "#8A6D1D",
     cover: "/images/work/musiad.jpg",
     coverAlt: "MUSIAD Libya 2025 program launch design — a new start for the network's activities and initiatives",
@@ -265,6 +335,18 @@ export const projects: Project[] = [
       "We produced a running series of in-store reels — product-led shooting with editorial pacing — and an art-directed studio photo session for the Joelle contact-lens line, from set design to final retouch.",
     outcome:
       "A consistent visual presence where every reel and product shot carries the store's premium positioning.",
+    ar: {
+      title: "طرابلس أوبتكس — ريلز ومحتوى داخل المتجر",
+      category: "إنتاج المحتوى",
+      services: ["الإنتاج", "السوشيال والديجيتال"],
+      premise: "ريلز وتصوير منتجات وإنتاج محتوى داخل المتجر لمتجر بصريات في طرابلس.",
+      challenge:
+        "احتاج متجر بصريات يحمل علامات نظارات فاخرة إلى أن يبدو حضوره على السوشيال مدروساً كرفوفه — محتوى قصير وصور منتجات تبيع دون أن تبخس العلامات قيمتها.",
+      approach:
+        "أنتجنا سلسلة مستمرة من الريلز داخل المتجر — تصوير يقوده المنتج بإيقاع تحريري — وجلسة تصوير استوديو موجّهة فنياً لخط العدسات اللاصقة جويل، من تصميم المشهد حتى المعالجة النهائية.",
+      outcome:
+        "حضور بصري متسق يحمل فيه كل ريل وكل صورة منتج تموضع المتجر الفاخر."
+    },
     accent: "#0E7490",
     cover: "/images/work/optics-cover.jpg",
     coverAlt: "Frames from Tripoli Optics product reels: premium eyewear, styled and shot in-store",

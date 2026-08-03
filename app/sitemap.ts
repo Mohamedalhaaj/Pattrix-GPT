@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8
     },
     { url: `${site.url}/work`, lastModified, changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: `${site.url}/ar/work`, lastModified, changeFrequency: "monthly" as const, priority: 0.7 },
     ...(arInsights.length > 0
       ? [
           {
@@ -60,6 +61,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "yearly" as const,
       priority: 0.7
-    }))
+    })),
+    // Arabic case studies exist only for projects carrying an `ar` block.
+    ...projects
+      .filter((p) => p.ar)
+      .map((p) => ({
+        url: `${site.url}/ar/work/${p.slug}`,
+        lastModified,
+        changeFrequency: "yearly" as const,
+        priority: 0.7
+      }))
   ];
 }

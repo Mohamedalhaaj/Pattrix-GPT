@@ -3,13 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { arSite } from "@/content/index-pages";
 import { site } from "@/content/site";
 
 /**
  * Fixed header: quiet over the hero, gains a hairline + blur after scroll,
  * hides on long scroll-down and returns on scroll-up. Mobile: overlay menu.
+ *
+ * `locale` swaps the nav, CTA, and accessible labels for their Arabic
+ * counterparts and points the logo at /ar. Direction is not handled here — the
+ * Arabic root layout sets dir="rtl" on <html>, so the flex rows below mirror
+ * themselves without any RTL-specific classes.
  */
-export function Header() {
+export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
+  const isArabic = locale === "ar";
+  const nav = isArabic ? arSite.nav : site.nav;
+  const ctaLabel = isArabic ? arSite.ctaLabel : "Start a project";
+  const homeHref = isArabic ? "/ar" : "/";
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -59,7 +69,11 @@ export function Header() {
         }`}
       >
         <div className="container-x flex h-16 items-center justify-between md:h-20">
-          <Link href="/" aria-label="Pattrix — home" onClick={() => setOpen(false)}>
+          <Link
+            href={homeHref}
+            aria-label={isArabic ? arSite.logoAriaLabel : "Pattrix — home"}
+            onClick={() => setOpen(false)}
+          >
             {/* width/height describe the RENDERED box (~90px wide), not the
                 source file. Passing the source's 2335×561 made Next request
                 /_next/image?w=3840 — a 3840px render of a wordmark shown at
@@ -74,8 +88,11 @@ export function Header() {
             />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-            {site.nav.map((item) => (
+          <nav
+            aria-label={isArabic ? arSite.primaryNavLabel : "Primary"}
+            className="hidden items-center gap-8 md:flex"
+          >
+            {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -84,20 +101,38 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            {/* prefetch is off on the language switch: prefetching an /ar route
+                from an English page pulls the whole Arabic font family. */}
+            <Link
+              href={isArabic ? arSite.langSwitch.href : "/ar"}
+              prefetch={false}
+              lang={isArabic ? "en" : "ar"}
+              className="text-[0.8125rem] font-medium text-ink-2 transition-colors duration-200 hover:text-ink"
+            >
+              {isArabic ? arSite.langSwitch.label : "العربية"}
+            </Link>
             <a
               href={`mailto:${site.contact.email}`}
               className="rounded-full bg-ink px-5 py-2.5 text-[0.8125rem] font-semibold text-white transition-colors duration-200 hover:bg-blue"
             >
-              Start a project
+              {ctaLabel}
             </a>
           </nav>
 
           <button
             type="button"
-            className="relative z-50 -mr-2 grid h-11 w-11 place-items-center md:hidden"
+            className="relative z-50 -me-2 grid h-11 w-11 place-items-center md:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={
+              isArabic
+                ? open
+                  ? arSite.closeMenu
+                  : arSite.openMenu
+                : open
+                  ? "Close menu"
+                  : "Open menu"
+            }
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-3 w-6">
@@ -125,8 +160,11 @@ export function Header() {
         }`}
         aria-hidden={!open}
       >
-        <nav aria-label="Mobile" className="flex flex-col gap-2">
-          {site.nav.map((item, i) => (
+        <nav
+          aria-label={isArabic ? arSite.mobileNavLabel : "Mobile"}
+          className="flex flex-col gap-2"
+        >
+          {nav.map((item, i) => (
             <Link
               key={item.href}
               href={item.href}
@@ -145,9 +183,21 @@ export function Header() {
             tabIndex={open ? 0 : -1}
             className="rounded-full bg-ink px-6 py-4 text-center text-sm font-semibold text-white"
           >
-            Start a project
+            {ctaLabel}
           </a>
-          <p className="text-center text-xs text-ink-3">{site.contact.location}</p>
+          <Link
+            href={isArabic ? arSite.langSwitch.href : "/ar"}
+            prefetch={false}
+            lang={isArabic ? "en" : "ar"}
+            tabIndex={open ? 0 : -1}
+            onClick={() => setOpen(false)}
+            className="text-center text-sm text-ink-2"
+          >
+            {isArabic ? arSite.langSwitch.label : "العربية"}
+          </Link>
+          <p className="text-center text-xs text-ink-3">
+            {isArabic ? arSite.location : site.contact.location}
+          </p>
         </div>
       </div>
     </header>

@@ -55,12 +55,12 @@ export default async function ServicePageAr({ params }: ServiceParams) {
 
   return (
     <>
-      <Header />
+      <Header locale="ar" />
       <main id="main" className="content-layer">
         <ServiceArticle page={page} />
       </main>
       <div className="content-layer">
-        <Footer />
+        <Footer locale="ar" />
       </div>
       <ServiceJsonLd page={page} />
     </>

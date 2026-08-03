@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { arInsightsIndex } from "@/content/index-pages";
-import { insights } from "@/content/insights";
+import { arServicesIndex } from "@/content/index-pages";
+import { servicePages } from "@/content/service-pages";
 import { site } from "@/content/site";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
 
 export const metadata: Metadata = {
-  title: { absolute: arInsightsIndex.metaTitle },
-  description: arInsightsIndex.metaDescription,
+  title: { absolute: arServicesIndex.metaTitle },
+  description: arServicesIndex.metaDescription,
   alternates: {
-    canonical: "/ar/insights",
-    languages: { en: "/insights", ar: "/ar/insights", "x-default": "/insights" }
+    canonical: "/ar/services",
+    languages: { en: "/services", ar: "/ar/services", "x-default": "/services" }
   },
   openGraph: {
-    title: arInsightsIndex.metaTitle,
-    description: arInsightsIndex.metaDescription,
-    url: "/ar/insights",
+    title: arServicesIndex.metaTitle,
+    description: arServicesIndex.metaDescription,
+    url: "/ar/services",
     siteName: site.name,
     type: "website",
     locale: "ar_AR",
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
   }
 };
 
-function ArInsightsHubJsonLd({ articles }: { articles: typeof insights }) {
-  const url = `${site.url}/ar/insights`;
+function ArServicesHubJsonLd({ pages }: { pages: typeof servicePages }) {
+  const url = `${site.url}/ar/services`;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "CollectionPage",
         "@id": `${url}#collection`,
-        name: arInsightsIndex.h1,
+        name: arServicesIndex.h1,
         url,
         inLanguage: "ar",
         isPartOf: { "@id": `${site.url}/#website` },
@@ -41,12 +41,12 @@ function ArInsightsHubJsonLd({ articles }: { articles: typeof insights }) {
         mainEntity: {
           "@type": "ItemList",
           itemListOrder: "https://schema.org/ItemListUnordered",
-          numberOfItems: articles.length,
-          itemListElement: articles.map((a, i) => ({
+          numberOfItems: pages.length,
+          itemListElement: pages.map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            name: a.h1,
-            url: `${site.url}${a.path}`
+            name: p.breadcrumb.label,
+            url: `${site.url}${p.path}`
           }))
         }
       },
@@ -55,7 +55,7 @@ function ArInsightsHubJsonLd({ articles }: { articles: typeof insights }) {
         "@id": `${url}#breadcrumbs`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: site.name, item: site.url },
-          { "@type": "ListItem", position: 2, name: arInsightsIndex.eyebrow, item: url }
+          { "@type": "ListItem", position: 2, name: arServicesIndex.eyebrow, item: url }
         ]
       }
     ]
@@ -65,44 +65,43 @@ function ArInsightsHubJsonLd({ articles }: { articles: typeof insights }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }
 
-/** Arabic insights index — RTL wrapper on the content only, per app/ar/layout.tsx. */
-export default function ArInsightsIndex() {
-  const ar = insights.filter((a) => a.locale === "ar");
-  const dateLabel = (iso: string) =>
-    new Intl.DateTimeFormat("ar", { dateStyle: "long" }).format(new Date(iso));
+/**
+ * Arabic services index. The RTL wrapper sits on <main>'s inner content rather
+ * than the whole subtree, so the shared Header/Footer keep their designed LTR
+ * layout — the same constraint documented in app/ar/layout.tsx.
+ */
+export default function ArServicesIndex() {
+  const ar = servicePages.filter((p) => p.locale === "ar");
 
   return (
     <>
-      <Header />
+      <Header locale="ar" />
       <main id="main" className="content-layer">
         <div lang="ar" dir="rtl" className="font-arabic">
           <header className="container-x pt-32 md:pt-40">
-            <p className="eyebrow text-blue">{arInsightsIndex.eyebrow}</p>
+            <p className="eyebrow text-blue">{arServicesIndex.eyebrow}</p>
             <h1 className="display mt-8 max-w-[16em] text-[clamp(2.2rem,5.5vw,4.6rem)]">
-              {arInsightsIndex.h1}
+              {arServicesIndex.h1}
             </h1>
             <p className="prose-measure mt-6 text-lg leading-relaxed text-ink-2">
-              {arInsightsIndex.intro}
+              {arServicesIndex.intro}
             </p>
           </header>
 
           <div className="container-x mt-20 border-t border-hairline pt-16 md:mt-24 md:pt-20">
             <div className="grid items-start gap-8 md:grid-cols-2">
-              {ar.map((a) => (
+              {ar.map((p) => (
                 <Link
-                  key={a.path}
-                  href={a.path}
+                  key={p.path}
+                  href={p.path}
                   className="group block rounded-2xl border border-hairline bg-surface p-8 transition-colors duration-200 hover:border-blue/40 md:p-10"
                 >
-                  <p className="eyebrow text-ink-3">{a.eyebrow}</p>
+                  <p className="eyebrow text-ink-3">{p.eyebrow}</p>
                   <h2 className="display-sub mt-4 text-xl transition-colors duration-200 group-hover:text-blue md:text-2xl">
-                    {a.h1}
+                    {p.breadcrumb.label}
                   </h2>
                   <p className="prose-measure mt-3 text-sm leading-relaxed text-ink-2">
-                    {a.metaDescription}
-                  </p>
-                  <p className="mt-5 text-xs text-ink-3">
-                    <time dateTime={a.datePublished}>{dateLabel(a.datePublished)}</time>
+                    {p.metaDescription}
                   </p>
                 </Link>
               ))}
@@ -112,7 +111,7 @@ export default function ArInsightsIndex() {
 
         <div className="container-x mt-16 md:mt-20">
           <Link
-            href="/insights"
+            href="/services"
             className="inline-block text-sm text-ink-2 underline-offset-4 transition-colors duration-200 hover:text-blue hover:underline"
           >
             English
@@ -121,9 +120,9 @@ export default function ArInsightsIndex() {
         <div className="pb-24" />
       </main>
       <div className="content-layer">
-        <Footer />
+        <Footer locale="ar" />
       </div>
-      <ArInsightsHubJsonLd articles={ar} />
+      <ArServicesHubJsonLd pages={ar} />
     </>
   );
 }

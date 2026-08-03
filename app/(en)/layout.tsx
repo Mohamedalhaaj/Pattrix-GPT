@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Source_Serif_4 } from "next/font/google";
 import { JsonLd } from "@/components/seo/json-ld";
 import { site } from "@/content/site";
-import "./globals.css";
+import "../globals.css";
 
 // Google Search Console: set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION (see
 // docs/SEO_CHECKLIST.md) after creating the property. Never hardcode a token.
@@ -69,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${editorialSerif.variable}`}>
+    <html lang="en" dir="ltr" className={`${archivo.variable} ${editorialSerif.variable}`}>
       <body className="font-sans">
         <a href="#main" className="skip-link">
           Skip to content
