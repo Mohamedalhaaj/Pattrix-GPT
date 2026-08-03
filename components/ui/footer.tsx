@@ -22,6 +22,20 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            {/* prefetch is off: prefetching /ar pulls its font CSS, which
+                downloads the whole Arabic family on every English page — the
+                exact regression fixed in the language switchers. */}
+            <li>
+              <Link
+                href="/ar"
+                prefetch={false}
+                lang="ar"
+                dir="rtl"
+                className="font-arabic text-sm text-ink-2 transition-colors duration-200 hover:text-ink"
+              >
+                العربية
+              </Link>
+            </li>
           </ul>
         </nav>
         <div>

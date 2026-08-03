@@ -1,15 +1,21 @@
 import { site } from "@/content/site";
+import { arServicesIndex } from "@/content/index-pages";
 import type { ServicePage } from "@/content/service-pages";
 
 /**
  * Per-service-page structured data: a Service node referencing the site-wide
- * Organization by @id (never duplicating it), plus a two-level BreadcrumbList
- * (Home → page — there is no /services index route yet, and a middle crumb
- * without a URL would be invalid). No FAQPage markup by design: Google limits
- * FAQ rich results to government/health sites, so FAQs stay content-only.
+ * Organization by @id (never duplicating it), plus a three-level BreadcrumbList
+ * (Home → Services → page). The middle crumb was previously omitted because no
+ * /services index route existed and a crumb without a URL would be invalid;
+ * /services and /ar/services now exist, so the real hierarchy is expressed.
+ * No FAQPage markup by design: Google limits FAQ rich results to
+ * government/health sites, so FAQs stay content-only.
  */
 export function ServiceJsonLd({ page }: { page: ServicePage }) {
   const url = `${site.url}${page.path}`;
+  const isArabic = page.locale === "ar";
+  const indexUrl = `${site.url}${isArabic ? "/ar/services" : "/services"}`;
+  const indexLabel = isArabic ? arServicesIndex.eyebrow : "Services";
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -29,7 +35,8 @@ export function ServiceJsonLd({ page }: { page: ServicePage }) {
         "@id": `${url}#breadcrumbs`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: page.breadcrumb.home, item: site.url },
-          { "@type": "ListItem", position: 2, name: page.breadcrumb.label, item: url }
+          { "@type": "ListItem", position: 2, name: indexLabel, item: indexUrl },
+          { "@type": "ListItem", position: 3, name: page.breadcrumb.label, item: url }
         ]
       }
     ]

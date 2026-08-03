@@ -14,8 +14,8 @@ import type { Project } from "@/content/projects";
  * engagement, not of publication, and inventing a precise date to satisfy a
  * schema field would be a fabricated fact.
  *
- * Two crumbs only (Home → case study): there is no /work index route, and a
- * middle crumb without a URL would be invalid — same reasoning as
+ * Three crumbs (Home → Work → case study). This was two until /work existed —
+ * a middle crumb without a URL would have been invalid — same reasoning as
  * service-json-ld.tsx.
  */
 export function ProjectJsonLd({ project }: { project: Project }) {
@@ -49,7 +49,8 @@ export function ProjectJsonLd({ project }: { project: Project }) {
         "@id": `${url}#breadcrumbs`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: site.name, item: site.url },
-          { "@type": "ListItem", position: 2, name: project.title, item: url }
+          { "@type": "ListItem", position: 2, name: "Work", item: `${site.url}/work` },
+          { "@type": "ListItem", position: 3, name: project.title, item: url }
         ]
       }
     ]

@@ -479,12 +479,12 @@ export const servicePages: ServicePage[] = [
     counterpartPath: "/ar/services/marketing-agency-tripoli",
     title: "Marketing Agency in Tripoli, Libya — Strategy First | Pattrix",
     metaDescription:
-      "Need a marketing agency in Tripoli? Pattrix pairs marketing execution with strategic communications — campaigns, content, social, and events that hold together.",
+      "Need a marketing agency in Tripoli, Libya? Pattrix pairs marketing execution with strategic communications — campaigns, content, social media, and events.",
     ogTitle: "Marketing Agency in Tripoli, Libya — Pattrix",
     ogDescription:
       "Campaigns, content, social media, and events built on clear strategy — a strategy-first marketing agency in Tripoli, Libya.",
     eyebrow: "Services — Marketing & Campaigns",
-    h1: "A strategy-first marketing agency in Tripoli",
+    h1: "A strategy-first marketing agency in Tripoli, Libya",
     intro:
       "If you are searching for a marketing agency in Tripoli, Libya, here is the honest version of what Pattrix is: a strategic communications and PR agency with full production capability. We deliver what a marketing agency delivers — campaigns, content, social media, events — but we refuse to start with tactics. Strategy comes first, because attention is never won by volume; it is won by pattern.",
     sections: [
@@ -587,7 +587,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "حملات ومحتوى وسوشيال ميديا وفعاليات مبنية على استراتيجية واضحة — وكالة تسويق تبدأ من الاستراتيجية في طرابلس، ليبيا.",
     eyebrow: "الخدمات — التسويق والحملات",
-    h1: "وكالة تسويق في طرابلس تبدأ من الاستراتيجية",
+    h1: "وكالة تسويق في طرابلس، ليبيا تبدأ من الاستراتيجية",
     intro:
       "من يبحث عن وكالة تسويق في طرابلس يجد عروضاً كثيرة، ومعظمها يبيع النشاط نفسه: منشورات وتصاميم وضجيجاً شهرياً. باتريكس شركة اتصال استراتيجي وعلاقات عامة بقدرات إنتاج كاملة داخل الشركة، تقدّم ما تقدّمه شركة تسويق في ليبيا — حملات ومحتوى وسوشيال ميديا وفعاليات — لكنها ترفض أن تبدأ من التكتيك. نبدأ من الاستراتيجية، لأن الانتباه لا يُكسب بالكثرة بل بالنمط.",
     sections: [

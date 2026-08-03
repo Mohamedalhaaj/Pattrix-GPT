@@ -14,7 +14,10 @@ import { Header } from "@/components/ui/header";
 // Canonical is declared here (not in the root layout) so case-study pages
 // keep their own /work/<slug> canonicals instead of inheriting "/".
 export const metadata: Metadata = {
-  alternates: { canonical: "/" }
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", ar: "/ar", "x-default": "/" }
+  }
 };
 
 export default function Home() {

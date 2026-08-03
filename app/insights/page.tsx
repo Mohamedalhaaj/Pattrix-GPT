@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   title: { absolute: "Insights on Marketing, PR & Analysis in Libya | Pattrix" },
   description:
     "Practical guides on marketing, public relations, strategic communications, and media analysis in Libya — written by Pattrix in Tripoli, in English and Arabic.",
-  alternates: { canonical: "/insights" }
+  alternates: {
+    canonical: "/insights",
+    languages: { en: "/insights", ar: "/ar/insights", "x-default": "/insights" }
+  }
 };
 
 /**

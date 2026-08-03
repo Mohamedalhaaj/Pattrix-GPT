@@ -28,6 +28,12 @@ export const site = {
 
   /** Service pages linked from the footer only (header nav stays unchanged). */
   footerServices: [
+    // Hub routes first: the header nav's Work/Services entries are same-page
+    // anchors, so these are the only internal links to the real index routes —
+    // and those routes carry the middle crumb of every service and case-study
+    // BreadcrumbList.
+    { label: "All Services", href: "/services" },
+    { label: "Selected Work", href: "/work" },
     { label: "PR Agency in Libya", href: "/services/pr-agency-libya" },
     { label: "Strategic Communications in Libya", href: "/services/strategic-communications-libya" },
     { label: "Marketing Agency in Tripoli", href: "/services/marketing-agency-tripoli" },
