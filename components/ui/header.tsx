@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { arSite } from "@/content/index-pages";
 import { site } from "@/content/site";
+import { LangSwitch } from "@/components/ui/lang-switch";
 
 /**
  * Fixed header: quiet over the hero, gains a hairline + blur after scroll,
@@ -101,16 +102,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
                 {item.label}
               </Link>
             ))}
-            {/* prefetch is off on the language switch: prefetching an /ar route
-                from an English page pulls the whole Arabic font family. */}
-            <Link
-              href={isArabic ? arSite.langSwitch.href : "/ar"}
-              prefetch={false}
-              lang={isArabic ? "en" : "ar"}
-              className="text-[0.8125rem] font-medium text-ink-2 transition-colors duration-200 hover:text-ink"
-            >
-              {isArabic ? arSite.langSwitch.label : "العربية"}
-            </Link>
+            <LangSwitch />
             <a
               href={`mailto:${site.contact.email}`}
               className="rounded-full bg-ink px-5 py-2.5 text-[0.8125rem] font-semibold text-white transition-colors duration-200 hover:bg-blue"
@@ -185,16 +177,9 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
           >
             {ctaLabel}
           </a>
-          <Link
-            href={isArabic ? arSite.langSwitch.href : "/ar"}
-            prefetch={false}
-            lang={isArabic ? "en" : "ar"}
-            tabIndex={open ? 0 : -1}
-            onClick={() => setOpen(false)}
-            className="text-center text-sm text-ink-2"
-          >
-            {isArabic ? arSite.langSwitch.label : "العربية"}
-          </Link>
+          <div className="flex justify-center" onClick={() => setOpen(false)}>
+            <LangSwitch />
+          </div>
           <p className="text-center text-xs text-ink-3">
             {isArabic ? arSite.location : site.contact.location}
           </p>

@@ -49,8 +49,19 @@ export const site = {
     phones: ["+218 91 097 0099", "+218 91 164 6600"],
     location: "Tripoli — Working Globally",
     website: "Pattrix.co",
-    /** Social profiles: add { label, href } entries ONLY once URLs are verified. */
-    socials: [] as { label: string; href: string }[]
+    /**
+     * Social profiles: add { label, href } entries ONLY once URLs are verified.
+     * These three were supplied by Mohamed on 2026-08-03. They feed the footer
+     * and, via components/seo/json-ld.tsx, the Organization `sameAs` array —
+     * which is how Google ties the site to the profiles as one entity.
+     * Query strings are stripped: `?viewAsMember=true` is a LinkedIn view
+     * parameter, not part of the canonical profile URL.
+     */
+    socials: [
+      { label: "Instagram", href: "https://www.instagram.com/pattrix_marketing/" },
+      { label: "Facebook", href: "https://www.facebook.com/pattrix.marketing/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/pattrix-marketing-pr" }
+    ] as { label: string; href: string }[]
   },
 
   /**

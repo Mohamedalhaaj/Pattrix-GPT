@@ -1,0 +1,46 @@
+import { insights } from "./insights";
+import { projects } from "./projects";
+import { servicePages } from "./service-pages";
+
+/**
+ * Bidirectional EN <-> AR route map for the language switch.
+ *
+ * Every Arabic route is its English counterpart under an /ar prefix, so the
+ * mapping is mechanical — but it is built from the content files rather than
+ * assumed, because the two sides are NOT symmetrical: only 2 of 4 insights and
+ * only projects carrying an `ar` block have Arabic versions. Switching language
+ * on a page whose counterpart does not exist would land on a 404, so the switch
+ * falls back to the other side's home page instead (see components/ui/
+ * lang-switch.tsx).
+ */
+const arPaths = new Set<string>([
+  "/ar",
+  "/ar/services",
+  "/ar/insights",
+  "/ar/work",
+  ...servicePages.filter((p) => p.locale === "ar").map((p) => p.path),
+  ...insights.filter((a) => a.locale === "ar").map((a) => a.path),
+  ...projects.filter((p) => p.ar).map((p) => `/ar/work/${p.slug}`)
+]);
+
+/** "/services/x" -> "/ar/services/x", "/" -> "/ar". Empty when no counterpart. */
+export const enToAr: Record<string, string> = {};
+/** The inverse. */
+export const arToEn: Record<string, string> = {};
+
+for (const ar of arPaths) {
+  const en = ar === "/ar" ? "/" : ar.slice(3);
+  enToAr[en] = ar;
+  arToEn[ar] = en;
+}
+
+/**
+ * Counterpart for a path, or the other side's home page when none exists.
+ * Trailing slashes are normalised so /services/ and /services agree.
+ */
+export function counterpartOf(pathname: string): { href: string; targetLocale: "en" | "ar" } {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  const isArabic = path === "/ar" || path.startsWith("/ar/");
+  if (isArabic) return { href: arToEn[path] ?? "/", targetLocale: "en" };
+  return { href: enToAr[path] ?? "/ar", targetLocale: "ar" };
+}

@@ -326,12 +326,34 @@ test.describe("arabic site", () => {
 
   test("language switch round-trips between the two sites", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("banner").getByRole("link", { name: "العربية" }).click();
+    await page.getByRole("banner").getByRole("link", { name: "التبديل إلى العربية" }).click();
     await expect(page).toHaveURL(/\/ar$/);
     await expect(page.locator("html")).toHaveAttribute("lang", "ar");
-    await page.getByRole("banner").getByRole("link", { name: "English" }).click();
+    await page.getByRole("banner").getByRole("link", { name: "Switch to English" }).click();
     await expect(page).toHaveURL(/\/$/);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  });
+
+  // The switch resolves the real counterpart route, not just the other home
+  // page — and falls back to it only where no counterpart exists, which is the
+  // case for the two insights that were never translated.
+  test("language switch lands on the counterpart page, never a 404", async ({ page, request }) => {
+    const cases: [string, string][] = [
+      ["/services", "/ar/services"],
+      ["/work", "/ar/work"],
+      ["/insights", "/ar/insights"],
+      ["/services/pr-agency-libya", "/ar/services/pr-agency-libya"],
+      ["/work/unsmil-strategic-communications", "/ar/work/unsmil-strategic-communications"],
+      ["/ar/services", "/services"],
+      // No Arabic version of this article: must fall back, not 404.
+      ["/insights/pr-vs-marketing-libya", "/ar"]
+    ];
+    for (const [from, expected] of cases) {
+      await page.goto(from);
+      const sw = page.getByRole("banner").getByRole("link", { name: /التبديل إلى العربية|Switch to English/ });
+      await expect(sw).toHaveAttribute("href", expected);
+      expect((await request.get(expected)).status(), `${from} -> ${expected}`).toBe(200);
+    }
   });
 });
 

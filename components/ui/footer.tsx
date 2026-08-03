@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { arSite } from "@/content/index-pages";
 import { site } from "@/content/site";
+import { LangSwitch } from "@/components/ui/lang-switch";
 
 /**
  * `locale` swaps the nav, headings, and standing text for their Arabic
@@ -35,20 +36,10 @@ export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
                 </Link>
               </li>
             ))}
-            {/* prefetch is off: prefetching /ar pulls its font CSS, which
-                downloads the whole Arabic family on every English page — the
-                exact regression fixed in the language switchers. */}
-            <li>
-              <Link
-                href={isArabic ? arSite.langSwitch.href : "/ar"}
-                prefetch={false}
-                lang={isArabic ? "en" : "ar"}
-                className="text-sm text-ink-2 transition-colors duration-200 hover:text-ink"
-              >
-                {isArabic ? arSite.langSwitch.label : "العربية"}
-              </Link>
-            </li>
           </ul>
+          <div className="mt-6">
+            <LangSwitch />
+          </div>
         </nav>
         <div>
           <p className="eyebrow mb-5 text-ink-3">{isArabic ? arSite.contactHeading : "Contact"}</p>
