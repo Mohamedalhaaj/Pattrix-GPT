@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/insights",
     languages: { en: "/insights", ar: "/ar/insights", "x-default": "/insights" }
+  },
+  // Without this the page inherits the root layout's og:url and would share as
+  // the homepage.
+  openGraph: {
+    title: "Insights on Marketing, PR & Analysis in Libya | Pattrix",
+    description:
+      "Practical guides on marketing, public relations, strategic communications, and media analysis in Libya — written by Pattrix in Tripoli, in English and Arabic.",
+    url: "/insights",
+    siteName: site.name,
+    type: "website",
+    locale: "en_US",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
   }
 };
 

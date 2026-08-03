@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/services",
     languages: { en: "/services", ar: "/ar/services", "x-default": "/services" }
+  },
+  // Without this the page inherits the root layout's og:url and would share as
+  // the homepage.
+  openGraph: {
+    title: servicesIndex.metaTitle,
+    description: servicesIndex.metaDescription,
+    url: "/services",
+    siteName: site.name,
+    type: "website",
+    locale: "en_US",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
   }
 };
 

@@ -30,7 +30,17 @@ export function CtaLink({ href, children, tone = "light", className = "" }: CtaL
         aria-hidden="true"
         className={`grid h-9 w-9 place-items-center rounded-full border transition-all duration-200 ease-out-quart ${circle}`}
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform duration-200 group-hover:translate-x-0.5">
+        {/* SVG geometry does not mirror under dir="rtl" the way layout does, so
+            the arrow is flipped explicitly — otherwise it points away from the
+            reading direction on every Arabic page. The hover nudge is flipped
+            with it (translate-x is physical, so rtl: negates it). */}
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          className="transition-transform duration-200 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
+        >
           <path d="M1 7h11m0 0L7.5 2.5M12 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </span>

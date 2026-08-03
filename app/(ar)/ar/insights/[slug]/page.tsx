@@ -41,7 +41,9 @@ export async function generateMetadata({ params }: InsightParams): Promise<Metad
       siteName: site.name,
       type: "article",
       publishedTime: article.datePublished,
-      locale: "ar_LY",
+      // ar_AR, matching every other Arabic route — Open Graph's Arabic locale
+      // token is ar_AR, and ar_LY was the odd one out across seven files.
+      locale: "ar_AR",
       images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
     },
     twitter: {

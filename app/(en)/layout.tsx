@@ -46,7 +46,13 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.name,
     type: "website",
-    locale: "en_US"
+    locale: "en_US",
+    // Declared explicitly rather than relying on app/opengraph-image.tsx being
+    // picked up: file-based metadata does not cascade into nested segments, and
+    // any page that declares its own `openGraph` replaces this object wholesale
+    // — so every such page repeats it. Without this the English pages shipped
+    // with no og:image at all (verified on the live site).
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
   },
   twitter: {
     card: "summary_large_image",

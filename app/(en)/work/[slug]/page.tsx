@@ -48,7 +48,13 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
       url: path,
       siteName: site.name,
       type: "article",
-      locale: "en_US"
+      locale: "en_US",
+      // The project's own cover when it has one, brand card otherwise — the
+      // same choice ProjectJsonLd makes. Case studies previously shipped with
+      // no og:image at all.
+      images: project.cover
+        ? [{ url: project.cover }]
+        : [{ url: "/opengraph-image", width: 1200, height: 630 }]
     },
     twitter: {
       card: "summary_large_image",

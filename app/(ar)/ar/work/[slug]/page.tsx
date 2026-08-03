@@ -47,8 +47,12 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
       siteName: site.name,
       type: "article",
       locale: "ar_AR",
-      // Root opengraph-image.tsx doesn't cascade to nested segments.
-      images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
+      // Root opengraph-image.tsx doesn't cascade to nested segments, so it is
+      // named explicitly. Mirrors the English case study: the project's own
+      // cover when it has one, brand card otherwise.
+      images: project.cover
+        ? [{ url: project.cover }]
+        : [{ url: "/opengraph-image", width: 1200, height: 630 }]
     },
     twitter: { card: "summary_large_image", title: socialTitle, description }
   };

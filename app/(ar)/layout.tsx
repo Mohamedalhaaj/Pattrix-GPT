@@ -29,10 +29,20 @@ const archivo = Archivo({
 // font-semibold). The "latin" subset is dropped: the `font-arabic` family falls
 // through to Archivo for Latin glyphs (see tailwind.config.ts), so those cuts
 // would be pure duplication.
+//
+// preload:false is load-bearing, not an oversight. next/font preloads a root
+// layout's fonts across the whole build, and this file became a ROOT layout when
+// /ar moved into its own route group — which put all three Arabic weights
+// (~103KB) on the critical path of every ENGLISH page, reintroducing the exact
+// regression 1175b9a fixed, and at higher priority than before. Verified by
+// diffing the <link rel=preload> set on / against /ar. Source Serif is excluded
+// the same way for the same reason. `display: swap` keeps Arabic text readable
+// while the face loads at normal priority on /ar routes.
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600"],
   display: "swap",
+  preload: false,
   variable: "--font-arabic"
 });
 

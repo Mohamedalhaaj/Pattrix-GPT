@@ -56,7 +56,10 @@ canvas {
 .skip-link {
   position: fixed;
   top: 0.75rem;
-  left: 0.75rem;
+  /* Logical, not physical: the Arabic root layout sets dir="rtl" on <html>, and
+     a physical `left` would drop the skip link in the far corner from where
+     keyboard focus starts on every /ar page. */
+  inset-inline-start: 0.75rem;
   z-index: 100;
   transform: translateY(-200%);
   background: var(--ink);
@@ -112,21 +115,37 @@ canvas {
  * joins, and the family has no width axis for font-stretch to act on — leaving
  * it on invites a synthetic stretch.
  *
- * Scoped to [lang="ar"], which the Arabic root layout puts on <html>; the
- * inline Arabic on English pages (the language switch) isn't display type, so
- * it's unaffected.
+ * Every selector is doubled — descendant AND self — because the Arabic snippets
+ * on English pages (the "العربية" switch, the "مقالات بالعربية" heading on the
+ * insights hub) carry lang="ar" on the element ITSELF, with no lang="ar"
+ * ancestor. A descendant-only selector silently skips exactly those.
  */
 [lang="ar"] .display,
-[lang="ar"] .display-sub {
+[lang="ar"].display,
+[lang="ar"] .display-sub,
+[lang="ar"].display-sub,
+[lang="ar"] .eyebrow,
+[lang="ar"].eyebrow {
   letter-spacing: 0;
   font-stretch: normal;
 }
 
-[lang="ar"] .display {
+/* .eyebrow's 0.16em tracking is the worst of these: positive letter-spacing
+ * breaks the joins of a connected script, so Arabic eyebrows rendered as
+ * detached letterforms on every /ar page. Arabic has no case, so the uppercase
+ * transform is a no-op that only risks odd fallback rendering. */
+[lang="ar"] .eyebrow,
+[lang="ar"].eyebrow {
+  text-transform: none;
+}
+
+[lang="ar"] .display,
+[lang="ar"].display {
   line-height: 1.45;
 }
 
-[lang="ar"] .display-sub {
+[lang="ar"] .display-sub,
+[lang="ar"].display-sub {
   line-height: 1.5;
 }
 
