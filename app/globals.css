@@ -98,6 +98,38 @@ canvas {
   text-wrap: balance;
 }
 
+/**
+ * Arabic display metrics.
+ *
+ * The values above are tuned for Archivo: a sub-1 line-height works because
+ * Latin caps have shallow descenders. IBM Plex Sans Arabic doesn't — Arabic
+ * carries tall ascenders (ا ل ك), deep descenders (ج ح ق ي), and diacritics
+ * that sit above the letterform (the shadda in "نحوّل"), so 0.98 makes
+ * consecutive lines collide outright.
+ *
+ * The tracking and width axis are Latin-only tools and are reset, not just
+ * relaxed: Arabic is a connected script, so negative letter-spacing crowds the
+ * joins, and the family has no width axis for font-stretch to act on — leaving
+ * it on invites a synthetic stretch.
+ *
+ * Scoped to [lang="ar"], which the Arabic root layout puts on <html>; the
+ * inline Arabic on English pages (the language switch) isn't display type, so
+ * it's unaffected.
+ */
+[lang="ar"] .display,
+[lang="ar"] .display-sub {
+  letter-spacing: 0;
+  font-stretch: normal;
+}
+
+[lang="ar"] .display {
+  line-height: 1.45;
+}
+
+[lang="ar"] .display-sub {
+  line-height: 1.5;
+}
+
 .prose-measure {
   max-width: 34em;
   text-wrap: pretty;

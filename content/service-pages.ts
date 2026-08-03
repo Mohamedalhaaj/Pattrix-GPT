@@ -177,7 +177,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "Positioning, message architecture, and campaign systems for brands and institutions in Libya — from Tripoli, working globally.",
     eyebrow: "Services — Strategy & Positioning",
-    h1: "Strategic communications for brands and institutions in Libya",
+    h1: "Strategic communications for brands and institutions",
     intro:
       "Attention is never won by volume. It is won by pattern — a clear message, repeated with discipline, until it becomes memory. Pattrix designs communication systems for brands and institutions in Libya: from positioning and message architecture to campaign structure and delivery, from Tripoli and beyond it.",
     sections: [
@@ -389,7 +389,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "التموضع، هندسة الرسائل، وبناء الحملات الإعلامية للمؤسسات والعلامات التجارية في ليبيا — من طرابلس.",
     eyebrow: "الخدمات — الاستراتيجية والتموضع",
-    h1: "اتصال استراتيجي وحملات إعلامية للمؤسسات في ليبيا",
+    h1: "اتصال استراتيجي وحملات إعلامية للمؤسسات",
     intro:
       "الانتباه لا يُكسب بالضجيج، بل بالنمط: رسالة واضحة تتكرر بانضباط حتى تصبح ذاكرة. تصمم باتريكس أنظمة الاتصال للمؤسسات والعلامات التجارية في ليبيا — من تحديد التموضع وهندسة الرسائل إلى بناء الحملات وإدارتها — انطلاقاً من طرابلس وبامتداد يتجاوزها.",
     sections: [
@@ -694,7 +694,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "Platform strategy, channel management, and short-form content for companies and institutions in Libya — run to campaign standards from Tripoli.",
     eyebrow: "Services — Social & Digital",
-    h1: "Social media management in Libya, with editorial discipline",
+    h1: "Social media management with editorial discipline",
     intro:
       "Pattrix manages social media the way it manages campaigns. From our base in Tripoli, Libya, we run social channels for companies and institutions with editorial discipline: a platform strategy that knows where the audience's attention actually lives, a publishing rhythm that holds, and short-form content produced in-house in Arabic and English. Always-on presence is not posting for its own sake — it is a pattern your audience learns to recognize.",
     sections: [
@@ -801,7 +801,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "استراتيجية المنصات، إدارة الصفحات، والمحتوى القصير للشركات والمؤسسات في ليبيا — بمعايير الحملات، من طرابلس.",
     eyebrow: "الخدمات — السوشيال ميديا والمحتوى الرقمي",
-    h1: "إدارة سوشيال ميديا في ليبيا بانضباط تحريري",
+    h1: "إدارة سوشيال ميديا بانضباط تحريري",
     intro:
       "تدير باتريكس صفحات التواصل الاجتماعي للشركات والمؤسسات في ليبيا بالمنطق نفسه الذي تُدار به الحملات، من مقرّها في طرابلس، ليبيا: استراتيجية واضحة لكل منصة، وإيقاع نشر ثابت، ومحتوى قصير يُنتَج داخلياً بالعربية والإنجليزية. فالحضور الدائم على المنصات ليس نشراً يومياً بلا غاية، بل نمط تحريري يعرف ماذا يقول، ولمن، ولماذا.",
     sections: [
@@ -1147,7 +1147,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "Film, photography, reels, and post-production — produced in-house from Tripoli, Libya to campaign discipline, for brands and institutions.",
     eyebrow: "Services — Production",
-    h1: "In-house content and video production in Libya, built to campaign discipline",
+    h1: "In-house content and video production, built to campaign discipline",
     intro:
       "Most video production in Libya begins with a camera. Ours begins with a question: what does the strategy need this material to prove? Pattrix produces film, photography, and digital content in-house in Tripoli, Libya — the proof layer of every message we build — so nothing is shot for its own sake, and everything holds together from strategy to screen.",
     sections: [
@@ -1246,7 +1246,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "أفلام وتصوير وريلز وأعمال ما بعد الإنتاج، تُنتج داخلياً من طرابلس، ليبيا، بانضباط الحملات ووفق ما تتطلبه الاستراتيجية.",
     eyebrow: "الخدمات — الإنتاج",
-    h1: "إنتاج محتوى وفيديو في ليبيا بمعايير الحملات",
+    h1: "إنتاج محتوى وفيديو بمعايير الحملات",
     intro:
       "كثير من إنتاج الفيديو في ليبيا يبدأ من الكاميرا؛ ونحن نبدأ من سؤال مختلف: ما الذي تحتاج الاستراتيجية أن تثبته هذه المادة؟ في باتريكس نُنتج الأفلام والتصوير والمحتوى الرقمي داخلياً في طرابلس، ليبيا، بوصف ذلك كله طبقة الإثبات في كل رسالة نبنيها — فلا يُصوَّر شيء لذاته، وتتماسك كل مادة من الاستراتيجية إلى الشاشة.",
     sections: [
@@ -1349,7 +1349,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "Media-landscape, audience, and positioning analysis from Tripoli, Libya — the reading layer under every Pattrix strategy and campaign.",
     eyebrow: "Services — Market & Media Analysis",
-    h1: "Market and media analysis for brands and institutions in Libya",
+    h1: "Market and media analysis for brands and institutions",
     intro:
       "Market and media analysis is where every Pattrix engagement begins. Before a strategy is set or a budget is spent, we read the context: how Libya's media landscape behaves, where audience attention actually lives, and what position an organization can credibly hold. Pattrix is a strategic communications and PR agency based in Tripoli, Libya — and analysis is the layer under everything we do.",
     sections: [
@@ -1453,7 +1453,7 @@ export const servicePages: ServicePage[] = [
     ogDescription:
       "تحليل المشهد الإعلامي، ودراسة الجمهور والقنوات، وتحليل التموضع والحملات للمؤسسات والعلامات التجارية — من طرابلس، ليبيا.",
     eyebrow: "الخدمات — تحليل السوق والإعلام",
-    h1: "تحليل السوق والإعلام للمؤسسات والعلامات التجارية في ليبيا",
+    h1: "تحليل السوق والإعلام للمؤسسات والعلامات التجارية",
     intro:
       "قبل أن تُصاغ استراتيجية أو تُنفق ميزانية، يبدأ عملنا في باتريكس من قراءة السياق: تحليل السوق والمشهد الإعلامي في ليبيا، ودراسة الجمهور والقنوات التي يتركز فيها انتباهه فعلاً، والموقع الذي يمكن للمؤسسة أن تحتله بصدق في ذهنه. من طرابلس، ليبيا، نجعل هذا التحليل الطبقة الأولى التي يقوم عليها كل ما نقدمه من استراتيجية وحملات.",
     sections: [
