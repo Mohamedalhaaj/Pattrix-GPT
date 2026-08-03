@@ -25,3 +25,19 @@
   for = "/brand/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+# Legacy URLs from the pre-rebuild site. Google still crawls both and records
+# them under "Not found (404)" — first detected 2025-06-28, still listed in
+# Search Console on 2026-08-03. 301 so the equity they carry lands on the
+# closest live page instead of being discarded.
+[[redirects]]
+  from = "/about-pattrix"
+  to = "/#about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pattrix-authentic-storytelling-for-modern-marketing-success-in-2025-and-beyond"
+  to = "/insights"
+  status = 301
+  force = true
