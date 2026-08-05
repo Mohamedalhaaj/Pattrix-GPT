@@ -241,22 +241,32 @@ canvas {
   }
 }
 
+/**
+ * Grows downward from the top, holds, then collapses upward onto its bottom
+ * edge — the same two-beat pulse as before, but driven entirely by `transform`.
+ *
+ * The previous version switched `transform-origin` from `top` to `bottom`
+ * mid-keyframe to get the second beat. That reads clearly, but `transform-origin`
+ * is not a compositable property, so the whole animation ran on the main thread
+ * and Lighthouse counted it as a non-composited animation on every page load.
+ *
+ * With the origin pinned to `top`, collapsing onto the bottom edge is the same
+ * thing as shrinking while sliding down by exactly the height given up:
+ * translateY(2.5rem) pairs with scaleY(0) because the line is h-10 (2.5rem).
+ * If that height changes, this offset has to change with it.
+ */
 @keyframes scroll-line-pulse {
   0% {
-    transform: scaleY(0);
-    transform-origin: top;
+    transform: translateY(0) scaleY(0);
   }
   45% {
-    transform: scaleY(1);
-    transform-origin: top;
+    transform: translateY(0) scaleY(1);
   }
   55% {
-    transform: scaleY(1);
-    transform-origin: bottom;
+    transform: translateY(0) scaleY(1);
   }
   100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
+    transform: translateY(2.5rem) scaleY(0);
   }
 }
 
