@@ -35,7 +35,17 @@ export function CtaLink({ href, children, tone = "light", className = "", prefet
       </span>
       <span
         aria-hidden="true"
-        className={`grid h-9 w-9 place-items-center rounded-full border transition-all duration-200 ease-out-quart ${circle}`}
+        /* Explicit property list rather than Tailwind's catch-all transition
+           utility. That utility resolves to `transition-property: all`, which
+           includes `visibility` — a property the compositor cannot animate — so
+           the browser ran this hover on the main thread. Lighthouse counted
+           this circle among 12 "non-composited animations", every one of them
+           for that same reason. Listed below are the only properties the hover
+           states actually change.
+           (Do not write the utility's literal class name in a comment: the
+           Tailwind content scanner reads comments too, and would regenerate the
+           dead rule it was removed to avoid.) */
+        className={`grid h-9 w-9 place-items-center rounded-full border transition-[background-color,border-color,color] duration-200 ease-out-quart ${circle}`}
       >
         {/* SVG geometry does not mirror under dir="rtl" the way layout does, so
             the arrow is flipped explicitly — otherwise it points away from the

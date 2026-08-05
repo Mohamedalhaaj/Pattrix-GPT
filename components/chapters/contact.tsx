@@ -36,7 +36,8 @@ export function Contact() {
               {site.contact.email}
               <span
                 aria-hidden="true"
-                className="grid h-11 w-11 place-items-center rounded-full border border-white/40 transition-all duration-200 ease-out-quart group-hover:bg-white group-hover:text-blue-deep"
+                /* Explicit property list — see the note in cta-link.tsx. */
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/40 transition-[background-color,color] duration-200 ease-out-quart group-hover:bg-white group-hover:text-blue-deep"
               >
                 <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="transition-transform duration-200 group-hover:translate-x-0.5">
                   <path d="M1 7h11m0 0L7.5 2.5M12 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -66,7 +66,9 @@ export function Services() {
                       </span>
                       <span
                         aria-hidden="true"
-                        className={`grid h-10 w-10 place-items-center justify-self-end rounded-full border transition-all duration-300 ease-out-quart ${
+                        /* Explicit property list — see the note in cta-link.tsx.
+                           The open state changes exactly these three. */
+                        className={`grid h-10 w-10 place-items-center justify-self-end rounded-full border transition-[transform,border-color,color] duration-300 ease-out-quart ${
                           isOpen ? "rotate-45 border-blue text-blue" : "border-ink/15 text-ink-2"
                         }`}
                       >
