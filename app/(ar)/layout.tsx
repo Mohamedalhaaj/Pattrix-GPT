@@ -22,11 +22,12 @@ import "../globals.css";
 // glyphs, and every Latin run on these pages — the email address, the social
 // links, the EN language switch — falls through `font-arabic` to Archivo.
 // Verified on the built site: its FontFace activates, and eight visible Latin
-// runs resolve through it. So it is a real critical-path font here, not a
-// leftover, and is left to preload.
+// runs resolve through it. So it is a real font here, not a leftover, and is
+// left to preload.
+// `optional` — see the note on the same call in app/(en)/layout.tsx.
 const archivo = Archivo({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-archivo",
   axes: ["wdth"]
 });

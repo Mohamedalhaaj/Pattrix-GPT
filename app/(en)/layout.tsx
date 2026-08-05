@@ -8,9 +8,26 @@ import "../globals.css";
 // docs/SEO_CHECKLIST.md) after creating the property. Never hardcode a token.
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
+// `optional`, not `swap`. Measured on PageSpeed (mobile, emulated Moto G over
+// Slow 4G): Archivo finished at 1378ms and the LCP element's render delay was
+// 1488ms — the hero was waiting on this file, and it cost the last 3 points of
+// the Performance score (LCP -2.25, Speed Index -0.80; FCP, TBT and CLS were
+// already perfect).
+//
+// `optional` gives the browser ~100ms and otherwise paints in the
+// metric-matched fallback for that page view, with no later swap. Mohamed chose
+// this trade knowingly on 2026-08-05: connections fast enough to deliver
+// Archivo in time still get it, and slower ones get a page that is readable
+// immediately rather than one that holds its headline back.
+//
+// Known cost, do not "fix" it by reverting: the fallback is Arial-based and has
+// no width axis, so on a fallback render the `font-stretch` on .display /
+// .display-sub / .eyebrow does nothing and headings look narrower than
+// designed. That is accepted, not a bug. CLS stays 0 either way because
+// `optional` never swaps.
 const archivo = Archivo({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-archivo",
   axes: ["wdth"]
 });
@@ -18,30 +35,24 @@ const archivo = Archivo({
 // Italic only — the editorial voice is exclusively italic asides; shipping the
 // upright cuts would add unused font data.
 //
-// preload:false is deliberate. This face styles two short asides on the home
-// page and nothing at all on service, insight, and case-study pages, yet a
-// preload put its ~127KB on the critical path of every route — more than a
-// quarter of the home page's total transfer, competing with Archivo (which
-// does render the H1). It now loads at normal priority, after the text that
-// matters. `display: swap` already guarantees the asides stay readable.
-// The `opsz` axis is deliberately NOT requested. Asking for it makes Google
-// serve the full variable italic — 129,940 B, the single largest asset on the
-// site and larger than Archivo, which actually renders the H1. Dropping it
-// leaves a weight-variable italic that is a fraction of the size and renders
-// these two asides identically: optical sizing only retunes stroke contrast
-// across a display-vs-caption size range this site never spans.
-// `optional`, not `swap`. Measured on PageSpeed (mobile, Slow 4G): this face was
-// being fetched at VeryHigh priority and finishing at 927ms — right on top of
-// Archivo, which finishes at 917ms and which the LCP element waits for. 52KB of
-// bandwidth was going to two decorative italic asides while the headline the
-// visitor is actually reading queued behind them.
+// Three deliberate settings here, all measured:
 //
-// `optional` gives it a ~100ms window and, if it misses, keeps the fallback for
-// that page view instead of swapping. That is the right trade for this face
-// specifically: it styles two short asides, one of them below the fold, so a
-// visitor on a slow connection reading them in Georgia loses nothing, and no
-// swap means no late reflow either. Archivo is a different case — it renders
-// the whole page and stays on `swap`.
+// preload:false — this face styles two short asides on the home page and
+// nothing at all on service, insight, and case-study pages, yet preloading it
+// put ~127KB on the critical path of every route, competing with Archivo, which
+// renders the H1.
+//
+// No `opsz` axis — requesting it makes Google serve the full variable italic at
+// 129,940 B, larger than Archivo itself. Without it the face is a fraction of
+// the size and renders these asides identically: optical sizing only retunes
+// stroke contrast across a display-vs-caption range this site never spans.
+//
+// display:optional — even unpreloaded it was fetched at VeryHigh priority and
+// finished at 927ms, on top of Archivo at 917ms: 52KB of a slow-4G window spent
+// on two decorative asides while the headline queued behind them. `optional`
+// caps its window at ~100ms and otherwise keeps the fallback for that page view,
+// so it neither competes nor reflows late. It also turned out to be the source
+// of the site's CLS — 0.074 before this, 0 after.
 const editorialSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "optional",

@@ -7,9 +7,10 @@ import "./globals.css";
 // without this the 404 rendered in the browser's default serif. Same call as
 // the (en) root layout, so it resolves to the same cached font files rather
 // than a second download.
+// `optional` — see the note on the same call in app/(en)/layout.tsx.
 const archivo = Archivo({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-archivo",
   axes: ["wdth"]
 });
