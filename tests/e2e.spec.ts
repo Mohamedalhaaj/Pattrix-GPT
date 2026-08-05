@@ -228,8 +228,11 @@ test.describe("case studies", () => {
     await page.goto("/#work");
     // Let the section's once-only reveal fire before interacting.
     await page.waitForTimeout(1400);
+    // The card carries no aria-label (that would override its visible text and
+    // trip WCAG 2.5.3), so its accessible name is computed from its contents —
+    // category, year, title, premise. Matching on the title alone is enough.
     await page
-      .getByRole("link", { name: /UNSMIL — Strategic Communications & Institutional Media — read the case study/ })
+      .getByRole("link", { name: /UNSMIL — Strategic Communications & Institutional Media/ })
       .click();
     await expect(page).toHaveURL(/\/work\/unsmil-strategic-communications/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("UNSMIL");

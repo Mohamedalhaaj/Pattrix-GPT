@@ -29,10 +29,13 @@ export function Work() {
         <div className="mt-20 flex flex-col gap-24 md:gap-32">
           {projects.map((project, i) => (
             <Reveal key={project.slug} as="article" className="group">
+              {/* No aria-label — see the note on the same card in
+                  app/(ar)/ar/work/page.tsx. Overriding the name to just the
+                  title drops the category, year and premise the card visibly
+                  shows, which is a WCAG 2.5.3 Label in Name mismatch. */}
               <Link
                 href={`/work/${project.slug}`}
                 className="grid items-center gap-8 lg:grid-cols-12"
-                aria-label={`${project.title} — read the case study`}
               >
                 <div
                   className={`relative overflow-hidden rounded-2xl border border-hairline lg:col-span-7 ${

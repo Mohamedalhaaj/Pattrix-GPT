@@ -89,11 +89,13 @@ export default function ArWorkIndex() {
           <div className="grid items-start gap-10 md:grid-cols-2">
             {items.map((project, i) => (
               <article key={project.slug} className="group">
-                <Link
-                  href={`/ar/work/${project.slug}`}
-                  className="block"
-                  aria-label={project.ar!.title}
-                >
+                {/* No aria-label. It overrode the card's own visible text with
+                    just the title, so the accessible name omitted the category,
+                    year and premise that a sighted reader sees — the WCAG 2.5.3
+                    Label in Name mismatch Lighthouse flags here. Letting the
+                    name be computed from the contents makes it match by
+                    construction, and reads the card the way it looks. */}
+                <Link href={`/ar/work/${project.slug}`} className="block">
                   <div className="relative overflow-hidden rounded-2xl border border-hairline">
                     {project.cover ? (
                       <div
