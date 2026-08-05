@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: { inlineCss: true },
   reactStrictMode: true,
   images: {
     // AVIF first, WebP as the fallback. On the photography-led case-study and
