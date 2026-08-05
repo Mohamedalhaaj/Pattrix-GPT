@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { site } from "@/content/site";
-import { EASE, MM, gsap, useGSAP } from "@/lib/gsap";
+import { MM, gsap, useGSAP } from "@/lib/gsap";
 import { setField } from "@/components/field/store";
 import { CtaLink } from "@/components/ui/cta-link";
 
@@ -23,20 +23,18 @@ export function Hero() {
 
       const mm = gsap.matchMedia();
       mm.add(MM.motionOk, () => {
-        // The H1 lines are NOT animated here — they run on a CSS keyframe
-        // (`hero-line-in` in globals.css). See the note above the JSX below.
+        // The ENTIRE hero entrance now runs on CSS keyframes (globals.css), not
+        // here. GSAP keeps only the field, which is genuinely scroll/time-driven.
         //
-        // The remaining beats keep the exact absolute timings they had when the
-        // H1 tween still sat between them, so the choreography is unchanged:
-        // the old relative offsets resolved to sub@0.99s, cta@1.29s, hint@1.77s.
-        // They are pinned explicitly now that the tween they hung off is gone.
-        gsap
-          .timeline({ defaults: { ease: EASE.reveal } })
-          .from("[data-hero-eyebrow]", { autoAlpha: 0, y: 18, duration: 0.7, delay: 0.15 })
-          .from("[data-hero-sub]", { autoAlpha: 0, y: 24, duration: 0.8 }, 0.99)
-          .from("[data-hero-cta]", { autoAlpha: 0, y: 18, duration: 0.7, stagger: 0.08 }, 1.29)
-          .from("[data-hero-hint]", { autoAlpha: 0, duration: 0.9 }, 1.77);
-
+        // Moving just the H1 was not enough, and the half-measure was worse than
+        // the original: PageSpeed on a real Moto G reported the LCP element as
+        // the hero SUB-paragraph with 20ms TTFB and 4,020ms of element render
+        // delay, dropping mobile Performance from 98 to 85. `from(autoAlpha: 0)`
+        // is immediateRender, so on a slow device the sub was written invisible
+        // before it ever painted and stayed that way until its beat at 0.99s
+        // plus an 0.8s fade. Fixing the H1 alone just moved the LCP element onto
+        // the next thing GSAP was still hiding.
+        //
         // Re-tune the field when scrolling back up to the top.
         gsap.timeline({
           scrollTrigger: {
