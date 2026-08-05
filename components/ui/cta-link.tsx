@@ -6,10 +6,16 @@ interface CtaLinkProps {
   children: ReactNode;
   tone?: "light" | "dark" | "blue";
   className?: string;
+  /**
+   * Pass `false` when the target resolves to the page the CTA is already on —
+   * a same-page anchor such as the hero's "/#work". next/link otherwise
+   * prefetches the RSC payload of the current route, which is pure waste.
+   */
+  prefetch?: boolean;
 }
 
 /** Signature call-to-action: underlined label + circled arrow that fills on hover. */
-export function CtaLink({ href, children, tone = "light", className = "" }: CtaLinkProps) {
+export function CtaLink({ href, children, tone = "light", className = "", prefetch }: CtaLinkProps) {
   const text =
     tone === "dark" ? "text-navy-ink" : tone === "blue" ? "text-white" : "text-ink";
   const circle =
@@ -21,6 +27,7 @@ export function CtaLink({ href, children, tone = "light", className = "" }: CtaL
   return (
     <Link
       href={href}
+      prefetch={prefetch}
       className={`group inline-flex items-center gap-3 text-sm font-semibold tracking-wide ${text} ${className}`}
     >
       <span className="underline decoration-1 underline-offset-8 decoration-current/30 transition-colors duration-200 group-hover:decoration-current">

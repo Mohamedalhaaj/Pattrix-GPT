@@ -11,7 +11,13 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-heading" className="relative scroll-mt-20">
       <FieldTrigger formation="converge" ox={0.5} oy={0.4} energy={1} dim={0.9} theme="light" />
       <div className="container-x">
-        <div className="overflow-hidden rounded-3xl bg-blue px-6 py-20 text-white shadow-[0_40px_120px_-40px_rgba(1,113,221,0.55)] md:px-16 md:py-28">
+        {/* blue-deep, not blue: on #0171DD even pure white reaches only 4.76:1,
+            so the band's tonal hierarchy (eyebrow and contact details set back
+            from the headline) failed WCAG AA at every tint — white/85 measured
+            3.88:1 and white/90 4.16:1. #0A50A8 puts white at 7.70:1, which
+            carries white/85 to 6.04:1 and white/90 to 6.60:1, so the designed
+            hierarchy survives instead of flattening to a single weight. */}
+        <div className="overflow-hidden rounded-3xl bg-blue-deep px-6 py-20 text-white shadow-[0_40px_120px_-40px_rgba(10,80,168,0.55)] md:px-16 md:py-28">
           <p className="eyebrow flex items-center gap-4 text-white/85">
             <span>{c.chapter}</span>
             <span className="h-px w-10 bg-white/30" aria-hidden="true" />
@@ -30,7 +36,7 @@ export function Contact() {
               {site.contact.email}
               <span
                 aria-hidden="true"
-                className="grid h-11 w-11 place-items-center rounded-full border border-white/40 transition-all duration-200 ease-out-quart group-hover:bg-white group-hover:text-blue"
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/40 transition-all duration-200 ease-out-quart group-hover:bg-white group-hover:text-blue-deep"
               >
                 <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="transition-transform duration-200 group-hover:translate-x-0.5">
                   <path d="M1 7h11m0 0L7.5 2.5M12 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

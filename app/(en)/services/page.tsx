@@ -83,7 +83,7 @@ export default function ServicesIndex() {
       <Header />
       <main id="main" className="content-layer">
         <header className="container-x pt-32 md:pt-40">
-          <p className="eyebrow text-blue">{servicesIndex.eyebrow}</p>
+          <p className="eyebrow text-blue-ink">{servicesIndex.eyebrow}</p>
           <h1 className="display mt-8 max-w-[14em] text-[clamp(2.4rem,6vw,5.2rem)]">
             {servicesIndex.h1}
           </h1>

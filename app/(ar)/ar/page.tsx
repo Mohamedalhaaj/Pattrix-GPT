@@ -94,7 +94,7 @@ export default function ArabicHome() {
               theme="light"
             />
             <div className="container-x pt-24 md:pt-32">
-              <p className="eyebrow text-blue">{arHome.eyebrow}</p>
+              <p className="eyebrow text-blue-ink">{arHome.eyebrow}</p>
               <h1
                 id="ar-hero-heading"
                 className="display mt-8 max-w-[13em] text-[clamp(2.4rem,6vw,5.2rem)]"
@@ -130,7 +130,7 @@ export default function ArabicHome() {
               theme="light"
             />
             <div className="container-x">
-              <p className="eyebrow text-blue">{arHome.positioningHeading}</p>
+              <p className="eyebrow text-blue-ink">{arHome.positioningHeading}</p>
               <h2
                 id="ar-positioning-heading"
                 className="display mt-8 max-w-[15em] text-[clamp(2rem,5vw,4.2rem)]"
@@ -143,7 +143,7 @@ export default function ArabicHome() {
               <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-3">
                 {arHome.pillars.map((pillar, i) => (
                   <div key={pillar.title} className="bg-surface p-8 md:p-10">
-                    <p className="eyebrow text-blue">{String(i + 1).padStart(2, "0")}</p>
+                    <p className="eyebrow text-blue-ink">{String(i + 1).padStart(2, "0")}</p>
                     <h3 className="display-sub mt-4 text-xl md:text-2xl">{pillar.title}</h3>
                     <p className="prose-measure mt-3 text-sm leading-relaxed text-ink-2">
                       {pillar.copy}
@@ -165,7 +165,7 @@ export default function ArabicHome() {
               theme="light"
             />
             <div className="container-x">
-              <p className="eyebrow text-blue">{arHome.servicesHeading}</p>
+              <p className="eyebrow text-blue-ink">{arHome.servicesHeading}</p>
               <h2
                 id="ar-services-heading"
                 className="display mt-8 max-w-[15em] text-[clamp(2rem,5vw,4.2rem)]"
@@ -204,7 +204,7 @@ export default function ArabicHome() {
                 theme="light"
               />
               <div className="container-x">
-                <p className="eyebrow text-blue">{arHome.insightsHeading}</p>
+                <p className="eyebrow text-blue-ink">{arHome.insightsHeading}</p>
                 <h2
                   id="ar-insights-heading"
                   className="display-sub mt-8 max-w-[18em] text-[clamp(1.9rem,4.2vw,3.4rem)]"
@@ -261,7 +261,7 @@ export default function ArabicHome() {
               <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-ink-2">
                 <a
                   href={`mailto:${site.contact.email}`}
-                  className="text-blue underline-offset-4 hover:underline"
+                  className="text-blue-ink underline-offset-4 hover:underline"
                 >
                   {site.contact.email}
                 </a>

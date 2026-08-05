@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { arSite } from "@/content/index-pages";
 import { site } from "@/content/site";
@@ -21,6 +22,18 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
   const nav = isArabic ? arSite.nav : site.nav;
   const ctaLabel = isArabic ? arSite.ctaLabel : "Start a project";
   const homeHref = isArabic ? "/ar" : "/";
+  const pathname = usePathname() ?? "/";
+
+  /**
+   * Every header nav entry is a same-page anchor ("/#work", "/#services", …),
+   * so on the home page all five plus the logo resolve to "/" — the page the
+   * visitor is already on. next/link still prefetched it, costing four RSC
+   * round-trips (~8.7KB, measured) at load on the site's most important route,
+   * competing with the fonts for bandwidth. Off the home page the same links
+   * are real cross-page navigations, so prefetch stays on there.
+   */
+  const selfLink = (href: string) => (href.split("#")[0] || "/") === pathname;
+
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -72,6 +85,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
         <div className="container-x flex h-16 items-center justify-between md:h-20">
           <Link
             href={homeHref}
+            prefetch={selfLink(homeHref) ? false : undefined}
             aria-label={isArabic ? arSite.logoAriaLabel : "Pattrix — home"}
             onClick={() => setOpen(false)}
           >
@@ -97,6 +111,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={selfLink(item.href) ? false : undefined}
                 className="text-[0.8125rem] font-medium text-ink-2 transition-colors duration-200 hover:text-ink"
               >
                 {item.label}
@@ -160,6 +175,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={selfLink(item.href) ? false : undefined}
               onClick={() => setOpen(false)}
               tabIndex={open ? 0 : -1}
               className="display border-b border-hairline py-4 text-4xl text-ink"

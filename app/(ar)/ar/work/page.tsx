@@ -76,7 +76,7 @@ export default function ArWorkIndex() {
       <Header locale="ar" />
       <main id="main" className="content-layer">
         <header className="container-x pt-32 md:pt-40">
-          <p className="eyebrow text-blue">{arWorkIndex.eyebrow}</p>
+          <p className="eyebrow text-blue-ink">{arWorkIndex.eyebrow}</p>
           <h1 className="display mt-8 max-w-[14em] text-[clamp(2.2rem,5.5vw,4.6rem)]">
             {arWorkIndex.h1}
           </h1>
@@ -122,7 +122,7 @@ export default function ArWorkIndex() {
                     )}
                   </div>
                   <p className="eyebrow mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-3">
-                    <span className="text-blue">{project.ar!.category}</span>
+                    <span className="text-blue-ink">{project.ar!.category}</span>
                     <span aria-hidden="true">·</span>
                     <span dir="ltr">{project.year}</span>
                   </p>

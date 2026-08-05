@@ -67,7 +67,7 @@ export function Work() {
                 </div>
                 <div className={`lg:col-span-4 ${i % 2 === 1 ? "lg:order-1 lg:col-start-1" : "lg:col-start-9"}`}>
                   <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-3">
-                    <span className="text-blue">{project.category}</span>
+                    <span className="text-blue-ink">{project.category}</span>
                     <span aria-hidden="true">·</span>
                     <span>{project.year}</span>
                   </p>

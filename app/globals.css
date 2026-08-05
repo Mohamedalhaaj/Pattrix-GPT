@@ -186,6 +186,52 @@ canvas {
   opacity: 1;
 }
 
+/* ---- hero headline entrance ---- */
+
+/**
+ * The only reveal on the site driven by CSS instead of GSAP, and deliberately
+ * so — see the note in components/chapters/hero.tsx.
+ *
+ * A GSAP `from(autoAlpha: 0)` cannot run until hydration, which meant the H1
+ * painted from server markup, was hidden again the moment GSAP woke up, and
+ * came back nearly two seconds later. A keyframe starts at first paint, so the
+ * headline is never blanked.
+ *
+ * The reveal is transform-only, and that is deliberate. An earlier version of
+ * this keyframe faded from `opacity: 0`, which measured WORSE than the GSAP
+ * version it replaced: Chrome does not accept an element as an LCP candidate
+ * while it is painting at zero opacity, so the H1 only qualified once the fade
+ * finished, pushing desktop LCP from ~660ms (= FCP) out to 1744ms. The old
+ * GSAP version scored well here only by accident — the server markup painted
+ * opaque before hydration, so Chrome banked the H1 at first paint and never
+ * retracted it when GSAP hid it a moment later. The metric looked fine while
+ * the visitor watched the headline vanish.
+ *
+ * Translating a fully opaque line has neither problem: it is painted, and
+ * therefore an LCP candidate, on the very first frame, and it is never blank.
+ * The rise plus power-out easing carries the "settles in" reading on its own.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-line] {
+    animation: hero-line-in 0.9s var(--ease-out-quart) backwards;
+  }
+  [data-hero-line]:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  [data-hero-line]:nth-child(3) {
+    animation-delay: 180ms;
+  }
+}
+
+@keyframes hero-line-in {
+  from {
+    transform: translateY(42px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* ---- scroll hint ---- */
 
 @media (prefers-reduced-motion: no-preference) {

@@ -77,7 +77,7 @@ export default function ArInsightsIndex() {
       <main id="main" className="content-layer">
         <div lang="ar" dir="rtl" className="font-arabic">
           <header className="container-x pt-32 md:pt-40">
-            <p className="eyebrow text-blue">{arInsightsIndex.eyebrow}</p>
+            <p className="eyebrow text-blue-ink">{arInsightsIndex.eyebrow}</p>
             <h1 className="display mt-8 max-w-[16em] text-[clamp(2.2rem,5.5vw,4.6rem)]">
               {arInsightsIndex.h1}
             </h1>

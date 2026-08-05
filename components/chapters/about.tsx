@@ -28,7 +28,7 @@ export function About() {
         <div className="mt-20 border-t border-hairline">
           {c.philosophy.map((item, i) => (
             <Reveal key={item.title} className="grid gap-4 border-b border-hairline py-8 md:grid-cols-12 md:items-baseline md:py-10">
-              <p className="eyebrow text-blue md:col-span-1">0{i + 1}</p>
+              <p className="eyebrow text-blue-ink md:col-span-1">0{i + 1}</p>
               <h3 className="display-sub text-2xl md:col-span-4 md:text-3xl">{item.title}</h3>
               <p className="prose-measure text-sm leading-relaxed text-ink-2 md:col-span-5 md:col-start-7">
                 {item.copy}

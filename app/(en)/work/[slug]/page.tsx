@@ -96,11 +96,14 @@ export default async function CaseStudyPage({ params }: CaseStudyParams) {
         <article>
           <header className="container-x pt-32 md:pt-40">
             <p className="eyebrow flex flex-wrap items-center gap-3 text-ink-3">
-              <Link href="/#work" className="text-ink-2 transition-colors duration-200 hover:text-blue">
+              {/* /work, not /#work: this page's own BreadcrumbList declares the
+                  real hub route as the parent, and a crumb that navigates to a
+                  home-page anchor instead contradicts it. */}
+              <Link href="/work" className="text-ink-2 transition-colors duration-200 hover:text-blue">
                 Work
               </Link>
               <span aria-hidden="true">/</span>
-              <span className="text-blue">{project.category}</span>
+              <span className="text-blue-ink">{project.category}</span>
               <span aria-hidden="true">·</span>
               <span>{project.year}</span>
             </p>
@@ -153,7 +156,7 @@ export default async function CaseStudyPage({ params }: CaseStudyParams) {
             <div className="flex flex-col gap-14 lg:col-span-7 lg:col-start-5">
               {sections.map((s) => (
                 <section key={s.label} aria-label={s.label}>
-                  <h2 className="eyebrow text-blue">{s.label}</h2>
+                  <h2 className="eyebrow text-blue-ink">{s.label}</h2>
                   <p className="prose-measure mt-5 text-lg leading-relaxed text-ink">{s.body}</p>
                 </section>
               ))}

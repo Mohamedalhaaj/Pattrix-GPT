@@ -82,7 +82,7 @@ export default function WorkIndex() {
       <Header />
       <main id="main" className="content-layer">
         <header className="container-x pt-32 md:pt-40">
-          <p className="eyebrow text-blue">{workIndex.eyebrow}</p>
+          <p className="eyebrow text-blue-ink">{workIndex.eyebrow}</p>
           <h1 className="display mt-8 max-w-[14em] text-[clamp(2.4rem,6vw,5.2rem)]">
             {workIndex.h1}
           </h1>
@@ -126,7 +126,7 @@ export default function WorkIndex() {
                     )}
                   </div>
                   <p className="eyebrow mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-3">
-                    <span className="text-blue">{project.category}</span>
+                    <span className="text-blue-ink">{project.category}</span>
                     <span aria-hidden="true">·</span>
                     <span>{project.year}</span>
                   </p>

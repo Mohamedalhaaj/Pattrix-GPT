@@ -79,7 +79,7 @@ export default function ArServicesIndex() {
       <main id="main" className="content-layer">
         <div lang="ar" dir="rtl" className="font-arabic">
           <header className="container-x pt-32 md:pt-40">
-            <p className="eyebrow text-blue">{arServicesIndex.eyebrow}</p>
+            <p className="eyebrow text-blue-ink">{arServicesIndex.eyebrow}</p>
             <h1 className="display mt-8 max-w-[16em] text-[clamp(2.2rem,5.5vw,4.6rem)]">
               {arServicesIndex.h1}
             </h1>

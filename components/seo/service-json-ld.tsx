@@ -34,7 +34,14 @@ export function ServiceJsonLd({ page }: { page: ServicePage }) {
         "@type": "BreadcrumbList",
         "@id": `${url}#breadcrumbs`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: page.breadcrumb.home, item: site.url },
+          // Crumb 2 was already localised via indexUrl; crumb 1 was not, which
+          // rooted every Arabic trail at the English home page.
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: page.breadcrumb.home,
+            item: isArabic ? `${site.url}/ar` : site.url
+          },
           { "@type": "ListItem", position: 2, name: indexLabel, item: indexUrl },
           { "@type": "ListItem", position: 3, name: page.breadcrumb.label, item: url }
         ]

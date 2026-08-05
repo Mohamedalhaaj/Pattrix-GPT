@@ -10,3 +10,7 @@ test-results/
 playwright-report/
 .DS_Store
 .env.local
+
+# Local Claude Code settings and TypeScript incremental build cache
+.claude/settings.local.json
+tsconfig.tsbuildinfo

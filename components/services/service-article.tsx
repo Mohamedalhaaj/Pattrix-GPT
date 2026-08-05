@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServicePage } from "@/content/service-pages";
+import { arServicesIndex } from "@/content/index-pages";
 import { getProject } from "@/content/projects";
 import { site } from "@/content/site";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -15,6 +16,11 @@ import { CtaLink } from "@/components/ui/cta-link";
  */
 export function ServiceArticle({ page }: { page: ServicePage }) {
   const isAr = page.locale === "ar";
+  // Same three values ServiceJsonLd computes, so the visible trail and the
+  // structured data can never disagree.
+  const homeHref = isAr ? "/ar" : "/";
+  const hubHref = isAr ? "/ar/services" : "/services";
+  const hubLabel = isAr ? arServicesIndex.eyebrow : "Services";
   const proof = page.proofProjects
     .map((slug) => getProject(slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -27,12 +33,20 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
     >
       {/* ---- page header ---- */}
       <header className="container-x pt-32 md:pt-40">
+        {/* Three crumbs, matching the BreadcrumbList in service-json-ld.tsx.
+            The middle one was previously missing from the visible trail and the
+            home crumb pointed at the English home even on Arabic pages, so an
+            Arabic reader following "الرئيسية" left the locale entirely. */}
         <p className="eyebrow flex flex-wrap items-center gap-3 text-ink-3">
-          <Link href="/" className="text-ink-2 transition-colors duration-200 hover:text-blue">
+          <Link href={homeHref} className="text-ink-2 transition-colors duration-200 hover:text-blue">
             {page.breadcrumb.home}
           </Link>
           <span aria-hidden="true">/</span>
-          <span className="text-blue">{page.eyebrow}</span>
+          <Link href={hubHref} className="text-ink-2 transition-colors duration-200 hover:text-blue">
+            {hubLabel}
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-blue-ink">{page.eyebrow}</span>
         </p>
         <h1 className="display mt-8 max-w-[14em] text-[clamp(2.4rem,6vw,5.2rem)]">{page.h1}</h1>
         <p className="prose-measure mt-6 text-lg leading-relaxed text-ink-2">{page.intro}</p>
@@ -115,7 +129,7 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
                     {project.title}
                   </p>
                   <p className="prose-measure mt-2 text-sm leading-relaxed text-ink-2">{project.premise}</p>
-                  <p className="mt-4 text-sm font-semibold text-blue" dir={isAr ? "rtl" : "ltr"} lang={page.locale}>
+                  <p className="mt-4 text-sm font-semibold text-blue-ink" dir={isAr ? "rtl" : "ltr"} lang={page.locale}>
                     {page.proofCtaLabel}
                   </p>
                 </div>

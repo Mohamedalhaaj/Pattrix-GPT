@@ -60,7 +60,7 @@ export function Services() {
                       onClick={() => toggle(i)}
                       className="grid w-full grid-cols-[3rem_1fr_2.5rem] items-center gap-4 py-7 text-left transition-colors duration-200 hover:text-blue md:grid-cols-[5rem_1fr_2.5rem] md:py-9"
                     >
-                      <span className={`eyebrow ${isOpen ? "text-blue" : "text-ink-3"}`}>{service.index}</span>
+                      <span className={`eyebrow ${isOpen ? "text-blue-ink" : "text-ink-3"}`}>{service.index}</span>
                       <span className={`display-sub text-2xl md:text-4xl ${isOpen ? "text-blue" : "text-ink"}`}>
                         {service.name}
                       </span>

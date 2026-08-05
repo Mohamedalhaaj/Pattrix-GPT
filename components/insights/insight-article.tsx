@@ -13,6 +13,12 @@ import { CtaLink } from "@/components/ui/cta-link";
  */
 export function InsightArticleBody({ article }: { article: InsightArticleData }) {
   const isAr = article.locale === "ar";
+  // The crumb LABELS were already localised; the hrefs were not, so an Arabic
+  // article showed "الرئيسية / مقالات" and navigated to the English home and
+  // English hub. Both counterparts exist (/ar and /ar/insights are in the
+  // sitemap), so the trail now stays inside the locale it claims to be in.
+  const homeHref = isAr ? "/ar" : "/";
+  const hubHref = isAr ? "/ar/insights" : "/insights";
   const dateLabel = new Intl.DateTimeFormat(isAr ? "ar" : "en-GB", {
     dateStyle: "long"
   }).format(new Date(article.datePublished));
@@ -26,15 +32,15 @@ export function InsightArticleBody({ article }: { article: InsightArticleData })
       {/* ---- article header ---- */}
       <header className="container-x pt-32 md:pt-40">
         <p className="eyebrow flex flex-wrap items-center gap-3 text-ink-3">
-          <Link href="/" className="text-ink-2 transition-colors duration-200 hover:text-blue">
+          <Link href={homeHref} className="text-ink-2 transition-colors duration-200 hover:text-blue">
             {article.breadcrumb.home}
           </Link>
           <span aria-hidden="true">/</span>
-          <Link href="/insights" className="text-ink-2 transition-colors duration-200 hover:text-blue">
+          <Link href={hubHref} className="text-ink-2 transition-colors duration-200 hover:text-blue">
             {article.breadcrumb.hub}
           </Link>
           <span aria-hidden="true">/</span>
-          <span className="text-blue">{article.eyebrow}</span>
+          <span className="text-blue-ink">{article.eyebrow}</span>
         </p>
         <h1 className="display mt-8 max-w-[16em] text-[clamp(2.2rem,5.5vw,4.6rem)]">{article.h1}</h1>
         <p className="mt-6 text-sm text-ink-3">

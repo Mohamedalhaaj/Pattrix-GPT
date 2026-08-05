@@ -24,13 +24,18 @@ const archivo = Archivo({
 // quarter of the home page's total transfer, competing with Archivo (which
 // does render the H1). It now loads at normal priority, after the text that
 // matters. `display: swap` already guarantees the asides stay readable.
+// The `opsz` axis is deliberately NOT requested. Asking for it makes Google
+// serve the full variable italic — 129,940 B, the single largest asset on the
+// site and larger than Archivo, which actually renders the H1. Dropping it
+// leaves a weight-variable italic that is a fraction of the size and renders
+// these two asides identically: optical sizing only retunes stroke contrast
+// across a display-vs-caption size range this site never spans.
 const editorialSerif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
   preload: false,
   variable: "--font-editorial",
-  style: ["italic"],
-  axes: ["opsz"]
+  style: ["italic"]
 });
 
 export const metadata: Metadata = {

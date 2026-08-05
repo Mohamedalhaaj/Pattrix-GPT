@@ -82,7 +82,8 @@ English. Both matter, in that order per cluster (see keyword map rollout).
 ### 5. `/services/content-production-libya`
 - **Target keyword:** content production Libya (+ video production Tripoli)
 - **Title:** `Content & Video Production in Libya | Pattrix`
-- **H1:** `In-house production, built to campaign discipline`
+- **H1:** `In-house content and video production in Libya, built to campaign discipline`
+  - _Revision (2026-07-24, review pass — pending Mohamed's approval): H1 extended from "In-house production, built to campaign discipline" to carry the target keyword + geo term, mirroring the AR page's resolution._
 - **Meta description:** `Film, photography, and digital content produced in-house in Tripoli, Libya. Pattrix produces what the strategy needs — from reels to institutional films.`
 - **Outline:** Strategy owns production (differentiator vs production houses) → Capabilities (film, photography, reels, post) → Producing for institutions vs brands → Proof (Tripoli Optics, Hyundai) → FAQ → CTA
 - **FAQs:** Do you have in-house crews and equipment? · What formats do you produce? · Can production be booked without a full campaign? · How do revisions work?
@@ -143,8 +144,9 @@ phrased the way Libyans actually search. hreflang pairs bind each EN/AR pair.
 ### 11. `/ar/services/content-production-libya` — إنتاج المحتوى
 - **Target:** إنتاج محتوى ليبيا · إنتاج فيديو طرابلس · **Priority: P3-AR**
 - **Title:** `إنتاج محتوى وفيديو في ليبيا | باتريكس`
-- **H1:** `إنتاج داخلي بمعايير الحملات`
-- **Meta:** `أفلام، تصوير، ومحتوى رقمي يُنتج داخلياً في طرابلس، ليبيا — من الريلز إلى الأفلام المؤسسية، وفق ما تتطلبه الاستراتيجية.`
+- **H1:** `إنتاج محتوى وفيديو في ليبيا بمعايير الحملات`
+- **Meta:** `إنتاج فيديو ومحتوى في ليبيا: أفلام، تصوير، ومحتوى رقمي يُنتج داخلياً في طرابلس، ليبيا — من الريلز إلى الأفلام المؤسسية، وفق ما تتطلبه الاستراتيجية.`
+  - _Revision (2026-07-24, review pass — pending Mohamed's approval): H1 extended from "إنتاج داخلي بمعايير الحملات" and Meta lead-in added so the exact phrases "إنتاج فيديو / إنتاج محتوى في ليبيا" appear in H1 and snippet (140–165-char band)._
 - **Outline:** الاستراتيجية تقود الإنتاج → القدرات → أعمال → أسئلة شائعة → تواصل
 - **FAQs:** هل لديكم فرق ومعدات داخلية؟ · ما الصيغ التي تنتجونها؟ · هل يمكن حجز الإنتاج فقط؟
 

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { site } from "@/content/site";
 import "../globals.css";
 
 // The Studio page itself is a client component, so the noindex directive has
 // to live here. robots.ts also disallows /studio; this covers direct links.
+// metadataBase is set for the same reason as in the other two root layouts —
+// each root group resolves metadata URLs independently, and without it the
+// build warns and falls back to http://localhost:3000.
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: "Studio",
   robots: { index: false, follow: false }
 };

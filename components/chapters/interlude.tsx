@@ -57,10 +57,17 @@ export function Interlude() {
             scrub: 0.6
           }
         });
+        // `opacity`, not `autoAlpha`. autoAlpha also toggles `visibility`, which
+        // removes the element from the accessibility tree — so on the default
+        // (motion-OK) path a screen-reader user could only ever reach whichever
+        // of the three statements happened to be mid-scrub, and the other two
+        // were silently unreachable. Plain opacity leaves visibility untouched,
+        // so all three stay in the tree while the visual choreography is
+        // unchanged.
         lines.forEach((line, i) => {
-          tl.fromTo(line, { autoAlpha: 0, y: 48 }, { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" });
+          tl.fromTo(line, { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
           if (i < lines.length - 1) {
-            tl.to(line, { autoAlpha: 0, y: -40, duration: 0.8, ease: "power2.in" }, "+=0.45");
+            tl.to(line, { opacity: 0, y: -40, duration: 0.8, ease: "power2.in" }, "+=0.45");
           }
         });
         // The final line snaps chaos into order — the thesis of the site.

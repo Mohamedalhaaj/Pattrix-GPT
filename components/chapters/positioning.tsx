@@ -28,7 +28,7 @@ export function Positioning() {
         <Reveal stagger className="mt-20 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-3">
           {c.pillars.map((pillar, i) => (
             <div key={pillar.title} className="bg-paper p-8 md:p-10">
-              <p className="eyebrow text-blue">0{i + 1}</p>
+              <p className="eyebrow text-blue-ink">0{i + 1}</p>
               <h3 className="display-sub mt-6 text-2xl">{pillar.title}</h3>
               <p className="prose-measure mt-4 text-sm leading-relaxed text-ink-2">{pillar.copy}</p>
             </div>

@@ -91,7 +91,9 @@ function ArProjectJsonLd({ project }: { project: (typeof arProjects)[number] }) 
         "@type": "BreadcrumbList",
         "@id": `${url}#breadcrumbs`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: site.name, item: site.url },
+          // Crumb 2 already points at /ar/work; crumb 1 pointed at the English
+          // home, rooting the Arabic trail outside its own locale.
+          { "@type": "ListItem", position: 1, name: site.name, item: `${site.url}/ar` },
           { "@type": "ListItem", position: 2, name: "أعمالنا", item: `${site.url}/ar/work` },
           { "@type": "ListItem", position: 3, name: project.ar!.title, item: url }
         ]
@@ -125,7 +127,7 @@ export default async function ArCaseStudyPage({ params }: CaseStudyParams) {
         <article>
           <header className="container-x pt-32 md:pt-40">
             <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-3">
-              <span className="text-blue">{ar.category}</span>
+              <span className="text-blue-ink">{ar.category}</span>
               <span aria-hidden="true">·</span>
               <span dir="ltr">{project.year}</span>
             </p>
@@ -167,7 +169,7 @@ export default async function ArCaseStudyPage({ params }: CaseStudyParams) {
             <div className="grid gap-12 md:grid-cols-3">
               {sections.map((s) => (
                 <section key={s.label}>
-                  <h2 className="eyebrow text-blue">{s.label}</h2>
+                  <h2 className="eyebrow text-blue-ink">{s.label}</h2>
                   <p className="prose-measure mt-4 text-base leading-relaxed text-ink-2">{s.body}</p>
                 </section>
               ))}

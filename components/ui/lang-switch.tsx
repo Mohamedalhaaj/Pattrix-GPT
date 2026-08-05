@@ -32,7 +32,11 @@ export function LangSwitch({ className = "" }: { className?: string }) {
       prefetch={false}
       lang={targetLocale}
       hrefLang={targetLocale}
-      aria-label={isTargetArabic ? "التبديل إلى العربية" : "Switch to English"}
+      // The accessible name must LEAD with the visible "AR"/"EN" text. With the
+      // description alone the two disagreed, which fails WCAG 2.5.3 Label in
+      // Name (Lighthouse: label-content-name-mismatch) and leaves a speech-input
+      // user unable to activate the control by saying what they can see.
+      aria-label={isTargetArabic ? "AR — التبديل إلى العربية" : "EN — Switch to English"}
       title={isTargetArabic ? "العربية" : "English"}
       className={`group/lang grid h-9 w-9 place-items-center rounded-full border border-ink/20 text-[0.6875rem] font-semibold tracking-wider text-ink-2 transition-colors duration-200 hover:border-blue hover:bg-blue hover:text-white ${className}`}
     >
