@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Source_Serif_4 } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { JsonLd } from "@/components/seo/json-ld";
+import { EditorialFont } from "@/components/ui/editorial-font";
 import { site } from "@/content/site";
 import "../globals.css";
 
@@ -35,31 +36,12 @@ const archivo = Archivo({
 // Italic only — the editorial voice is exclusively italic asides; shipping the
 // upright cuts would add unused font data.
 //
-// Three deliberate settings here, all measured:
-//
-// preload:false — this face styles two short asides on the home page and
-// nothing at all on service, insight, and case-study pages, yet preloading it
-// put ~127KB on the critical path of every route, competing with Archivo, which
-// renders the H1.
-//
-// No `opsz` axis — requesting it makes Google serve the full variable italic at
-// 129,940 B, larger than Archivo itself. Without it the face is a fraction of
-// the size and renders these asides identically: optical sizing only retunes
-// stroke contrast across a display-vs-caption range this site never spans.
-//
-// display:optional — even unpreloaded it was fetched at VeryHigh priority and
-// finished at 927ms, on top of Archivo at 917ms: 52KB of a slow-4G window spent
-// on two decorative asides while the headline queued behind them. `optional`
-// caps its window at ~100ms and otherwise keeps the fallback for that page view,
-// so it neither competes nor reflows late. It also turned out to be the source
-// of the site's CLS — 0.074 before this, 0 after.
-const editorialSerif = Source_Serif_4({
-  subsets: ["latin"],
-  display: "optional",
-  preload: false,
-  variable: "--font-editorial",
-  style: ["italic"]
-});
+// The editorial serif is deliberately NOT loaded through next/font any more.
+// next/font puts its @font-face in the critical CSS and the 51KB file was
+// finishing inside the LCP window on PageSpeed's mobile probe on every run —
+// for two italic asides that are both below the fold. It now loads after first
+// paint via components/ui/editorial-font.tsx; `font-editorial` falls back to
+// Georgia italic until then. See that file for the full measured rationale.
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -103,13 +85,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr" className={`${archivo.variable} ${editorialSerif.variable}`}>
+    <html lang="en" dir="ltr" className={archivo.variable}>
       <body className="font-sans">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
         {children}
         <JsonLd />
+        <EditorialFont />
       </body>
     </html>
   );

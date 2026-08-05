@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: light;
+  /* Static, not injected by next/font: the editorial serif is registered at
+     runtime by components/ui/editorial-font.tsx under this exact family name.
+     Until it loads, the font-editorial stack falls through to Georgia. */
+  --font-editorial: "Source Serif 4";
   --paper: #f7f8fa;
   --ink: #101623;
   --blue: #0171dd;
