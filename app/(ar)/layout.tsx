@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { JsonLd } from "@/components/seo/json-ld";
-import { arSite } from "@/content/index-pages";
 import { site } from "@/content/site";
 import "../globals.css";
 
@@ -18,32 +17,18 @@ import "../globals.css";
  * Because dir="rtl" now sits on <html>, every logical-property utility mirrors
  * itself: no RTL-specific classes are needed anywhere below.
  */
+// Archivo is genuinely used on /ar, despite the pages being Arabic: the Arabic
+// face is requested with the "arabic" subset only, so it carries no Latin
+// glyphs, and every Latin run on these pages — the email address, the social
+// links, the EN language switch — falls through `font-arabic` to Archivo.
+// Verified on the built site: its FontFace activates, and eight visible Latin
+// runs resolve through it. So it is a real critical-path font here, not a
+// leftover, and is left to preload.
 const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-archivo",
   axes: ["wdth"]
-});
-
-// Weights are exactly the three the Arabic pages render (regular, font-medium,
-// font-semibold). The "latin" subset is dropped: the `font-arabic` family falls
-// through to Archivo for Latin glyphs (see tailwind.config.ts), so those cuts
-// would be pure duplication.
-//
-// preload:false is load-bearing, not an oversight. next/font preloads a root
-// layout's fonts across the whole build, and this file became a ROOT layout when
-// /ar moved into its own route group — which put all three Arabic weights
-// (~103KB) on the critical path of every ENGLISH page, reintroducing the exact
-// regression 1175b9a fixed, and at higher priority than before. Verified by
-// diffing the <link rel=preload> set on / against /ar. Source Serif is excluded
-// the same way for the same reason. `display: swap` keeps Arabic text readable
-// while the face loads at normal priority on /ar routes.
-const arabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-  preload: false,
-  variable: "--font-arabic"
 });
 
 export const metadata: Metadata = {
@@ -67,11 +52,10 @@ export default function ArabicRootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${archivo.variable} ${arabic.variable}`}>
-      <body className="font-arabic">
-        <a href="#main" className="skip-link">
-          {arSite.skipToContent}
-        </a>
+    // The Arabic face and the skip link now live in app/(ar)/ar/layout.tsx so
+    // next/font scopes the preload to /ar/* instead of the whole build.
+    <html lang="ar" dir="rtl" className={archivo.variable}>
+      <body>
         {children}
         <JsonLd />
       </body>

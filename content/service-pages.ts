@@ -1546,3 +1546,21 @@ export const servicePages: ServicePage[] = [
 export function getServicePage(slug: string, locale: ServiceLocale): ServicePage | undefined {
   return servicePages.find((p) => p.slug === slug && p.locale === locale);
 }
+
+/**
+ * Arabic footer service links.
+ *
+ * The English footer carries all seven service pages (site.footerServices); the
+ * Arabic footer carried none, so /ar had no sitewide internal linking into its
+ * service cluster at all — every Arabic service page was reachable only from
+ * the /ar/services hub or the sitemap.
+ *
+ * Derived rather than hand-written: the labels are the same approved Arabic
+ * breadcrumb labels the pages already use, so the footer cannot drift from the
+ * pages it links to, and no new business copy is introduced (AGENTS.md).
+ * The two Arabic hub routes are already in arSite.nav, which the footer renders
+ * first, so only the leaf pages are listed here.
+ */
+export const arFooterServices = servicePages
+  .filter((p) => p.locale === "ar")
+  .map((p) => ({ label: p.breadcrumb.label, href: p.path }));

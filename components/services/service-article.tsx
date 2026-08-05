@@ -108,33 +108,60 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
           <h2 className="display-sub text-2xl md:text-3xl">{page.proofHeading}</h2>
           <p className="prose-measure mt-4 text-base leading-relaxed text-ink-2">{page.proofLead}</p>
           <div className="mt-10 grid items-start gap-8 md:grid-cols-2">
-            {proof.map((project) => (
-              <Link
-                key={project.slug}
-                href={`/work/${project.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-hairline bg-surface transition-colors duration-200 hover:border-blue/40"
-              >
-                {project.cover ? (
-                  <Image
-                    src={project.cover}
-                    alt={project.coverAlt ?? `${project.title} — selected work`}
-                    width={project.coverW ?? 1600}
-                    height={project.coverH ?? 1000}
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="w-full"
-                  />
-                ) : null}
-                <div className="p-6" dir="ltr" lang="en">
-                  <p className="display-sub text-lg transition-colors duration-200 group-hover:text-blue md:text-xl">
-                    {project.title}
-                  </p>
-                  <p className="prose-measure mt-2 text-sm leading-relaxed text-ink-2">{project.premise}</p>
-                  <p className="mt-4 text-sm font-semibold text-blue-ink" dir={isAr ? "rtl" : "ltr"} lang={page.locale}>
-                    {page.proofCtaLabel}
-                  </p>
-                </div>
-              </Link>
-            ))}
+            {proof.map((project) => {
+              /**
+               * An Arabic service page links to the Arabic case study and shows
+               * the Arabic copy whenever that translation exists. Previously
+               * every card on /ar/services/* pointed at /work/<slug> and
+               * rendered the English title and premise under a hard
+               * `dir="ltr" lang="en"`, so the strongest proof block on the page
+               * dropped the reader out of the locale mid-page.
+               *
+               * Only some projects carry an `ar` block, and /ar/work/<slug>
+               * exists only for those (see the route's generateStaticParams) —
+               * so an untranslated project still links to its English study and
+               * keeps the LTR override that its English copy genuinely needs.
+               */
+              const ar = isAr ? project.ar : undefined;
+              const href = ar ? `/ar/work/${project.slug}` : `/work/${project.slug}`;
+              const title = ar?.title ?? project.title;
+              const premise = ar?.premise ?? project.premise;
+              const copyIsArabic = Boolean(ar);
+              return (
+                <Link
+                  key={project.slug}
+                  href={href}
+                  className="group block overflow-hidden rounded-2xl border border-hairline bg-surface transition-colors duration-200 hover:border-blue/40"
+                >
+                  {project.cover ? (
+                    <Image
+                      src={project.cover}
+                      alt={
+                        ar?.coverAlt ??
+                        (copyIsArabic ? title : project.coverAlt ?? `${project.title} — selected work`)
+                      }
+                      width={project.coverW ?? 1600}
+                      height={project.coverH ?? 1000}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="w-full"
+                    />
+                  ) : null}
+                  <div
+                    className="p-6"
+                    dir={copyIsArabic ? "rtl" : "ltr"}
+                    lang={copyIsArabic ? "ar" : "en"}
+                  >
+                    <p className="display-sub text-lg transition-colors duration-200 group-hover:text-blue md:text-xl">
+                      {title}
+                    </p>
+                    <p className="prose-measure mt-2 text-sm leading-relaxed text-ink-2">{premise}</p>
+                    <p className="mt-4 text-sm font-semibold text-blue-ink" dir={isAr ? "rtl" : "ltr"} lang={page.locale}>
+                      {page.proofCtaLabel}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       ) : null}

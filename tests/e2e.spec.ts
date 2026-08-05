@@ -334,9 +334,10 @@ test.describe("arabic site", () => {
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
   });
 
-  // The switch resolves the real counterpart route, not just the other home
-  // page — and falls back to it only where no counterpart exists, which is the
-  // case for the two insights that were never translated.
+  // The switch resolves the real counterpart route. Where none exists it walks
+  // UP to the nearest ancestor that does, rather than dumping the reader on the
+  // other home page: someone reading an article who asks for Arabic should land
+  // on the Arabic articles hub, not the Arabic front page.
   test("language switch lands on the counterpart page, never a 404", async ({ page, request }) => {
     const cases: [string, string][] = [
       ["/services", "/ar/services"],
@@ -345,8 +346,11 @@ test.describe("arabic site", () => {
       ["/services/pr-agency-libya", "/ar/services/pr-agency-libya"],
       ["/work/unsmil-strategic-communications", "/ar/work/unsmil-strategic-communications"],
       ["/ar/services", "/services"],
-      // No Arabic version of this article: must fall back, not 404.
-      ["/insights/pr-vs-marketing-libya", "/ar"]
+      ["/ar/work/unsmil-strategic-communications", "/work/unsmil-strategic-communications"],
+      // Neither article was translated: both must land on the Arabic insights
+      // hub — the nearest real counterpart — and never on /ar or a 404.
+      ["/insights/pr-vs-marketing-libya", "/ar/insights"],
+      ["/insights/strategic-communications-libyan-institutions", "/ar/insights"]
     ];
     for (const [from, expected] of cases) {
       await page.goto(from);

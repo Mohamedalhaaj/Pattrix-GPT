@@ -39,6 +39,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
   const [open, setOpen] = useState(false);
   const lastY = useRef(0);
   const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -57,16 +58,88 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /**
+   * Modal behaviour for the mobile overlay.
+   *
+   * The panel is a full-screen opaque layer, but focus was never contained in
+   * it: tabbing past the last link walked into the page behind — links the user
+   * cannot see and which are covered by the overlay — and Escape closed the
+   * panel while dropping focus onto <body>, so a keyboard user landed nowhere
+   * and had to tab from the top of the document again.
+   *
+   * Tab is cycled within the panel, and focus is returned to the toggle that
+   * opened it on close (the standard dialog contract).
+   */
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
-    const first = panelRef.current?.querySelector<HTMLElement>("a");
-    first?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+
+    const panel = panelRef.current;
+    // Captured now rather than read in cleanup: the toggle never unmounts, but
+    // reading a ref during teardown is the pattern the exhaustive-deps rule
+    // warns about, and the captured node is what we actually want to restore to.
+    const toggle = toggleRef.current;
+    const focusables = () =>
+      Array.from(
+        panel?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []
+      ).filter((el) => el.tabIndex !== -1 && el.offsetParent !== null);
+
+    /**
+     * Focus the first item, but not until the panel is actually visible.
+     *
+     * The panel transitions `visibility` (so it can stay on screen through the
+     * fade-OUT), which means that for the first frames after opening it is
+     * still computed `visibility: hidden` — and `.focus()` on a descendant of a
+     * hidden subtree is silently a no-op. The original one-shot `first?.focus()`
+     * therefore never moved focus at all: opening the menu with the keyboard
+     * left focus stranded on <body> behind the overlay. Retry per frame until
+     * it takes, with a bounded budget so this can never spin.
+     */
+    let raf = 0;
+    let framesLeft = 40;
+    const focusFirst = () => {
+      if (framesLeft-- <= 0) return;
+      if (getComputedStyle(panel!).visibility !== "visible") {
+        raf = requestAnimationFrame(focusFirst);
+        return;
+      }
+      const first = focusables()[0];
+      first?.focus();
+      // Guard against the same hidden-subtree no-op on the focus call itself.
+      if (first && document.activeElement !== first) raf = requestAnimationFrame(focusFirst);
+    };
+    raf = requestAnimationFrame(focusFirst);
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      // Also catches focus already sitting outside the panel (e.g. on the
+      // toggle button, which lives outside it) and pulls it back in.
+      if (e.shiftKey && (active === first || !panel?.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !panel?.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     window.addEventListener("keydown", onKey);
     return () => {
+      cancelAnimationFrame(raf);
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
+      // Only steal focus back if it is still inside the panel being torn down;
+      // otherwise a click elsewhere would be yanked back to the toggle.
+      if (panel?.contains(document.activeElement)) toggle?.focus();
     };
   }, [open]);
 
@@ -127,6 +200,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
           </nav>
 
           <button
+            ref={toggleRef}
             type="button"
             className="relative z-50 -me-2 grid h-11 w-11 place-items-center md:hidden"
             aria-expanded={open}
@@ -162,6 +236,11 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
       <div
         id="mobile-menu"
         ref={panelRef}
+        // role/aria-modal state what the overlay already behaves like: a modal
+        // surface covering the page, with focus contained (see the effect above).
+        role="dialog"
+        aria-modal={open}
+        aria-label={isArabic ? arSite.mobileNavLabel : "Mobile"}
         className={`fixed inset-0 z-40 flex flex-col justify-between bg-paper px-6 pb-10 pt-28 transition-[opacity,visibility] duration-300 md:hidden ${
           open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
         }`}

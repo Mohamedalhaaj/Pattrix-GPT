@@ -1,8 +1,9 @@
 import { site } from "@/content/site";
 
 /**
- * Site-wide structured data (Organization, ProfessionalService, WebSite),
- * rendered once from the root layout. Every value must be traceable to
+ * Site-wide structured data: one business entity typed as both Organization
+ * and ProfessionalService, plus WebSite — rendered once from the root layout.
+ * Every value must be traceable to
  * content/*.ts or the public brand assets — no invented facts (see AGENTS.md).
  * Address, postal code, and price range come from site.business (approved
  * public details).
@@ -27,8 +28,26 @@ const address = {
   addressCountry: site.business.addressCountry
 };
 
+/**
+ * ONE node, two types — not two nodes.
+ *
+ * This previously emitted a separate Organization and ProfessionalService that
+ * carried the same name, url, logo, image, description, email, telephone and
+ * address, and then linked them with
+ * `parentOrganization: { "@id": ".../#organization" }` — which asserted that
+ * Pattrix is a subsidiary of itself, and left a consumer to guess which of two
+ * identical entities the rest of the graph meant. Every other reference on the
+ * site (author, publisher, provider, creator, about) already points at
+ * `#organization`, so that is the id that is kept; `#service` is dropped and
+ * nothing referenced it.
+ *
+ * schema.org allows an array of types on one node, which is the correct way to
+ * say "this single business is both an organization and a professional
+ * service" and keeps the service-specific properties on the entity that
+ * actually provides them.
+ */
 const organization = {
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   "@id": `${site.url}/#organization`,
   name: site.name,
   url: site.url,
@@ -38,25 +57,7 @@ const organization = {
   email: site.contact.email,
   telephone: site.contact.phones[0],
   address,
-  // Social profiles are added in content/site.ts only once URLs are verified.
-  ...(site.contact.socials.length > 0
-    ? { sameAs: site.contact.socials.map((s) => s.href) }
-    : {})
-};
-
-const professionalService = {
-  "@type": "ProfessionalService",
-  "@id": `${site.url}/#service`,
-  name: site.name,
-  url: site.url,
-  logo,
-  image,
-  description,
-  email: site.contact.email,
-  telephone: site.contact.phones[0],
   priceRange: site.business.priceRange,
-  address,
-  parentOrganization: { "@id": `${site.url}/#organization` },
   areaServed: ["Tripoli", "Libya", "Global"],
   serviceType: [
     "Strategic communications",
@@ -66,7 +67,11 @@ const professionalService = {
     "Event coverage",
     "Content production",
     "Brand communication"
-  ]
+  ],
+  // Social profiles are added in content/site.ts only once URLs are verified.
+  ...(site.contact.socials.length > 0
+    ? { sameAs: site.contact.socials.map((s) => s.href) }
+    : {})
 };
 
 const webSite = {
@@ -79,7 +84,7 @@ const webSite = {
 
 const graph = {
   "@context": "https://schema.org",
-  "@graph": [organization, professionalService, webSite]
+  "@graph": [organization, webSite]
 };
 
 // `<` is escaped so user-editable content can never close the script tag.

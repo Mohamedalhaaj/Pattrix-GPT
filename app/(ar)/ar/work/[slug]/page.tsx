@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { arCaseStudy } from "@/content/index-pages";
 import { getProject, projects } from "@/content/projects";
+import { serviceHrefByName } from "@/content/services";
 import { site } from "@/content/site";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
@@ -178,10 +179,29 @@ export default async function ArCaseStudyPage({ params }: CaseStudyParams) {
 
           <div className="container-x mt-16 border-t border-hairline pt-10 md:mt-20">
             <p className="eyebrow text-ink-3">{arCaseStudy.servicesLabel}</p>
+            {/* Same bridge as the English case study, resolved POSITIONALLY:
+                `serviceHrefByName` is keyed on the English system name, and
+                `ar.services[i]` is the Arabic label for `project.services[i]`
+                (the two arrays are written in parallel for every project). The
+                Arabic system names differ enough from their page eyebrows that
+                a string lookup would silently miss — e.g. "السوشيال والديجيتال"
+                against a page titled "السوشيال ميديا والمحتوى الرقمي".
+                Systems with no dedicated page stay plain text, as in English. */}
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-2">
-              {ar.services.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
+              {ar.services.map((s, i) => {
+                const enHref = serviceHrefByName[project.services[i]];
+                return (
+                  <li key={s}>
+                    {enHref ? (
+                      <Link href={`/ar${enHref}`} className="transition-colors duration-200 hover:text-blue">
+                        {s}
+                      </Link>
+                    ) : (
+                      s
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </article>

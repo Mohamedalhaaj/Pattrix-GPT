@@ -35,12 +35,34 @@ for (const ar of arPaths) {
 }
 
 /**
- * Counterpart for a path, or the other side's home page when none exists.
+ * Counterpart for a path. When the exact counterpart does not exist, walk UP to
+ * the nearest ancestor that does before giving up on the home page.
+ *
+ * Two of four insights and three of five projects have no Arabic version, so the
+ * exact lookup misses often. Sending a reader of /insights/pr-vs-marketing-libya
+ * to the Arabic HOME page discards everything the click expressed — they were
+ * reading an article and asked for Arabic, so /ar/insights (which exists, and
+ * lists the Arabic articles) is the honest nearest match. Same in reverse.
+ *
  * Trailing slashes are normalised so /services/ and /services agree.
  */
 export function counterpartOf(pathname: string): { href: string; targetLocale: "en" | "ar" } {
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   const isArabic = path === "/ar" || path.startsWith("/ar/");
-  if (isArabic) return { href: arToEn[path] ?? "/", targetLocale: "en" };
-  return { href: enToAr[path] ?? "/ar", targetLocale: "ar" };
+  const map = isArabic ? arToEn : enToAr;
+  const targetLocale = isArabic ? "en" : "ar";
+  const home = isArabic ? "/" : "/ar";
+
+  const exact = map[path];
+  if (exact) return { href: exact, targetLocale };
+
+  // Drop one trailing segment at a time: /insights/x -> /insights -> (home).
+  const segments = path.split("/").filter(Boolean);
+  for (let i = segments.length - 1; i > 0; i--) {
+    const ancestor = "/" + segments.slice(0, i).join("/");
+    const hit = map[ancestor];
+    if (hit) return { href: hit, targetLocale };
+  }
+
+  return { href: home, targetLocale };
 }

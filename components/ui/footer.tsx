@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { arSite } from "@/content/index-pages";
+import { arFooterServices } from "@/content/service-pages";
 import { site } from "@/content/site";
 import { LangSwitch } from "@/components/ui/lang-switch";
 
@@ -12,7 +13,12 @@ import { LangSwitch } from "@/components/ui/lang-switch";
 export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
   const year = new Date().getFullYear();
   const isArabic = locale === "ar";
-  const links = isArabic ? arSite.nav : [...site.nav, ...site.footerServices];
+  // Both locales get their service cluster in the footer. Arabic previously got
+  // arSite.nav alone, which meant /ar had no sitewide linking into its seven
+  // service pages while /en linked all seven from every page.
+  const links = isArabic
+    ? [...arSite.nav, ...arFooterServices]
+    : [...site.nav, ...site.footerServices];
 
   return (
     <footer className="border-t border-hairline bg-paper">

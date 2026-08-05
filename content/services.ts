@@ -81,3 +81,18 @@ export const services: ServiceSystem[] = [
     hrefLabel: "More on event coverage"
   }
 ];
+
+/**
+ * Service-system name → its dedicated page, for the "Systems used" list on
+ * case studies. That list named the systems a project used but linked nowhere,
+ * so the case studies — the pages carrying the actual proof — sent no internal
+ * authority to the service pages meant to rank for those systems.
+ *
+ * Keyed on the English name because that is what `project.services` holds in
+ * both locales' data; the Arabic route resolves its own label positionally and
+ * prefixes "/ar" (see app/(ar)/ar/work/[slug]/page.tsx). Systems without a
+ * dedicated page (Brand & Identity) are absent and stay plain text.
+ */
+export const serviceHrefByName: Record<string, string> = Object.fromEntries(
+  services.filter((s) => s.href).map((s) => [s.name, s.href as string])
+);

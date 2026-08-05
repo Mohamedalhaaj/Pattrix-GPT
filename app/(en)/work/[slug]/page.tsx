@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/content/projects";
+import { serviceHrefByName } from "@/content/services";
 import { site } from "@/content/site";
 import { CtaLink } from "@/components/ui/cta-link";
 import { Footer } from "@/components/ui/footer";
@@ -145,12 +146,24 @@ export default async function CaseStudyPage({ params }: CaseStudyParams) {
           <div className="container-x section-y grid gap-16 lg:grid-cols-12">
             <aside className="lg:col-span-3">
               <p className="eyebrow text-ink-3">Systems used</p>
+              {/* Linked where a dedicated service page exists: this list is the
+                  natural bridge from proof back to the pages meant to rank for
+                  these systems, and it previously carried no links at all. */}
               <ul className="mt-5 flex flex-col gap-2">
-                {project.services.map((s) => (
-                  <li key={s} className="text-sm font-medium text-ink-2">
-                    {s}
-                  </li>
-                ))}
+                {project.services.map((s) => {
+                  const href = serviceHrefByName[s];
+                  return (
+                    <li key={s} className="text-sm font-medium text-ink-2">
+                      {href ? (
+                        <Link href={href} className="transition-colors duration-200 hover:text-blue">
+                          {s}
+                        </Link>
+                      ) : (
+                        s
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </aside>
             <div className="flex flex-col gap-14 lg:col-span-7 lg:col-start-5">
