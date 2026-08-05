@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { site } from "@/content/site";
-import { MM, gsap, useGSAP } from "@/lib/gsap";
+import { useLazyGsap } from "@/lib/gsap-lazy";
 import { setField } from "@/components/field/store";
 import { CtaLink } from "@/components/ui/cta-link";
 
@@ -14,28 +14,36 @@ import { CtaLink } from "@/components/ui/cta-link";
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      // Field: noise → signal shortly after first paint (also under reduced
-      // motion, where the engine renders the formation statically).
-      const toSignal = () => setField({ formation: "signal", ox: 0.72, oy: 0.38, energy: 1, dim: 1, theme: "light" });
-      const timer = setTimeout(toSignal, 900);
+  const toSignal = useCallback(
+    () => setField({ formation: "signal", ox: 0.72, oy: 0.38, energy: 1, dim: 1, theme: "light" }),
+    []
+  );
 
+  // The field's opening beat needs no GSAP — it is a plain timer into the store
+  // — so it stays a normal effect and fires on schedule even though GSAP itself
+  // is now loaded lazily. This also keeps it working under reduced motion,
+  // where the engine renders the formation statically.
+  useEffect(() => {
+    const timer = setTimeout(toSignal, 900);
+    return () => clearTimeout(timer);
+  }, [toSignal]);
+
+  // The ENTIRE hero entrance runs on CSS keyframes (globals.css), not here.
+  //
+  // Moving just the H1 was not enough, and the half-measure was worse than the
+  // original: PageSpeed on a real Moto G reported the LCP element as the hero
+  // SUB-paragraph with 20ms TTFB and 4,020ms of element render delay, dropping
+  // mobile Performance from 98 to 85. `from(autoAlpha: 0)` is immediateRender,
+  // so on a slow device the sub was written invisible before it ever painted
+  // and stayed that way until its beat at 0.99s plus an 0.8s fade. Fixing the
+  // H1 alone just handed the LCP element to the next thing GSAP was hiding.
+  //
+  // All that is left for GSAP here is re-tuning the field when the visitor
+  // scrolls back up to the top, which is genuinely scroll-driven.
+  useLazyGsap(
+    ({ MM, gsap }) => {
       const mm = gsap.matchMedia();
       mm.add(MM.motionOk, () => {
-        // The ENTIRE hero entrance now runs on CSS keyframes (globals.css), not
-        // here. GSAP keeps only the field, which is genuinely scroll/time-driven.
-        //
-        // Moving just the H1 was not enough, and the half-measure was worse than
-        // the original: PageSpeed on a real Moto G reported the LCP element as
-        // the hero SUB-paragraph with 20ms TTFB and 4,020ms of element render
-        // delay, dropping mobile Performance from 98 to 85. `from(autoAlpha: 0)`
-        // is immediateRender, so on a slow device the sub was written invisible
-        // before it ever painted and stayed that way until its beat at 0.99s
-        // plus an 0.8s fade. Fixing the H1 alone just moved the LCP element onto
-        // the next thing GSAP was still hiding.
-        //
-        // Re-tune the field when scrolling back up to the top.
         gsap.timeline({
           scrollTrigger: {
             trigger: ref.current,
@@ -45,10 +53,9 @@ export function Hero() {
           }
         });
       });
-
-      return () => clearTimeout(timer);
+      return () => mm.revert();
     },
-    { scope: ref }
+    ref
   );
 
   return (

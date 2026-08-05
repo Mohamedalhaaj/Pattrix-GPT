@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { site } from "@/content/site";
-import { MM, gsap, useGSAP } from "@/lib/gsap";
+import { useLazyGsap } from "@/lib/gsap-lazy";
 import { setField } from "@/components/field/store";
 
 const NAVY = "#0A1220";
@@ -18,8 +18,8 @@ const PAPER = "#F7F8FA";
 export function Interlude() {
   const ref = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
+  useLazyGsap(
+    ({ MM, gsap }) => {
       const section = ref.current;
       if (!section) return;
       const lines = gsap.utils.toArray<HTMLElement>("[data-interlude-line]", section);
@@ -83,8 +83,10 @@ export function Interlude() {
           gsap.set(document.body, { backgroundColor: PAPER });
         };
       });
+
+      return () => mm.revert();
     },
-    { scope: ref }
+    ref
   );
 
   return (

@@ -30,9 +30,21 @@ const archivo = Archivo({
 // leaves a weight-variable italic that is a fraction of the size and renders
 // these two asides identically: optical sizing only retunes stroke contrast
 // across a display-vs-caption size range this site never spans.
+// `optional`, not `swap`. Measured on PageSpeed (mobile, Slow 4G): this face was
+// being fetched at VeryHigh priority and finishing at 927ms — right on top of
+// Archivo, which finishes at 917ms and which the LCP element waits for. 52KB of
+// bandwidth was going to two decorative italic asides while the headline the
+// visitor is actually reading queued behind them.
+//
+// `optional` gives it a ~100ms window and, if it misses, keeps the fallback for
+// that page view instead of swapping. That is the right trade for this face
+// specifically: it styles two short asides, one of them below the fold, so a
+// visitor on a slow connection reading them in Georgia loses nothing, and no
+// swap means no late reflow either. Archivo is a different case — it renders
+// the whole page and stays on `swap`.
 const editorialSerif = Source_Serif_4({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   preload: false,
   variable: "--font-editorial",
   style: ["italic"]
