@@ -11,6 +11,13 @@ import { LangSwitch } from "@/components/ui/lang-switch";
  * dir="rtl" on <html>, so the grid mirrors itself.
  */
 export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
+  // Evaluated at BUILD time, not per request — every route here is static, and
+  // this call does not opt any of them into dynamic rendering (verified: the
+  // build still reports all 44 pages as prerendered). The practical
+  // consequence is that the copyright year is frozen until the next deploy, so
+  // a site left un-deployed across New Year will show the previous year. That
+  // is the right trade: making it live would mean either 30+ on-demand renders
+  // or a client component, to keep one number current.
   const year = new Date().getFullYear();
   const isArabic = locale === "ar";
   // Both locales get their service cluster in the footer. Arabic previously got

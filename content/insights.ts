@@ -810,3 +810,20 @@ export const insights: InsightArticle[] = [
 export function getInsight(slug: string, locale: InsightLocale): InsightArticle | undefined {
   return insights.find((a) => a.slug === slug && a.locale === locale);
 }
+
+/**
+ * Articles that point at a given service page — the inverse of each article's
+ * own `relatedService`.
+ *
+ * The insights cluster supported the service cluster one-way: every article
+ * linked out to its service page, and no service page linked back to a single
+ * article, so the topical link equity only ever flowed in one direction and a
+ * reader on a service page had no route into the supporting material.
+ *
+ * Derived from `relatedService` rather than declared separately, so the two
+ * directions cannot disagree and no new content is authored. Locale takes care
+ * of itself: Arabic articles declare Arabic service hrefs.
+ */
+export function insightsForService(servicePath: string): InsightArticle[] {
+  return insights.filter((a) => a.relatedService.href === servicePath);
+}

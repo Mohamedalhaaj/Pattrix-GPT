@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { arCaseStudy } from "@/content/index-pages";
+import { arCaseStudy, arSite } from "@/content/index-pages";
 import { getProject, projects } from "@/content/projects";
 import { serviceHrefByName } from "@/content/services";
 import { site } from "@/content/site";
@@ -29,9 +29,12 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
   // English case study.
   const description = `${project.ar.premise} دراسة حالة من باتريكس — ${project.ar.category}، ${project.year}.`;
   const path = `/ar/work/${project.slug}`;
-  const socialTitle = `${project.ar.title} — ${site.name}`;
+  // `absolute`, so the (ar) layout's `%s — ${site.name}` template does not
+  // append the Latin "Pattrix" — this was the only Arabic route on the site
+  // whose <title> was suffixed in Latin instead of باتريكس.
+  const socialTitle = `${project.ar.title} — ${arSite.arName}`;
   return {
-    title: project.ar.title,
+    title: { absolute: socialTitle },
     description,
     alternates: {
       canonical: path,

@@ -30,6 +30,13 @@
  */
 export const arSite = {
   skipToContent: "تخطَّ إلى المحتوى",
+  /**
+   * The brand name in Arabic. Every Arabic page bakes this into its own
+   * `title.absolute`, except the case studies, which set a plain `title` and so
+   * inherited the (ar) layout's `%s — ${site.name}` template — shipping the
+   * Latin "Pattrix" as the only Arabic title suffix on the site.
+   */
+  arName: "باتريكس",
   logoAriaLabel: "باتريكس — الصفحة الرئيسية",
   primaryNavLabel: "التنقل الرئيسي",
   mobileNavLabel: "قائمة الجوال",
@@ -113,6 +120,16 @@ export const arCaseStudy = {
   servicesLabel: "الخدمات",
   backToWork: "كل الأعمال",
   readCase: "اقرأ دراسة الحالة"
+} as const;
+
+/**
+ * Heading for the "related reading" block on a service page, which lists the
+ * articles that point back at that service (see insightsForService). Section
+ * chrome only — it introduces no business claim.
+ */
+export const relatedReadingHeading = {
+  en: "Related reading",
+  ar: "اقرأ أيضاً"
 } as const;
 
 /** AR — /ar/insights */

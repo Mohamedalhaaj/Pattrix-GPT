@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServicePage } from "@/content/service-pages";
-import { arServicesIndex } from "@/content/index-pages";
+import { arServicesIndex, relatedReadingHeading } from "@/content/index-pages";
+import { insightsForService } from "@/content/insights";
 import { getProject } from "@/content/projects";
 import { site } from "@/content/site";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -21,6 +22,7 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
   const homeHref = isAr ? "/ar" : "/";
   const hubHref = isAr ? "/ar/services" : "/services";
   const hubLabel = isAr ? arServicesIndex.eyebrow : "Services";
+  const related = insightsForService(page.path);
   const proof = page.proofProjects
     .map((slug) => getProject(slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -163,6 +165,37 @@ export function ServiceArticle({ page }: { page: ServicePage }) {
               );
             })}
           </div>
+        </div>
+      ) : null}
+
+      {/* ---- related reading: articles that point back at this service ----
+           Closes the topical loop. Every article already links out to its
+           service page; nothing linked back, so the cluster's internal linking
+           only ever ran one way. Derived from the articles' own relatedService,
+           so it stays in the page's own locale and cannot drift. */}
+      {related.length > 0 ? (
+        <div className="container-x mt-20 border-t border-hairline pt-16 md:mt-24 md:pt-20">
+          <h2 className="display-sub text-2xl md:text-3xl">
+            {isAr ? relatedReadingHeading.ar : relatedReadingHeading.en}
+          </h2>
+          <ul className="mt-8 flex flex-col gap-4">
+            {related.map((article) => (
+              <li key={article.path}>
+                <Link
+                  href={article.path}
+                  className="group inline-flex items-baseline gap-3 text-lg font-semibold text-ink transition-colors duration-200 hover:text-blue md:text-xl"
+                >
+                  {article.h1}
+                  <span
+                    aria-hidden="true"
+                    className="text-blue-ink transition-transform duration-200 ease-out-quart group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
+                  >
+                    {isAr ? "←" : "→"}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
 
