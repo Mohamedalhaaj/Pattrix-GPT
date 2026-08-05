@@ -178,6 +178,15 @@ export default async function CaseStudyPage({ params }: CaseStudyParams) {
 
           {videos.length > 0 ? (
             <div className="container-x pb-20">
+              {/* KNOWN GAP — captions. These <video> elements ship no <track>,
+                  which is a WCAG Level A failure (1.2.2 Captions, Prerecorded),
+                  and it bites hardest on the Arabic-language commercials. It is
+                  deliberately still open rather than papered over: real captions
+                  need the audio transcribed, and generated or approximated
+                  captions would be worse than none. When transcripts exist, add
+                  `captions?: string` to ProjectVideo in content/projects.ts and
+                  render <track kind="captions" srcLang="ar" … default /> here.
+                  Tracked in docs/SEO_SERVICE_PAGE_ARCHITECTURE.md ("Open"). */}
               <p className="eyebrow mb-6 text-ink-3">In motion</p>
               <div className="flex flex-col gap-6">
                 {featuredVideos.map((video) => (
