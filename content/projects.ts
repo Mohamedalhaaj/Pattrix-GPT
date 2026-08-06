@@ -161,25 +161,37 @@ export const projects: Project[] = [
       approach:
         "صمّمنا نظام هوية صالة العرض من طرف إلى طرف: العلامة في البيئة الداخلية، وجدران العلامة، ومواد هوية الفريق، والمواد البصرية للحملات التي تربط المكان بالسوق.",
       outcome:
-        "بيئة بيعية موسومة بالعلامة، يتحدث فيها كل سطح — من الورشة إلى الاستقبال — لغة بصرية واحدة."
+        "بيئة بيعية موسومة بالعلامة، يتحدث فيها كل سطح — من الورشة إلى الاستقبال — لغة بصرية واحدة.",
+      coverAlt:
+        "ورشة دروب ليبيا (DLTA) مع رافعة سيارات وهوية هيونداي البيئية بالأحمر والرمادي والأبيض"
     },
     accent: "#0171DD",
-    cover: "/images/work/hyundai.jpg",
-    coverAlt: "DLTA Duroue Libya workshop interior with red and grey Hyundai environmental branding",
-    coverW: 1536,
-    coverH: 1024,
+    // New filenames, not replacements-in-place: netlify.toml caches /images/*
+    // for 30 days, so a same-name swap would serve the old renders to repeat
+    // visitors and OG scrapers for up to a month.
+    cover: "/images/work/hyundai-workshop.jpg",
+    coverAlt:
+      "DLTA Doroub Libya workshop with a vehicle lift and red, grey and white Hyundai environmental branding",
+    coverW: 1920,
+    coverH: 1054,
     gallery: [
       {
-        src: "/images/work/hyundai-training.jpg",
-        alt: "DLTA training academy room with Hyundai environmental branding",
-        w: 1536,
-        h: 1024
+        src: "/images/work/hyundai-academy.jpg",
+        alt: "DLTA Doroub Libya Training Academy meeting room with branded wall and diamond-pattern accent wall",
+        w: 1600,
+        h: 1187
       },
       {
-        src: "/images/work/hyundai-red.jpg",
-        alt: "Hyundai brand wall — New Thinking, New Possibilities entrance",
-        w: 1024,
-        h: 1024
+        src: "/images/work/hyundai-stairs.jpg",
+        alt: "Stairway mural — “Impossible is just an opportunity” beside the Hyundai logo and New Thinking, New Possibilities",
+        w: 1600,
+        h: 1113
+      },
+      {
+        src: "/images/work/hyundai-entry.jpg",
+        alt: "Second-floor entrance framed in Hyundai red — New Thinking, New Possibilities brand wall",
+        w: 829,
+        h: 909
       }
     ]
   },
