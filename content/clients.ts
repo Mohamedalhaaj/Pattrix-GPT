@@ -7,18 +7,20 @@
 export interface Client {
   name: string;
   sector: string;
+  /** Arabic sector label — factual descriptor only, shown on the Arabic home page. */
+  arSector: string;
   logo?: string;
 }
 
 export const clients: Client[] = [
-  { name: "UNSMIL", sector: "United Nations mission" },
-  { name: "Hyundai Libya", sector: "Automotive" },
-  { name: "Albaraka Insurance", sector: "Insurance" },
-  { name: "MUSIAD", sector: "Business network" },
-  { name: "Karjen Generators", sector: "Energy equipment" },
-  { name: "Takadum", sector: "Corporate" },
-  { name: "Biout Aleaz", sector: "Real estate" },
-  { name: "Tripoli Optics", sector: "Optics" }
+  { name: "UNSMIL", sector: "United Nations mission", arSector: "بعثة أممية" },
+  { name: "Hyundai Libya", sector: "Automotive", arSector: "سيارات" },
+  { name: "Albaraka Insurance", sector: "Insurance", arSector: "تأمين" },
+  { name: "MUSIAD", sector: "Business network", arSector: "شبكة أعمال" },
+  { name: "Karjen Generators", sector: "Energy equipment", arSector: "معدات طاقة" },
+  { name: "Takadum", sector: "Corporate", arSector: "شركات" },
+  { name: "Biout Aleaz", sector: "Real estate", arSector: "عقارات" },
+  { name: "Tripoli Optics", sector: "Optics", arSector: "بصريات" }
 ];
 
 export const sectors = [

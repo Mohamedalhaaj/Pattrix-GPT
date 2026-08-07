@@ -24,9 +24,10 @@
  * (app/(ar)/layout.tsx), so the chrome is translated and the whole document
  * flips to dir="rtl" rather than only the article body.
  *
- * Nav hrefs mirror site.nav but point at Arabic destinations: the Arabic home
- * page has no Work/Clients/About chapters, so those entries link to the Arabic
- * routes that do exist instead of to dead same-page anchors.
+ * Nav hrefs mirror site.nav but point at the Arabic hub routes rather than
+ * same-page anchors: the hubs carry the middle crumb of every Arabic
+ * BreadcrumbList and deserve the internal links, and the home page now has
+ * its own Work/Clients/About chapters mirroring the English home.
  */
 export const arSite = {
   skipToContent: "تخطَّ إلى المحتوى",
@@ -157,9 +158,9 @@ export const arHome = {
   metaTitle: "باتريكس — وكالة تسويق وعلاقات عامة في طرابلس، ليبيا",
   metaDescription:
     "باتريكس شركة اتصال استراتيجي وعلاقات عامة في طرابلس، ليبيا: استراتيجية، علاقات عامة، حملات، سوشيال ميديا، فعاليات، وإنتاج — للمؤسسات والعلامات التجارية.",
-  eyebrow: "اتصال استراتيجي وعلاقات عامة — طرابلس، ليبيا",
+  eyebrow: "اتصال استراتيجي وعلاقات عامة — طرابلس",
   headline: "نحوّل الضجيج إلى أنماط تبقى في الذاكرة.",
-  sub: "استراتيجية وعلاقات عامة وإنتاج للمؤسسات والعلامات التجارية التي تحتاج أن تُفهم — من طرابلس، ليبيا، ونعمل عالمياً.",
+  sub: "استراتيجية وعلاقات عامة وإنتاج للمؤسسات والعلامات التجارية التي تحتاج أن تُفهم — من طرابلس، ونعمل عالمياً.",
 
   positioningHeading: "النمط",
   statement:
@@ -183,8 +184,45 @@ export const arHome = {
 
   servicesHeading: "الخدمات",
   servicesSub: "ستة أنظمة، وانضباط واحد.",
+  servicesLine: "كل تعاون يُبنى من أنظمة لها أسماء واضحة، ليعرف العميل دائماً ما الذي يُنفَّذ ولماذا.",
+  allServices: "كل الخدمات",
+
+  /**
+   * The chapters below mirror the English home (Work → Services → Clients →
+   * About). They were missing entirely, which — together with the services
+   * grid showing SEO page titles — is what made /ar read as a different,
+   * geo-stuffed site rather than the same site in Arabic. Every line is the
+   * native counterpart of approved English copy in content/site.ts.
+   */
+  workHeading: "أعمالنا",
+  workStatement: "أنماط حافظت على الانتباه.",
+  workSub:
+    "تعاونات مع مؤسسات دولية وعلامات رائدة في السوق — كل واحدة منها نظام من الرسالة والإعلام والإنتاج يتحرك معاً.",
+  allWork: "كل الأعمال",
+
+  clientsStatement: "موثوقون لدى علامات رائدة ومؤسسات عالمية.",
+  clientsNote: "من المؤسسات الدولية إلى قادة السوق في المنطقة.",
+
+  aboutHeading: "الأصل",
+  aboutStatement: "من طرابلس، نعمل عالمياً.",
+  aboutBody:
+    "تأسست باتريكس في طرابلس، حيث يحمل الاتصال أثراً حقيقياً. العمل هنا علّمنا الدقة: قراءة السياق بعناية، وقول المقصود تماماً، وإنتاج عملٍ يصمد أمام الجمهور. ونحمل هذا الانضباط إلى العلامات والمؤسسات في ليبيا والمنطقة وما بعدهما.",
+  aboutPillars: [
+    {
+      title: "الدقة قبل الكثرة",
+      copy: "رسالة واحدة واضحة، في موضعها الصحيح، تتفوق على عشرٍ صاخبة."
+    },
+    {
+      title: "الاستراتيجية تقود الإنتاج",
+      copy: "ننتج ما تحتاجه الاستراتيجية — لا محتوى لذاته."
+    },
+    {
+      title: "العمل العام يجب أن يصمد",
+      copy: "كل ما نُصدره مبنيّ ليصمد أمام التدقيق، لا ليوم الإطلاق فقط."
+    }
+  ],
   insightsHeading: "مقالات",
-  insightsSub: "أدلة عملية في الاتصال والتسويق في ليبيا.",
+  insightsSub: "أدلة عملية في الاتصال والتسويق.",
   insightsMore: "كل المقالات",
 
   contactHeading: "لنصنع النمط التالي.",

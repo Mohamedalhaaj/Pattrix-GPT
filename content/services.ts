@@ -8,6 +8,16 @@ import type { FormationName } from "@/components/field/formations";
 export interface ServiceSystem {
   index: string;
   name: string;
+  /**
+   * Arabic name and summary — native counterparts of the approved English
+   * copy, in the same MSA register as content/service-pages.ts. The names are
+   * the exact strings already canonized across projects.ar.services, so the
+   * vocabulary cannot fork. Written for the Arabic home page, which previously
+   * showed the SEO page titles here ("… في ليبيا" seven times) instead of the
+   * six geo-free systems the English home shows.
+   */
+  arName: string;
+  arSummary: string;
   formation: FormationName;
   summary: string;
   includes: string[];
@@ -20,6 +30,9 @@ export const services: ServiceSystem[] = [
   {
     index: "01",
     name: "Strategy & Positioning",
+    arName: "الاستراتيجية والتموضع",
+    arSummary:
+      "نظام البداية: ما الذي يجب أن يُقال، ولمن، وبأي ترتيب. هندسة الحملة قبل وجود أي مادة.",
     formation: "signal",
     summary:
       "The starting system: what should be said, to whom, and in what order. Campaign architecture before any asset exists.",
@@ -30,6 +43,9 @@ export const services: ServiceSystem[] = [
   {
     index: "02",
     name: "Public Relations & Media",
+    arName: "العلاقات العامة والإعلام",
+    arSummary:
+      "سمعة تُبنى على الملأ: علاقات صحفية، وتغطية منسّقة، واتصال يصمد أمام التدقيق.",
     formation: "orbit",
     summary:
       "Reputation built in public: press relationships, coordinated coverage, and communication that stands up to scrutiny.",
@@ -40,6 +56,9 @@ export const services: ServiceSystem[] = [
   {
     index: "03",
     name: "Brand & Identity",
+    arName: "العلامة والهوية",
+    arSummary:
+      "النظام البصري واللفظي الذي تكرّره العلامة حتى تُعرف — هوية مصمّمة لتُستخدم، لا لتُعجب.",
     formation: "lattice",
     summary:
       "The visual and verbal system a brand repeats until it is recognized — identity designed to be used, not admired.",
@@ -48,6 +67,9 @@ export const services: ServiceSystem[] = [
   {
     index: "04",
     name: "Social & Digital",
+    arName: "السوشيال والديجيتال",
+    arSummary:
+      "حضور دائم بانضباط تحريري: استراتيجية المنصات، والإدارة، والمحتوى القصير الذي يغذّيها.",
     formation: "stream",
     summary:
       "Always-on presence with editorial discipline: platform strategy, management, and the short-form content that feeds it.",
@@ -58,6 +80,9 @@ export const services: ServiceSystem[] = [
   {
     index: "05",
     name: "Production",
+    arName: "الإنتاج",
+    arSummary:
+      "أفلام وتصوير داخلي يُنتَج بانضباط الحملات — طبقة الإثبات لكل رسالة.",
     formation: "weave",
     summary:
       "In-house film and photography, produced to campaign discipline — the proof layer of every message.",
@@ -68,6 +93,9 @@ export const services: ServiceSystem[] = [
   {
     index: "06",
     name: "Events & Experiences",
+    arName: "الفعاليات والتجارب",
+    arSummary:
+      "فعاليات مؤسسية عالية الأثر من الفكرة إلى تنفيذٍ متقن — منتديات تنفيذية، وجلسات دولية، وتجمّعات أعمال واسعة.",
     formation: "constellation",
     summary:
       "High-impact institutional events from concept to flawless execution — executive forums, international panels, and large-scale business gatherings.",
