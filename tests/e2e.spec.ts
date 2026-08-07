@@ -327,6 +327,52 @@ test.describe("arabic site", () => {
     }
   });
 
+  test("arabic hero mirrors the english CTAs", async ({ page }) => {
+    await page.goto("/ar");
+    // Primary CTA anchors to the on-page work chapter (counterpart of
+    // "See selected work" → /#work). Deliberately NOT "كل الأعمال", which is
+    // the work chapter's hub link on the same page — the label must stay
+    // unique per destination.
+    await expect(page.getByRole("link", { name: "شاهد أعمالاً مختارة" })).toHaveAttribute(
+      "href",
+      "/ar#ar-work"
+    );
+    await expect(page.locator("#ar-work")).toBeAttached();
+    // Secondary CTA starts a project by mail, as on the English hero.
+    await expect(
+      page.locator("main").getByRole("link", { name: "ابدأ مشروعاً" }).first()
+    ).toHaveAttribute("href", "mailto:info@pattrix.co");
+  });
+
+  test("arabic services accordion opens, retunes, and closes", async ({ page }) => {
+    await page.goto("/ar");
+    const second = page.getByRole("button", { name: /العلاقات العامة والإعلام/ });
+    await second.scrollIntoViewIfNeeded();
+    await second.click();
+    await expect(second).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByText("سمعة تُبنى على الملأ", { exact: false })).toBeVisible();
+    // First row closed after opening the second.
+    await expect(page.getByRole("button", { name: /الاستراتيجية والتموضع/ })).toHaveAttribute(
+      "aria-expanded",
+      "false"
+    );
+  });
+
+  test("unmatched /ar URLs render the Arabic 404", async ({ page }) => {
+    const res = await page.goto("/ar/this-route-does-not-exist");
+    expect(res?.status()).toBe(404);
+    // The catch-all keeps dead Arabic URLs inside the (ar) root layout — an
+    // Arabic document, not the English global 404. NOTE: dynamic notFound()
+    // responses ship as Next's error shell and hydrate into this content
+    // client-side (same as the English dynamic 404s), so these assertions
+    // hold after hydration — which Playwright runs. The raw HTML carries the
+    // 404 status, which is the signal crawlers act on.
+    await expect(page.locator("html")).toHaveAttribute("lang", "ar");
+    await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("النمط");
+    await expect(page.getByRole("link", { name: "الرئيسية" })).toHaveAttribute("href", "/ar");
+  });
+
   test("language switch round-trips between the two sites", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("banner").getByRole("link", { name: "التبديل إلى العربية" }).click();
@@ -350,10 +396,13 @@ test.describe("arabic site", () => {
       ["/work/unsmil-strategic-communications", "/ar/work/unsmil-strategic-communications"],
       ["/ar/services", "/services"],
       ["/ar/work/unsmil-strategic-communications", "/work/unsmil-strategic-communications"],
-      // Neither article was translated: both must land on the Arabic insights
-      // hub — the nearest real counterpart — and never on /ar or a 404.
-      ["/insights/pr-vs-marketing-libya", "/ar/insights"],
-      ["/insights/strategic-communications-libyan-institutions", "/ar/insights"]
+      // Both articles now have Arabic counterparts, so the switch must resolve
+      // the exact article — these two used to fall back to the /ar/insights hub.
+      ["/insights/pr-vs-marketing-libya", "/ar/insights/pr-vs-marketing-libya"],
+      [
+        "/insights/strategic-communications-libyan-institutions",
+        "/ar/insights/strategic-communications-libyan-institutions"
+      ]
     ];
     for (const [from, expected] of cases) {
       await page.goto(from);

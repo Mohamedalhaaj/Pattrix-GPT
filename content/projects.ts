@@ -121,24 +121,30 @@ export const projects: Project[] = [
       {
         src: "/images/work/unsmil-justice-en.jpg",
         alt: "UNSMIL public-dialogue design in English: What do you think is meant by justice?",
+        arAlt:
+          "تصميم حوار عام من بعثة الأمم المتحدة للدعم في ليبيا بالإنجليزية: ما الذي تعنيه العدالة في رأيك؟",
         w: 1600,
         h: 1600
       },
       {
         src: "/images/work/unsmil-post1.jpg",
         alt: "UNSMIL media-literacy campaign: 96% of Libyans see false information online",
+        arAlt:
+          "من حملة التوعية الإعلامية للبعثة الأممية: 96% من الليبيين يصادفون معلومات زائفة على الإنترنت",
         w: 1400,
         h: 1400
       },
       {
         src: "/images/work/unsmil-post12.jpg",
         alt: "UNSMIL media-literacy campaign: your personal verification toolbox",
+        arAlt: "من حملة التوعية الإعلامية للبعثة الأممية: صندوق أدواتك الشخصي للتحقق من المعلومات",
         w: 1400,
         h: 1400
       },
       {
         src: "/images/work/unsmil-post6.jpg",
         alt: "UNSMIL media-literacy campaign: protect Libya's elections from disinformation",
+        arAlt: "من حملة التوعية الإعلامية للبعثة الأممية: احمِ انتخابات ليبيا من المعلومات المضللة",
         w: 1400,
         h: 1400
       }
@@ -242,24 +248,28 @@ export const projects: Project[] = [
       {
         src: "/images/work/albaraka-cal-01.jpg",
         alt: "Albaraka Insurance branded calendar — January, cyber risk insurance",
+        arAlt: "تقويم البركة للتأمين الموسوم بالعلامة — يناير، التأمين ضد المخاطر السيبرانية",
         w: 1225,
         h: 1177
       },
       {
         src: "/images/work/albaraka-cal-02.jpg",
         alt: "Albaraka Insurance branded calendar — February, property insurance",
+        arAlt: "تقويم البركة للتأمين الموسوم بالعلامة — فبراير، تأمين الممتلكات",
         w: 1214,
         h: 1170
       },
       {
         src: "/images/work/albaraka-cal-03.jpg",
         alt: "Albaraka Insurance branded calendar — March, health insurance",
+        arAlt: "تقويم البركة للتأمين الموسوم بالعلامة — مارس، التأمين الصحي",
         w: 1223,
         h: 1192
       },
       {
         src: "/images/work/albaraka-cal-04.jpg",
         alt: "Albaraka Insurance branded calendar — April, car comprehensive insurance",
+        arAlt: "تقويم البركة للتأمين الموسوم بالعلامة — أبريل، التأمين الشامل للسيارات",
         w: 1218,
         h: 1204
       }
@@ -323,12 +333,14 @@ export const projects: Project[] = [
       {
         src: "/images/work/musiad-office.jpg",
         alt: "MUSIAD Libya branded office — invest in your skills with MUSIAD Libya",
+        arAlt: "مكتب مصياد ليبيا الموسوم بالهوية — استثمر في مهاراتك مع مصياد ليبيا",
         w: 1600,
         h: 1600
       },
       {
         src: "/images/events/musiad-booth.jpg",
         alt: "Conversation at a MUSIAD event stand during a business gathering",
+        arAlt: "حوار عند منصة مصياد في أحد تجمّعات الأعمال",
         w: 2936,
         h: 1932
       }
@@ -378,24 +390,29 @@ export const projects: Project[] = [
       {
         src: "/images/work/joelle-green-bag.jpg",
         alt: "Joelle contact lenses — art-directed product shot with leopard-print packaging in a green bag",
+        arAlt:
+          "عدسات جويل اللاصقة — لقطة منتج بإخراج فني مع عبوات بنقشة جلد النمر داخل حقيبة خضراء",
         w: 1440,
         h: 1800
       },
       {
         src: "/images/work/joelle-opened-trav-bag.jpg",
         alt: "Joelle contact lenses — campaign still life in an opened travel case with passport props",
+        arAlt: "عدسات جويل اللاصقة — مشهد ثابت من الحملة داخل حقيبة سفر مفتوحة مع جواز سفر",
         w: 1440,
         h: 1800
       },
       {
         src: "/images/work/joelle-tripoli.jpg",
         alt: "Joelle contact lenses — surreal campaign composite with a Tripoli landmark",
+        arAlt: "عدسات جويل اللاصقة — تركيب سوريالي من الحملة مع معلم من معالم طرابلس",
         w: 1440,
         h: 1800
       },
       {
         src: "/images/work/joelle-boarding.jpg",
         alt: "Joelle EYECANDY contact lenses — travel-themed campaign composite with a boarding pass",
+        arAlt: "عدسات جويل EYECANDY اللاصقة — تركيب من الحملة بطابع السفر مع بطاقة صعود إلى الطائرة",
         w: 1440,
         h: 1800
       }

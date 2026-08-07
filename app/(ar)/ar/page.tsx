@@ -5,10 +5,11 @@ import { arCaseStudy, arHome } from "@/content/index-pages";
 import { clients } from "@/content/clients";
 import { insights } from "@/content/insights";
 import { projects } from "@/content/projects";
-import { services } from "@/content/services";
 import { site } from "@/content/site";
+import { ServicesAr } from "@/components/chapters/services-ar";
 import { FieldCanvas } from "@/components/field/field-canvas";
 import { FieldTrigger } from "@/components/field/field-trigger";
+import { CtaLink } from "@/components/ui/cta-link";
 import { Footer } from "@/components/ui/footer";
 import { Header } from "@/components/ui/header";
 
@@ -86,8 +87,16 @@ export default function ArabicHome() {
       <Header locale="ar" />
       <main id="main" className="content-layer">
         <div lang="ar" dir="rtl" className="font-arabic">
-          {/* Hero */}
-          <section className="section-y relative" aria-labelledby="ar-hero-heading">
+          {/* Hero — mirrors the English hero's structure: full-viewport beat,
+              work-anchor primary CTA, start-a-project secondary, scroll hint.
+              The entrance stays static (no data-hero-* attributes): the CSS
+              keyframes on the English hero are tuned against measured LCP
+              behaviour, and animating Arabic above-the-fold content would
+              re-open exactly the risk documented in that hero's comments. */}
+          <section
+            className="relative flex min-h-[100svh] items-end pb-24 pt-32 md:items-center md:pb-28"
+            aria-labelledby="ar-hero-heading"
+          >
             <FieldTrigger
               formation="signal"
               ox={0.28}
@@ -96,7 +105,7 @@ export default function ArabicHome() {
               dim={1}
               theme="light"
             />
-            <div className="container-x pt-24 md:pt-32">
+            <div className="container-x">
               <p className="eyebrow text-blue-ink">{arHome.eyebrow}</p>
               <h1
                 id="ar-hero-heading"
@@ -104,21 +113,29 @@ export default function ArabicHome() {
               >
                 {arHome.headline}
               </h1>
-              <p className="prose-measure mt-8 text-lg leading-relaxed text-ink-2">{arHome.sub}</p>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  href="/ar/services"
-                  className="rounded-full bg-blue px-7 py-3 text-sm font-medium text-white transition-opacity duration-200 hover:opacity-90"
-                >
-                  {arHome.servicesHeading}
-                </Link>
-                <a
-                  href={`mailto:${site.contact.email}`}
-                  className="text-sm text-ink-2 underline-offset-4 transition-colors duration-200 hover:text-blue hover:underline"
-                >
-                  {arHome.contactCta}
-                </a>
+              <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-12 md:items-end">
+                <p className="prose-measure text-base leading-relaxed text-ink-2 md:col-span-5 md:text-lg">
+                  {arHome.sub}
+                </p>
+                <div className="flex flex-wrap items-center gap-8 md:col-span-7 md:justify-end">
+                  {/* prefetch off: same-page anchor — see the note on the
+                      English hero's primary CTA. */}
+                  <CtaLink href={arHome.heroPrimaryCta.href} prefetch={false}>
+                    {arHome.heroPrimaryCta.label}
+                  </CtaLink>
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue"
+                  >
+                    {arHome.contactCta}
+                  </a>
+                </div>
               </div>
+            </div>
+
+            <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex">
+              <span className="eyebrow text-ink-3">{arHome.heroScrollHint}</span>
+              <span className="scroll-line block h-10 w-px bg-ink/20" aria-hidden="true" />
             </div>
           </section>
 
@@ -158,8 +175,9 @@ export default function ArabicHome() {
           </section>
 
 
-          {/* Selected work — mirrors the English home's chapter 02. */}
-          <section className="section-y relative" aria-labelledby="ar-work-heading">
+          {/* Selected work — mirrors the English home's chapter 02. The id is
+              the hero primary CTA's anchor, the counterpart of "/#work". */}
+          <section id="ar-work" className="section-y relative scroll-mt-20" aria-labelledby="ar-work-heading">
             <FieldTrigger formation="orbit" ox={0.3} oy={0.45} energy={0.9} dim={0.85} theme="light" />
             <div className="container-x">
               <p className="eyebrow text-blue-ink">{arHome.workHeading}</p>
@@ -222,68 +240,13 @@ export default function ArabicHome() {
             </div>
           </section>
 
-          {/* Services */}
-          <section className="section-y relative" aria-labelledby="ar-services-heading">
-            <FieldTrigger
-              formation="lattice"
-              ox={0.72}
-              oy={0.42}
-              energy={0.9}
-              dim={0.85}
-              theme="light"
-            />
-            <div className="container-x">
-              <p className="eyebrow text-blue-ink">{arHome.servicesHeading}</p>
-              <h2
-                id="ar-services-heading"
-                className="display mt-8 max-w-[15em] text-[clamp(2rem,5vw,4.2rem)]"
-              >
-                {arHome.servicesSub}
-              </h2>
-              {/* The six systems, exactly as the English home presents them —
-                  names and summaries, no geography. This grid used to show the
-                  seven SEO page titles ("… في ليبيا/طرابلس" on every card),
-                  which put ~20 geo mentions in one section and contradicted
-                  the heading above it ("ستة أنظمة"). The geo-targeted titles
-                  belong to the /ar/services hub and the pages themselves. */}
-              <div className="mt-14 grid items-start gap-8 md:grid-cols-2">
-                {services.map((system) =>
-                  system.href ? (
-                    <Link
-                      key={system.index}
-                      href={`/ar${system.href}`}
-                      className="group block rounded-2xl border border-hairline bg-surface p-8 transition-colors duration-200 hover:border-blue/40 md:p-10"
-                    >
-                      <p className="eyebrow text-ink-3">{system.index}</p>
-                      <h3 className="display-sub mt-4 text-xl transition-colors duration-200 group-hover:text-blue md:text-2xl">
-                        {system.arName}
-                      </h3>
-                      <p className="prose-measure mt-3 text-sm leading-relaxed text-ink-2">
-                        {system.arSummary}
-                      </p>
-                    </Link>
-                  ) : (
-                    <div
-                      key={system.index}
-                      className="rounded-2xl border border-hairline bg-surface p-8 md:p-10"
-                    >
-                      <p className="eyebrow text-ink-3">{system.index}</p>
-                      <h3 className="display-sub mt-4 text-xl md:text-2xl">{system.arName}</h3>
-                      <p className="prose-measure mt-3 text-sm leading-relaxed text-ink-2">
-                        {system.arSummary}
-                      </p>
-                    </div>
-                  )
-                )}
-              </div>
-              <Link
-                href="/ar/services"
-                className="mt-10 inline-block text-sm text-ink-2 underline-offset-4 transition-colors duration-200 hover:text-blue hover:underline"
-              >
-                {arHome.allServices}
-              </Link>
-            </div>
-          </section>
+          {/* Services — the interactive accordion, mirroring the English
+              home's chapter 03. It presents the six systems by name and
+              summary with no geography — the same rule the previous static
+              grid followed after the geo-stuffed SEO titles were removed;
+              the geo-targeted titles belong to the /ar/services hub and the
+              pages themselves. See components/chapters/services-ar.tsx. */}
+          <ServicesAr />
 
 
           {/* Clients — mirrors the English home's chapter 04 (Reach). */}
@@ -338,6 +301,30 @@ export default function ArabicHome() {
                     </p>
                   </div>
                 ))}
+              </div>
+
+              {/* Real rooms — the same event photography as the English about
+                  chapter (site.about.proof); only the descriptions fork.
+                  arHome.aboutProof.alts is index-parallel to the images. */}
+              <div className="mt-20">
+                <div className="grid gap-4 md:grid-cols-3">
+                  {site.about.proof.images.map((img, i) => (
+                    <figure key={img.src} className="overflow-hidden rounded-2xl border border-hairline">
+                      <div className="relative aspect-[3/2] w-full">
+                        <Image
+                          src={img.src}
+                          alt={arHome.aboutProof.alts[i]}
+                          fill
+                          sizes="(min-width: 768px) 33vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    </figure>
+                  ))}
+                </div>
+                <p className="prose-measure mt-4 text-sm leading-relaxed text-ink-3">
+                  {arHome.aboutProof.caption}
+                </p>
               </div>
             </div>
           </section>

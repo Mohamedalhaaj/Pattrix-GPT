@@ -161,6 +161,17 @@ export const arHome = {
   eyebrow: "اتصال استراتيجي وعلاقات عامة — طرابلس",
   headline: "نحوّل الضجيج إلى أنماط تبقى في الذاكرة.",
   sub: "استراتيجية وعلاقات عامة وإنتاج للمؤسسات والعلامات التجارية التي تحتاج أن تُفهم — من طرابلس، ونعمل عالمياً.",
+  /**
+   * Hero CTAs — mirrors site.hero: the primary CTA anchors to the on-page
+   * work chapter (the counterpart of "See selected work" → "/#work"), the
+   * secondary is the start-a-project mailto (label = contactCta below), and
+   * the scroll hint is the counterpart of "Scroll — the signal begins".
+   * NOT "كل الأعمال": that label belongs to allWork below, which renders on
+   * the same page linking to the /ar/work hub — two identically-named links
+   * with different destinations would be ambiguous for assistive tech.
+   */
+  heroPrimaryCta: { label: "شاهد أعمالاً مختارة", href: "/ar#ar-work" },
+  heroScrollHint: "مرّر — تبدأ الإشارة",
 
   positioningHeading: "النمط",
   statement:
@@ -221,6 +232,24 @@ export const arHome = {
       copy: "كل ما نُصدره مبنيّ ليصمد أمام التدقيق، لا ليوم الإطلاق فقط."
     }
   ],
+  /**
+   * Arabic captions for the about chapter's event-photography strip
+   * (site.about.proof). `alts` is INDEX-PARALLEL to site.about.proof.images —
+   * same files, forked description — following the same parallel-array rule as
+   * projects EN/AR `services`. The caption reuses the events system's
+   * canonized vocabulary from content/services.ts (arSummary of "الفعاليات
+   * والتجارب").
+   */
+  aboutProof: {
+    caption:
+      "قاعات عامة تُدار من طرف إلى طرف — منتديات تنفيذية، وجلسات دولية، وتجمّعات أعمال واسعة.",
+    alts: [
+      "تجمّع أعمال واسع في قاعة كبرى بتنسيق باتريكس",
+      "متحدث على منصة منتدى تنفيذي",
+      "ضيوف في تجمّع أعمال واسع خلال فعالية منسّقة"
+    ]
+  },
+
   insightsHeading: "مقالات",
   insightsSub: "أدلة عملية في الاتصال والتسويق.",
   insightsMore: "كل المقالات",
@@ -231,5 +260,25 @@ export const arHome = {
   contactCta: "ابدأ مشروعاً",
 
   /** Link to the English home page (hreflang pair). */
+  langSwitch: { label: "English", href: "/" }
+} as const;
+
+/**
+ * AR — the Arabic 404 (app/(ar)/ar/not-found.tsx). Counterpart of the copy in
+ * app/not-found.tsx: same structure, native MSA phrasing, and the four Arabic
+ * entry points instead of the English ones.
+ */
+export const ar404 = {
+  title: "الصفحة غير موجودة",
+  headline: "هذه الصفحة خرجت عن النمط.",
+  body: "الرابط الذي وصلت منه معطوب، أو أن الصفحة انتقلت. كل ما تبحث عنه ما يزال في مكانه أدناه.",
+  navLabel: "صفحات مقترحة",
+  destinations: [
+    { href: "/ar", label: "الرئيسية" },
+    { href: "/ar/services", label: "الخدمات" },
+    { href: "/ar/work", label: "أعمالنا" },
+    { href: "/ar/insights", label: "مقالات" }
+  ],
+  /** Link back to the English site, mirroring the العربية link on the English 404. */
   langSwitch: { label: "English", href: "/" }
 } as const;

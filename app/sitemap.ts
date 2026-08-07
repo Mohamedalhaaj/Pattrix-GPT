@@ -13,8 +13,8 @@ import { site } from "@/content/site";
  * of a pair from the sitemap alone rather than having to fetch and parse each
  * page first. Derived from content/locale-map.ts so the two can never disagree.
  *
- * Deliberately omitted for unpaired routes — currently the two English insights
- * with no Arabic version. Declaring an alternate that 404s is worse than
+ * Deliberately omitted for unpaired routes — any content shipped on one side
+ * before its translation exists. Declaring an alternate that 404s is worse than
  * declaring none. x-default points at the English side, matching what every
  * page already sends.
  */

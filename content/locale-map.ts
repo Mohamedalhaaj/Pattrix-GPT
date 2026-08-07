@@ -7,11 +7,12 @@ import { servicePages } from "./service-pages";
  *
  * Every Arabic route is its English counterpart under an /ar prefix, so the
  * mapping is mechanical — but it is built from the content files rather than
- * assumed, because the two sides are NOT symmetrical: only 2 of 4 insights and
- * only projects carrying an `ar` block have Arabic versions. Switching language
- * on a page whose counterpart does not exist would land on a 404, so the switch
- * falls back to the other side's home page instead (see components/ui/
- * lang-switch.tsx).
+ * assumed, because the two sides are not GUARANTEED symmetrical: only insights
+ * with an Arabic entry and projects carrying an `ar` block have Arabic versions
+ * (all of them do today; new content starts unpaired until translated).
+ * Switching language on a page whose counterpart does not exist would land on
+ * a 404, so the switch falls back to the other side's home page instead (see
+ * components/ui/lang-switch.tsx).
  */
 const arPaths = new Set<string>([
   "/ar",
@@ -38,11 +39,12 @@ for (const ar of arPaths) {
  * Counterpart for a path. When the exact counterpart does not exist, walk UP to
  * the nearest ancestor that does before giving up on the home page.
  *
- * Two of four insights and three of five projects have no Arabic version, so the
- * exact lookup misses often. Sending a reader of /insights/pr-vs-marketing-libya
- * to the Arabic HOME page discards everything the click expressed — they were
- * reading an article and asked for Arabic, so /ar/insights (which exists, and
- * lists the Arabic articles) is the honest nearest match. Same in reverse.
+ * Every insight and project is paired today, but any content added on one side
+ * first starts unpaired, and the exact lookup misses for it. Sending its reader
+ * to the other HOME page would discard everything the click expressed — someone
+ * reading an article who asked for Arabic should land on /ar/insights (which
+ * exists, and lists the Arabic articles), the honest nearest match. Same in
+ * reverse.
  *
  * Trailing slashes are normalised so /services/ and /services agree.
  */

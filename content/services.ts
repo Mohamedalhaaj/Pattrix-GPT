@@ -18,6 +18,16 @@ export interface ServiceSystem {
    */
   arName: string;
   arSummary: string;
+  /**
+   * Arabic counterparts of `includes` and `hrefLabel`, INDEX-PARALLEL to
+   * `includes` — written for the Arabic home's accordion, which previously
+   * rendered a static grid because these lists existed only in English. Same
+   * rule as arName/arSummary: native counterparts of the approved English
+   * strings, reusing vocabulary already canonized in content/service-pages.ts
+   * and projects.ar.services.
+   */
+  arIncludes: string[];
+  arHrefLabel?: string;
   formation: FormationName;
   summary: string;
   includes: string[];
@@ -33,6 +43,8 @@ export const services: ServiceSystem[] = [
     arName: "الاستراتيجية والتموضع",
     arSummary:
       "نظام البداية: ما الذي يجب أن يُقال، ولمن، وبأي ترتيب. هندسة الحملة قبل وجود أي مادة.",
+    arIncludes: ["تطوير الحملات", "هندسة الرسائل", "تخطيط الجمهور والقنوات"],
+    arHrefLabel: "المزيد عن الاتصال الاستراتيجي",
     formation: "signal",
     summary:
       "The starting system: what should be said, to whom, and in what order. Campaign architecture before any asset exists.",
@@ -46,6 +58,8 @@ export const services: ServiceSystem[] = [
     arName: "العلاقات العامة والإعلام",
     arSummary:
       "سمعة تُبنى على الملأ: علاقات صحفية، وتغطية منسّقة، واتصال يصمد أمام التدقيق.",
+    arIncludes: ["العلاقات العامة", "التنسيق الإعلامي", "التغطية الإخبارية"],
+    arHrefLabel: "المزيد عن العلاقات العامة",
     formation: "orbit",
     summary:
       "Reputation built in public: press relationships, coordinated coverage, and communication that stands up to scrutiny.",
@@ -59,6 +73,7 @@ export const services: ServiceSystem[] = [
     arName: "العلامة والهوية",
     arSummary:
       "النظام البصري واللفظي الذي تكرّره العلامة حتى تُعرف — هوية مصمّمة لتُستخدم، لا لتُعجب.",
+    arIncludes: ["هوية العلامة", "أنظمة التصميم", "لغة العلامة"],
     formation: "lattice",
     summary:
       "The visual and verbal system a brand repeats until it is recognized — identity designed to be used, not admired.",
@@ -70,6 +85,8 @@ export const services: ServiceSystem[] = [
     arName: "السوشيال والديجيتال",
     arSummary:
       "حضور دائم بانضباط تحريري: استراتيجية المنصات، والإدارة، والمحتوى القصير الذي يغذّيها.",
+    arIncludes: ["استراتيجية السوشيال ميديا وإدارتها", "الريلز والمحتوى الرقمي", "التنسيق مع المؤثرين"],
+    arHrefLabel: "المزيد عن إدارة السوشيال ميديا",
     formation: "stream",
     summary:
       "Always-on presence with editorial discipline: platform strategy, management, and the short-form content that feeds it.",
@@ -83,6 +100,8 @@ export const services: ServiceSystem[] = [
     arName: "الإنتاج",
     arSummary:
       "أفلام وتصوير داخلي يُنتَج بانضباط الحملات — طبقة الإثبات لكل رسالة.",
+    arIncludes: ["إنتاج المحتوى", "التصوير والفيديو", "ما بعد الإنتاج"],
+    arHrefLabel: "المزيد عن إنتاج المحتوى",
     formation: "weave",
     summary:
       "In-house film and photography, produced to campaign discipline — the proof layer of every message.",
@@ -96,6 +115,13 @@ export const services: ServiceSystem[] = [
     arName: "الفعاليات والتجارب",
     arSummary:
       "فعاليات مؤسسية عالية الأثر من الفكرة إلى تنفيذٍ متقن — منتديات تنفيذية، وجلسات دولية، وتجمّعات أعمال واسعة.",
+    arIncludes: [
+      "التخطيط الكامل للفعاليات",
+      "التنسيق المؤسسي",
+      "إدارة المتحدثين والبرنامج",
+      "تنفيذ الإعلام والتغطية"
+    ],
+    arHrefLabel: "المزيد عن تغطية الفعاليات",
     formation: "constellation",
     summary:
       "High-impact institutional events from concept to flawless execution — executive forums, international panels, and large-scale business gatherings.",
