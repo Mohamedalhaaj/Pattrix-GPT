@@ -6,6 +6,7 @@ import { clients } from "@/content/clients";
 import { insights } from "@/content/insights";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
+import { InterludeAr } from "@/components/chapters/interlude-ar";
 import { ServicesAr } from "@/components/chapters/services-ar";
 import { FieldCanvas } from "@/components/field/field-canvas";
 import { FieldTrigger } from "@/components/field/field-trigger";
@@ -174,6 +175,10 @@ export default function ArabicHome() {
             </div>
           </section>
 
+
+          {/* The dark cinematic beat — same position as on the English home
+              (between positioning and work). */}
+          <InterludeAr />
 
           {/* Selected work — mirrors the English home's chapter 02. The id is
               the hero primary CTA's anchor, the counterpart of "/#work". */}

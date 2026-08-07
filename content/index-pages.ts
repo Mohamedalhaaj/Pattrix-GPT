@@ -173,6 +173,23 @@ export const arHome = {
   heroPrimaryCta: { label: "شاهد أعمالاً مختارة", href: "/ar#ar-work" },
   heroScrollHint: "مرّر — تبدأ الإشارة",
 
+  /**
+   * The dark cinematic beat between positioning and work — native MSA
+   * counterparts of site.interlude.lines. The third line is hardcoded in
+   * components/chapters/interlude-ar.tsx so «يصمد» can carry the blue
+   * highlight, mirroring how the English component highlights "survives";
+   * it is listed here so the copy has one home. Type decision (Mohamed,
+   * 2026-08-07): the site's Arabic sans, no Arabic serif — the blue word
+   * carries the beat.
+   */
+  interlude: {
+    lines: [
+      "كل يوم يُصفّي جمهورك آلاف الرسائل.",
+      "كلها تقريباً ضجيج.",
+      "عملنا هو ما يصمد بعد التصفية."
+    ]
+  },
+
   positioningHeading: "النمط",
   statement:
     "الانتباه لا يُكسب بالكثرة، بل بالنمط: الرسالة تتكرر بانضباط حتى تصير ذاكرة.",

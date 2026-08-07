@@ -314,10 +314,10 @@ export const projects: Project[] = [
     outcome:
       "An institutional presence that carries from printed program to event room to public channel.",
     ar: {
-      title: "مصياد — إعلام مؤسسي وفعاليات",
+      title: "موصياد — إعلام مؤسسي وفعاليات",
       category: "إعلام مؤسسي وفعاليات",
       services: ["العلاقات العامة والإعلام", "الفعاليات والتجارب", "الإنتاج"],
-      premise: "إعلام مؤسسي وتجارب فعاليات واتصال استراتيجي لشبكة أعمال مصياد في ليبيا.",
+      premise: "إعلام مؤسسي وتجارب فعاليات واتصال استراتيجي لشبكة أعمال موصياد في ليبيا.",
       challenge:
         "احتاجت جمعية أعمال دولية إلى أن تتواصل أنشطة فرعها الليبي — الإطلاقات وبرامج الأعضاء وتجمعات الأعمال — بمعيار مؤسسي.",
       approach:
@@ -333,14 +333,14 @@ export const projects: Project[] = [
       {
         src: "/images/work/musiad-office.jpg",
         alt: "MUSIAD Libya branded office — invest in your skills with MUSIAD Libya",
-        arAlt: "مكتب مصياد ليبيا الموسوم بالهوية — استثمر في مهاراتك مع مصياد ليبيا",
+        arAlt: "مكتب موصياد ليبيا الموسوم بالهوية — استثمر في مهاراتك مع موصياد ليبيا",
         w: 1600,
         h: 1600
       },
       {
         src: "/images/events/musiad-booth.jpg",
         alt: "Conversation at a MUSIAD event stand during a business gathering",
-        arAlt: "حوار عند منصة مصياد في أحد تجمّعات الأعمال",
+        arAlt: "حوار عند منصة موصياد في أحد تجمّعات الأعمال",
         w: 2936,
         h: 1932
       }

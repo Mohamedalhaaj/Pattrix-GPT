@@ -38,7 +38,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-archivo)", "ui-sans-serif", "system-ui", "sans-serif"],
         editorial: ["var(--font-editorial)", "Georgia", "serif"],
-        // IBM Plex Sans Arabic — the variable is defined only under /ar, by
+        // Tajawal — the variable is defined only under /ar, by
         // app/(ar)/ar/layout.tsx, which owns the face so next/font scopes its
         // preload to Arabic routes. The Archivo entry is load-bearing, not a
         // formality: the Arabic face ships the "arabic" subset only, so every

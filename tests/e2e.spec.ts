@@ -358,6 +358,19 @@ test.describe("arabic site", () => {
     );
   });
 
+  test("arabic interlude keeps all three statements readable", async ({ page }) => {
+    // Reduced motion: the interlude renders as a static navy block, so the
+    // lines must be visible without any scrub — mirrors the English check.
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/ar");
+    const line = page.getByText("كلها تقريباً ضجيج.");
+    await line.scrollIntoViewIfNeeded();
+    await expect(line).toBeVisible();
+    const opacity = await line.evaluate((el) => getComputedStyle(el).opacity);
+    expect(Number(opacity)).toBeGreaterThan(0.9);
+    await expect(page.getByText("بعد التصفية", { exact: false })).toBeVisible();
+  });
+
   test("unmatched /ar URLs render the Arabic 404", async ({ page }) => {
     const res = await page.goto("/ar/this-route-does-not-exist");
     expect(res?.status()).toBe(404);
