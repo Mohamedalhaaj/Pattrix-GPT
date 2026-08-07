@@ -370,7 +370,7 @@ export const projects: Project[] = [
     outcome:
       "A consistent visual presence where every reel and product shot carries the store's premium positioning.",
     ar: {
-      title: "طرابلس أوبتكس — ريلز ومحتوى داخل المتجر",
+      title: "بصريات طرابلس — ريلز ومحتوى داخل المتجر",
       category: "إنتاج المحتوى",
       services: ["الإنتاج", "السوشيال والديجيتال"],
       premise: "ريلز وتصوير منتجات وإنتاج محتوى داخل المتجر لمتجر بصريات في طرابلس.",
