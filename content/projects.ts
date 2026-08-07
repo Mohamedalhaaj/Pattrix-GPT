@@ -14,6 +14,13 @@
 export interface ProjectImage {
   src: string;
   alt: string;
+  /**
+   * Arabic alt text. The Arabic case study renders the gallery only for images
+   * that carry this — an image without it is silently omitted on /ar rather
+   * than shipped with an English description on an Arabic page. The image
+   * files themselves are shared between locales; only the description forks.
+   */
+  arAlt?: string;
   w: number;
   h: number;
 }
@@ -178,18 +185,21 @@ export const projects: Project[] = [
       {
         src: "/images/work/hyundai-academy.jpg",
         alt: "DLTA Doroub Libya Training Academy meeting room with branded wall and diamond-pattern accent wall",
+        arAlt: "قاعة اجتماعات أكاديمية دروب ليبيا للتدريب (DLTA) بجدار يحمل الهوية وجدار مميز بنقش معيّنات",
         w: 1600,
         h: 1187
       },
       {
         src: "/images/work/hyundai-stairs.jpg",
         alt: "Stairway mural — “Impossible is just an opportunity” beside the Hyundai logo and New Thinking, New Possibilities",
+        arAlt: "جدارية الدرج — «المستحيل مجرد فرصة» إلى جانب شعار هيونداي وعبارة New Thinking, New Possibilities",
         w: 1600,
         h: 1113
       },
       {
         src: "/images/work/hyundai-entry.jpg",
         alt: "Second-floor entrance framed in Hyundai red — New Thinking, New Possibilities brand wall",
+        arAlt: "مدخل الطابق الثاني مؤطّر بأحمر هيونداي — جدار العلامة New Thinking, New Possibilities",
         w: 829,
         h: 909
       }

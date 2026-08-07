@@ -63,10 +63,11 @@ export async function generateMetadata({ params }: CaseStudyParams): Promise<Met
 }
 
 /**
- * Arabic case study. Mirrors the English page's structure and JSON-LD, but
- * carries only the narrative: the gallery and video blocks stay on the English
- * page because their alt text and captions exist only in English, and shipping
- * half-translated UI would be worse than linking across. `datePublished` is
+ * Arabic case study. Mirrors the English page's structure and JSON-LD. The
+ * gallery renders here too, but only images carrying `arAlt` (Arabic alt text)
+ * — see ProjectImage in content/projects.ts. Videos stay on the English page
+ * because their captions exist only in English, and shipping half-translated
+ * UI would be worse than linking across. `datePublished` is
  * deliberately absent — `year` is the year of the engagement, not of
  * publication (see components/seo/project-json-ld.tsx).
  */
@@ -179,6 +180,34 @@ export default async function ArCaseStudyPage({ params }: CaseStudyParams) {
               ))}
             </div>
           </div>
+
+          {/* Gallery — only the images that carry Arabic alt text. This page
+              used to skip the gallery entirely because every alt existed only
+              in English; the arAlt field (content/projects.ts) lifted that
+              constraint, so an image is shown exactly when it can be described
+              in the page's own language. Mirrors the English layout. */}
+          {(() => {
+            const arGallery = (project.gallery ?? []).filter((img) => img.arAlt);
+            return arGallery.length > 0 ? (
+              <div className="container-x mt-16 md:mt-20">
+                <p className="eyebrow mb-6 text-ink-3">{arCaseStudy.galleryHeading}</p>
+                <div className="grid items-start gap-6 md:grid-cols-2">
+                  {arGallery.map((img) => (
+                    <figure key={img.src} className="overflow-hidden rounded-2xl border border-hairline">
+                      <Image
+                        src={img.src}
+                        alt={img.arAlt!}
+                        width={img.w}
+                        height={img.h}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="w-full"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            ) : null;
+          })()}
 
           <div className="container-x mt-16 border-t border-hairline pt-10 md:mt-20">
             <p className="eyebrow text-ink-3">{arCaseStudy.servicesLabel}</p>

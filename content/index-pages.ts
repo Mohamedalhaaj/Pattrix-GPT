@@ -118,6 +118,8 @@ export const arCaseStudy = {
   approach: "المقاربة",
   outcome: "ما صار إليه",
   servicesLabel: "الخدمات",
+  /** Heading of the image gallery — the Arabic counterpart of "From the engagement". */
+  galleryHeading: "من المشروع",
   backToWork: "كل الأعمال",
   readCase: "اقرأ دراسة الحالة"
 } as const;
